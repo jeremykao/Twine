@@ -13,10 +13,10 @@ var Show3 = function() {
 }
 
 var Main = function() {
-  $("#results").hide();
-  $("#email").hide();
+  $("#step-two").hide();
+  $("#step-three").hide();
   $("#search-btn").click(Move);
-  $("#two").click(Show3);
+  $("#continue-btn").click(Show3);
 };
 
 $(document).ready(Main);
