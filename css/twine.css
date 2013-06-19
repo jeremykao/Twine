@@ -57,6 +57,39 @@ body {
   margin-left: -176px;
 }
 
+#step-three {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 227px;
+  margin-top: -113px;
+  margin-left: -300px;
+}
+
+#step-three #input-subject,
+#step-three #input-msg {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#step-three .form-horizontal .controls {
+  margin-left: 120px;
+}
+
+#step-three .form-horizontal .control-label {
+  width: 100px;
+}
+
+#step-two {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #logo {
   padding-left: .1em;
   font-weight: bold;
@@ -81,6 +114,12 @@ body {
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
+}
+
+.todo li {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
 }
 
 .form-row {
