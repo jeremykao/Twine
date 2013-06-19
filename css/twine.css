@@ -47,6 +47,15 @@ body {
   margin-bottom: 2em;
 }
 
+#progress-bar {
+  margin-top: 1em;
+  -webkit-transition: all ease 0.5s linear;
+     -moz-transition: all ease 0.5s linear;
+       -o-transition: all ease 0.5s linear;
+          transition: all ease 0.5s linear;
+  -webkit-backface-visibility: hidden;
+}
+
 #step-one {
   padding-top: 2em;
 }
@@ -55,26 +64,6 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-}
-
-#step-three {
-  display: none;
-  padding-top: 2em;
-}
-
-#step-three #input-subject,
-#step-three #input-msg {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-#step-three .form-horizontal .controls {
-  margin-left: 120px;
-}
-
-#step-three .form-horizontal .control-label {
-  width: 100px;
 }
 
 #step-two {
@@ -103,6 +92,26 @@ body {
   padding-top: 1em;
   border-radius: 0;
   box-sizing: border-box;
+}
+
+#step-three {
+  display: none;
+  padding-top: 2em;
+}
+
+#step-three #input-subject,
+#step-three #input-msg {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#step-three .form-horizontal .controls {
+  margin-left: 120px;
+}
+
+#step-three .form-horizontal .control-label {
+  width: 100px;
 }
 
 #logo {

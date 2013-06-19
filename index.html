@@ -15,28 +15,22 @@
     <link rel="shortcut icon" href="images/redfavicon.png">
 	</head>
 	<body>
-  <div class="span5">
-    <div class="progress progress-striped active">
-        <div class="bar" style="width: 40%;"></div>
-      </div>
-    <div id="slider" class="ui-slider">
-      <div class="ui-slider-segment" style="margin-left: 25%;"></div>
-      <div class="ui-slider-segment" style="margin-left: 25%;"></div>
-      <div class="ui-slider-segment" style="margin-left: 25%;"></div>
-      <div class="ui-slider-segment"></div>
-      <div class="ui-slider-segment"></div>
-      <div class="ui-slider-segment"></div>
-      <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
-    </div>
-    </div>
-    <!-- 1:login screen -->
     <div class="container">
+      <div class="row">
+        <div id="progress-bar-container" class="span6 offset3">
+          <div id="progress-bar" class="progress progress-striped active">
+              <div class="bar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1:login screen -->
       <div class="row">
         <div id="step-one" class="step span6 offset3">
           <div id="fb-root"></div>
           <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
           {% if showGmail %}
-            <a href="{{ loginLink }}">Sign into Google</a>
+          <a href="{{ loginLink }}">Sign into Google</a>
           {% else %}
           {% endif %}
 
@@ -48,123 +42,120 @@
           <a id="search-btn" class="btn btn-primary btn-large btn-block" href="#">Search Friends</a>
         </div>
       </div>
-    </div><!-- login-screen wrapper -->
 
-    <!-- 2:list screen --> 
-    <div class="row">
-      <div id="step-two" class="step todo mrm">
-        <ul id="results-list">
-          <li class="todo-done">
-          <div class="todo-icon fui-user"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Earl</strong> Lee
-            </h4>
-            likes food
-          </div>
-        </li>
+      <!-- 2:list screen --> 
+      <div class="row">
+        <div id="step-two" class="step todo mrm">
+          <ul id="results-list">
+            <li class="todo-done">
+            <div class="todo-icon fui-user"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Earl</strong> Lee
+              </h4>
+              likes food
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-list"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Teresa</strong> Fan
-            </h4>
-            likes food
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-list"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Teresa</strong> Fan
+              </h4>
+              likes food
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-eye"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Jeremy</strong> Kao
-            </h4>
-            likes to cook
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-eye"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Jeremy</strong> Kao
+              </h4>
+              likes to cook
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-eye"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Adeogun</strong> Samuel
-            </h4>
-            likes to eat
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-eye"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Adeogun</strong> Samuel
+              </h4>
+              likes to eat
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-eye"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Deanna</strong> Hartsook
-            </h4>
-            likes food
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-eye"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Deanna</strong> Hartsook
+              </h4>
+              likes food
+            </div>
+            </li>
 
-          <li class="todo-done">
-          <div class="todo-icon fui-user"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Earl</strong> Lee
-            </h4>
-            likes food
-          </div>
-        </li>
+            <li class="todo-done">
+            <div class="todo-icon fui-user"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Earl</strong> Lee
+              </h4>
+              likes food
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-list"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Teresa</strong> Fan
-            </h4>
-            likes food
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-list"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Teresa</strong> Fan
+              </h4>
+              likes food
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-eye"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Jeremy</strong> Kao
-            </h4>
-            likes to cook
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-eye"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Jeremy</strong> Kao
+              </h4>
+              likes to cook
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-eye"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Adeogun</strong> Samuel
-            </h4>
-            likes to eat
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-eye"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Adeogun</strong> Samuel
+              </h4>
+              likes to eat
+            </div>
+            </li>
 
-        <li>
-          <div class="todo-icon fui-eye"></div>
-          <div class="todo-content">
-            <h4 class="todo-name">
-              <strong>Deanna</strong> Hartsook
-            </h4>
-            likes food
-          </div>
-        </li>
+            <li>
+            <div class="todo-icon fui-eye"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>Deanna</strong> Hartsook
+              </h4>
+              likes food
+            </div>
+            </li>
 
-        <li>
-        </li>
-      </ul>
-      <a href="#" id="continue-btn" class="btn btn-danger">Continue</a>
-    </div>
-  </div> <!-- list wrapper -->
-  <!-- make a submit button as last list item but make everything else scroll -->
+            <li>
+            </li>
+          </ul>
+          <a href="#" id="continue-btn" class="btn btn-danger">Continue</a>
+        </div>
+      </div> <!-- list wrapper -->
 
-  <!-- 3:form screen -->
-  <div class="container">
-    <div id="step-three" class="step">
+      <!-- 3:form screen -->
+      <div id="step-three" class="step">
         <form>
           <div class="form-row control-group">
             <label class="control-label" for="inputSubject">Subject:</label>
@@ -186,11 +177,11 @@
             </div>
           </div>
         </form>
+      </div><!-- form screen wrapper -->
     </div>
-  </div><!-- form screen wrapper -->
 
 
-    
+
     <script type="text/javascript" src="/js/fb.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
