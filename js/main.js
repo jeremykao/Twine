@@ -31,7 +31,7 @@ var getCoords = function() {
     alert("Geolocation is not supported by this browser.");
   }
 }
-var returnCoords = function() {
+var returnCoords = function(position) {
   selfLat = position.coords.latitude;
   selfLong = position.coords.longitude;
 }
