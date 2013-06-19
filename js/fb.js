@@ -50,14 +50,14 @@ window.fbAsyncInit = function() {
         console.log('Good to see you, ' + response.name + '.');
       });
     }
- var value = document.getElementById("login_name");
+ var search_term = document.getElementById("search-bar");
 
 document.getElementById("search-btn").onclick = function(){
   FB.api({
       method: 'fql.query',
       query: "SELECT concat(username, \"@facebook.com\"), name, current_location.latitude, current_location.longitude "
-              + "from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name = "
-              + value.value + " ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))"
+              + "from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name = '"
+              + search_term.value + "' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))"
   }, function(response){
       console.log(response);
   });
@@ -65,7 +65,7 @@ document.getElementById("search-btn").onclick = function(){
   var friendArray = response.data;
   var name = name.data
   var email = anon.data
-  console.loge(friendArray);
+  console.log(friendArray);
 };
   function fbLogin(){
     FB.login(function(response){

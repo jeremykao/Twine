@@ -15,7 +15,7 @@ var Show3 = function() {
 var Main = function() {
   $("#results").hide();
   $("#email").hide();
-  $("#but").click(Move);
+  $("#search-btn").click(Move);
   $("#two").click(Show3);
 };
 
