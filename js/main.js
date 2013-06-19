@@ -44,3 +44,8 @@ var returnCoords = function(position) {
   selfLat = position.coords.latitude;
   selfLong = position.coords.longitude;
 }
+
+//Distance between coords
+var distance = function(lat1, long1, lat2, long2){
+  
+}
