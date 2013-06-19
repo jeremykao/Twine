@@ -43,6 +43,12 @@ body {
   background: #ece7cf;
 }
 
+#logo {
+  padding-left: .1em;
+  font-family: 'Rochester', cursive;
+  font-size: 2em;
+}
+
 .login-screen {
   background: none;
 }

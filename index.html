@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Twine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'-->
+    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/flat-ui.css" rel="stylesheet">
     <link href="css/twine.css" rel="stylesheet">
@@ -12,11 +12,11 @@
     <link rel="shortcut icon" href="images/favicon.ico">
 	</head>
 	<body>
-    <!-- login screen -->
+    <!-- 1:login screen -->
     <div id="step-one" class="login-screen">
       <div class="login-icon">
         <img src="images/login/icon.png" alt="Welcome to Mail App" />
-        <h4>Welcome to <small>Twine</small></h4>
+        <h4>Welcome to <small id="logo">twine</small></h4>
       </div>
 
       <div class="login-form">
@@ -29,7 +29,7 @@
       </div>
     </div> <!-- login-screen wrapper -->
 
-    <!-- list screen --> 
+    <!-- 2:list screen --> 
     <div id="step-three" class="todo mrm">
       <ul>
         <li class="todo-done">
@@ -82,6 +82,34 @@
         </div>
       </li>
     </ul>
+  </div> <!-- list wrapper -->
+  <!-- make a submit button as last list item but make everything else scroll -->
+
+  <!-- 3:form screen -->
+  <div id="step-three">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">To:</label>
+        <div class="controls">
+          <input type="text" id="inputEmail" placeholder="Email">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Subject:</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="Password">
+        </div>
+      </div>
+
+      <textarea rows="3"></textarea>
+
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn">Send</button>
+        </div>
+      </div>
+    </form>
   </div>
 
 
