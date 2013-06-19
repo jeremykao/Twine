@@ -50,7 +50,7 @@ window.fbAsyncInit = function() {
         console.log('Good to see you, ' + response.name + '.');
       });
     }
- var value = document.getElementById("login_name");
+ var value = document.getElementById("search-bar");
 
 document.getElementById("search-btn").onclick = function(){
   FB.api({
