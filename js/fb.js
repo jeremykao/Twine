@@ -56,8 +56,8 @@ document.getElementById("search-btn").onclick = function(){
   FB.api({
       method: 'fql.query',
       query: "SELECT concat(username, \"@facebook.com\"), name, current_location.latitude, current_location.longitude "
-              + "from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name = "
-              + search_term.value + " ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))"
+              + "from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name = '"
+              + search_term.value + "' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))"
   }, function(response){
       console.log(response);
   });
