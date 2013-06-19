@@ -48,23 +48,17 @@ body {
 }
 
 #step-one {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 352px;
-  height: 132px;
-  margin-top: -116px;
-  margin-left: -176px;
+  padding-top: 2em;
+}
+
+#step-one #search-bar {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 #step-three {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 227px;
-  margin-top: -113px;
-  margin-left: -300px;
+  padding-top: 2em;
 }
 
 #step-three #input-subject,

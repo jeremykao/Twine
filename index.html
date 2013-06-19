@@ -16,17 +16,16 @@
 	</head>
 	<body>
     <!-- 1:login screen -->
-    <div class="container row">
-      <div id="step-one" class="step span12">
-        <div id="fb-root"></div>
-        <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-        {% if showGmail %}
-          <a href="{{ loginLink }}">Sign into Google</a>
-        {% else %}
-        {% endif %}
+    <div class="container">
+      <div class="row">
+        <div id="step-one" class="step span6 offset3">
+          <div id="fb-root"></div>
+          <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+          {% if showGmail %}
+            <a href="{{ loginLink }}">Sign into Google</a>
+          {% else %}
+          {% endif %}
 
-        <div class="span3"></div>
-        <div class="span6">
           <h4>Welcome to <span id="logo">twine</span></h4>
           <div class="control-group">
             <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
@@ -34,7 +33,6 @@
           </div>
           <a id="search-btn" class="btn btn-primary btn-large btn-block" href="#">Search Friends</a>
         </div>
-        <div class="span3"></div>
       </div>
     </div><!-- login-screen wrapper -->
 
@@ -148,12 +146,9 @@
   <!-- make a submit button as last list item but make everything else scroll -->
 
   <!-- 3:form screen -->
-  <div class="container row">
-    <div id="step-three" class="span12 step">
-      <div class="span1"></div>
-
-      <div class="span10">
-        <form class="form-horizontal">
+  <div class="container">
+    <div id="step-three" class="step">
+        <form>
           <div class="form-row control-group">
             <label class="control-label" for="inputSubject">Subject:</label>
             <div class="controls">
@@ -174,9 +169,6 @@
             </div>
           </div>
         </form>
-      </div>
-
-      <div class="span1"></div>
     </div>
   </div><!-- form screen wrapper -->
 
