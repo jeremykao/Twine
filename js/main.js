@@ -7,6 +7,8 @@ $(document).ready(function(){
   var stepThreeScreen = $('#step-three');
   var progressBar = $('#progress-bar > .bar');
   var progressBarContainer = $('#progress-bar-container');
+  var selfLat;
+  var selfLong;
 
   stepTwoScreen.hide();
   stepThreeScreen.hide();
@@ -28,3 +30,17 @@ var slideScreen = function(curr, next) {
   next.css("visibility", "visible");
   next.fadeIn();
 };
+
+// Find geolocation
+var getCoords = function() {
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(returnCoords);
+  }
+  else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+var returnCoords = function(position) {
+  selfLat = position.coords.latitude;
+  selfLong = position.coords.longitude;
+}

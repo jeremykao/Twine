@@ -54,10 +54,14 @@ window.fbAsyncInit = function() {
         userId = response.id;
       });
     }
- var search_term = document.getElementById("search-bar");
+  search_term = "";
+  var queryStr = "";
+ $("#search-bar").bind("change", function(){
+    search_term = $(this).attr("value");
+    queryStr = "SELECT username, name, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name='"+ search_term+"') AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))";
+  });
 
 
-var queryStr = "SELECT username, name, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name=\"burn notice\") AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))";
 
 document.getElementById("search-btn").onclick = function(){
   /*FB.api({
@@ -77,12 +81,11 @@ document.getElementById("search-btn").onclick = function(){
       else
         console.log(response);
   }*/
-     var at = 'CAACEdEose0cBAJQD8rKUQkMdpHCs5ZBRKJAxmsjdjduMC9LC85IZBP8wEHIXzyAIQMwmaPwy60nGIChUhR0uZA3hWGpJjxn5Xt8tZAuq8qUFG3xFdFaxHFR5ZBgKFhJYb1ZBOHPuMf1kVMca5uq0jGlVoce3mXIZA5voYaXyWW1WwZDZD';
      $.ajax({
         data: {
           format: 'json',
           query: queryStr,
-          access_token: at
+          access_token: accessToken
         },
         url: 'https://api.facebook.com/method/fql.query'
         
