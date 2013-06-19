@@ -4,36 +4,32 @@
     <meta charset="utf-8">
     <title>Twine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+    <!--link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'-->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/twine.css" rel="stylesheet">
+
     <link rel="shortcut icon" href="images/favicon.ico">
 	</head>
 	<body>
-    <div class="container">
-
-      <div class="login">
-        <div class="login-screen">
-          <div class="login-icon">
-            <img src="images/login/icon.png" alt="Welcome to Mail App" />
-            <h4>Welcome to <small>Twine</small></h4>
-          </div>
-
-          <div class="login-form">
-            <div class="control-group">
-              <input type="text" class="login-field" value="" placeholder="Find friends who like..." id="login-name" />
-              <label class="login-field-icon fui-user" for="login-name"></label>
-            </div>
-
-            <a class="btn btn-primary btn-large btn-block" href="#">Search Friends</a>
-            </div>
-
-          </div>
-        </div>
+    <!-- login screen -->
+    <div class="login-screen">
+      <div class="login-icon">
+        <img src="images/login/icon.png" alt="Welcome to Mail App" />
+        <h4>Welcome to <small>Twine</small></h4>
       </div>
 
-    </div> <!-- container wrapper -->
+      <div class="login-form">
+        <div class="control-group">
+          <input id="search" type="text" class="login-field" value="" placeholder="Find friends who like..." id="login-name" />
+          <label class="login-field-icon fui-user" for="login-name"></label>
+        </div>
 
+        <a class="btn btn-primary btn-large btn-block" href="#">Search Friends</a>
+      </div>
+    </div> <!-- login-screen wrapper -->
+
+    
 
 
 		<div id="fb-root"></div>

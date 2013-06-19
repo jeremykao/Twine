@@ -1,0 +1,27 @@
+/* 62px */
+
+/* 52px */
+
+/* 40px */
+
+/* 29px */
+
+/* 28px */
+
+/* 24px */
+
+body {
+  background: #ece7cf;
+}
+
+.login-screen {
+  background: none;
+}
+
+.btn.btn-primary {
+  background: #e74c3c;
+}
+
+.btn.btn-primary:hover {
+  background: #c0392b;
+}
