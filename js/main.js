@@ -1,22 +1,18 @@
 // Where UI-related JS and other general JS goes
-// CHANGE DIV ID'S TO MATCH THIS JAVASCRIPT!!!!!!
 var Move = function() {
   $("#step-one").hide();
-	$("#allcontent").animate({
-		"margin-top": "1%"
-	});
-	$("#results").show();
+  $("#step-two").fadeIn();
 };
 var Show3 = function() {
-	$("#results").hide();
-	$("#email").show();
+	$("#step-two").hide();
+	$("#step-three").show();
 }
 
 var Main = function() {
-  $("#results").hide();
-  $("#email").hide();
+  $("#step-two").hide();
+  $("#step-three").hide();
   $("#search-btn").click(Move);
-  $("#two").click(Show3);
+  $("#continue-btn").click(Show3);
 };
 
 $(document).ready(Main);
