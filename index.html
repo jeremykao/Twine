@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
     <meta charset="utf-8">
     <title>Twine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="css/flat-ui.css" rel="stylesheet">
     <link href="css/twine.css" rel="stylesheet">
     <!--<link href="/loginButtons.html" rel="import">-->
@@ -14,104 +15,111 @@
 	</head>
 	<body>
     <!-- 1:login screen -->
-    <div id="step-one" class="login-screen">
-      <div class="login-icon">
-        <img src="images/login/icon.png" alt="Welcome to Mail App" />
-        <h4>Welcome to <small id="logo">twine</small></h4>
-      </div>
-
-      <div class="login-form">
-        <div class="control-group">
-          <input id="search-bar" type="text" class="login-field" value="" placeholder="Find friends who like..." id="login-name" />
-          <label class="login-field-icon fui-user" for="login-name"></label>
+    <div class="container row">
+      <div id="step-one" class="step span12">
+        <div class="span3"></div>
+        <div class="span6">
+          <h4>Welcome to <span id="logo">twine</span></h4>
+          <div class="control-group">
+            <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
+            <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
+          </div>
+          <a id="search-btn" class="btn btn-primary btn-large btn-block" href="#">Search Friends</a>
         </div>
-
-        <a id="search-btn" class="btn btn-primary btn-large btn-block" href="#">Search Friends</a>
+        <div class="span3"></div>
       </div>
-    </div> <!-- login-screen wrapper -->
+    </div><!-- login-screen wrapper -->
 
     <!-- 2:list screen --> 
-    <div id="step-two" class="todo mrm">
-      <ul>
-        <li class="todo-done">
-        <div class="todo-icon fui-user"></div>
-        <div class="todo-content">
-          <h4 class="todo-name">
-            <strong>Earl</strong> Lee
-          </h4>
-          likes food
-        </div>
-      </li>
+    <div class="row">
+      <div id="step-two" class="step todo mrm">
+        <ul>
+          <li class="todo-done">
+          <div class="todo-icon fui-user"></div>
+          <div class="todo-content">
+            <h4 class="todo-name">
+              <strong>Earl</strong> Lee
+            </h4>
+            likes food
+          </div>
+        </li>
 
-      <li>
-        <div class="todo-icon fui-list"></div>
-        <div class="todo-content">
-          <h4 class="todo-name">
-            <strong>Teresa</strong> Fan
-          </h4>
-          likes food
-        </div>
-      </li>
+        <li>
+          <div class="todo-icon fui-list"></div>
+          <div class="todo-content">
+            <h4 class="todo-name">
+              <strong>Teresa</strong> Fan
+            </h4>
+            likes food
+          </div>
+        </li>
 
-      <li>
-        <div class="todo-icon fui-eye"></div>
-        <div class="todo-content">
-          <h4 class="todo-name">
-            <strong>Jeremy</strong> Kao
-          </h4>
-          likes to cook
-        </div>
-      </li>
+        <li>
+          <div class="todo-icon fui-eye"></div>
+          <div class="todo-content">
+            <h4 class="todo-name">
+              <strong>Jeremy</strong> Kao
+            </h4>
+            likes to cook
+          </div>
+        </li>
 
-      <li>
-        <div class="todo-icon fui-eye"></div>
-        <div class="todo-content">
-          <h4 class="todo-name">
-            <strong>Adeogun</strong> Samuel
-          </h4>
-          likes to eat
-        </div>
-      </li>
+        <li>
+          <div class="todo-icon fui-eye"></div>
+          <div class="todo-content">
+            <h4 class="todo-name">
+              <strong>Adeogun</strong> Samuel
+            </h4>
+            likes to eat
+          </div>
+        </li>
 
-      <li>
-        <div class="todo-icon fui-eye"></div>
-        <div class="todo-content">
-          <h4 class="todo-name">
-            <strong>Deanna</strong> Hartsook
-          </h4>
-          likes food
-        </div>
-      </li>
-    </ul>
+        <li>
+          <div class="todo-icon fui-eye"></div>
+          <div class="todo-content">
+            <h4 class="todo-name">
+              <strong>Deanna</strong> Hartsook
+            </h4>
+            likes food
+          </div>
+        </li>
+      </ul>
+    </div>
   </div> <!-- list wrapper -->
   <!-- make a submit button as last list item but make everything else scroll -->
 
   <!-- 3:form screen -->
-  <div id="step-three">
-    <form class="form-horizontal">
-      <div class="control-group">
-        <label class="control-label" for="inputEmail">To:</label>
-        <div class="controls">
-          <input type="text" id="inputEmail" placeholder="Email">
-        </div>
+  <div class="container row">
+    <div id="step-three" class="span12 step">
+      <div class="span3"></div>
+
+      <div class="span6">
+        <form class="form-horizontal">
+          <div class="form-row control-group">
+            <label class="control-label" for="inputPassword">Subject:</label>
+            <div class="controls">
+              <input type="text" id="input-subject" placeholder="Subject">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputPassword">Message:</label>
+            <div class="controls">
+              <textarea rows="3" placeholder="Custom message to friends"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <div class="controls">
+              <button type="submit" class="btn">Send</button>
+            </div>
+          </div>
+        </form>
       </div>
 
-      <div class="control-group">
-        <label class="control-label" for="inputPassword">Subject:</label>
-        <div class="controls">
-          <input type="password" id="inputPassword" placeholder="Password">
-        </div>
-      </div>
-
-      <textarea rows="3"></textarea>
-
-      <div class="control-group">
-        <div class="controls">
-          <button type="submit" class="btn">Send</button>
-        </div>
-      </div>
-    </form>
-  </div>
+      <div class="span3"></div>
+    </div>
+  </div><!-- form screen wrapper -->
 
 
 		<div id="fb-root"></div>

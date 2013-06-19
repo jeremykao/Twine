@@ -43,14 +43,19 @@ body {
   background: #ece7cf;
 }
 
-#logo {
-  padding-left: .1em;
-  font-family: 'Rochester', cursive;
-  font-size: 2em;
+.step {
+  margin-bottom: 2em;
 }
 
-.login-screen {
-  background: none;
+#logo {
+  padding-left: .1em;
+  font-weight: bold;
+}
+
+#search-icon {
+  position: absolute;
+  margin-top: -2em;
+  margin-left: 93%;
 }
 
 .btn.btn-primary {
@@ -66,4 +71,8 @@ body {
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
+}
+
+.form-row {
+  margin-bottom: 1em;
 }
