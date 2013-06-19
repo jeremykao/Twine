@@ -6,13 +6,15 @@ window.fbAsyncInit = function() {
       oauth      : true,
       xfbml      : true                                  // Look for social plugins on the page
     });
-
+    accessToken = '';
     FB.Event.subscribe('auth.authResponseChange', function(response) {
     // Here we specify what we do with the response anytime this event occurs. 
     if (response.status === 'connected') {
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
+      accessToken = response['authResponse']['accessToken'];
+      console.log(accessToken);
       testAPI();
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -44,37 +46,57 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+  var userId = 0;
   function testAPI() {
       console.log('Welcome!  Fetching your information.... ');
       FB.api('/me', function(response) {
-        console.log('Good to see you, ' + response.name + '.');
+        console.log('Good to see you, ' + response.name + response.id + '.');
+        userId = response.id;
       });
     }
  var search_term = document.getElementById("search-bar");
 
+
+var queryStr = "SELECT username, name, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name=\"burn notice\") AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))";
+
 document.getElementById("search-btn").onclick = function(){
-  FB.api({
-      method: 'fql.query',
-      query: "SELECT username from user where uid = " + search_term.value 
-      /**
-      query: "SELECT username, name, current_location.latitude, current_location.longitude "
-              + "from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name = '"
-              + search_term.value + "' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=response.authResponse.userID)"
-              **/
+  /*FB.api({
+      method: 'fql.multiquery',
+      //query: "SELECT username from user where uid = " + search_term.value 
+      queries: {
+        query1: 'SELECT uid2 FROM friend WHERE uid1= me() LIMIT 10',
+        query2: 'SELECT uid FROM page_fan WHERE uid IN (#query1)',
+      }
+      //access_token: 'CAACEdEose0cBAKXIvjd6T1BmAPoQ8M6JbSP4p0IHYZBgTZC1xyrG9i1cNmXj3G3ZCogDeNGXKxURW9MlIKk5GHMubBzLvniGYpI0theJ6q65ASmCRJxrpWYACa3BeT8SoZBR1ToZAF5rXcjlg8RYQA4ZAwMGI28lXhxCsjhAzH9QZDZD'
+      
   }, function(response){
-      console.log(response);
-  });
+      console.log(query2);
+      //console.log(accessToken);
+      if (response == null)
+        console.log("Response is null.");
+      else
+        console.log(response);
+  }*/
+     var at = 'CAACEdEose0cBAJQD8rKUQkMdpHCs5ZBRKJAxmsjdjduMC9LC85IZBP8wEHIXzyAIQMwmaPwy60nGIChUhR0uZA3hWGpJjxn5Xt8tZAuq8qUFG3xFdFaxHFR5ZBgKFhJYb1ZBOHPuMf1kVMca5uq0jGlVoce3mXIZA5voYaXyWW1WwZDZD';
+     $.ajax({
+        data: {
+          format: 'json',
+          query: queryStr,
+          access_token: at
+        },
+        url: 'https://api.facebook.com/method/fql.query'
+        
+
+        }).done(function(response){ console.log(response);} );
+  };
   //Array of Friends
   //var friendArray = response.data;
   //var name = name.data;
   //var email = username.data + "@facebook.com";
   //console.log(friendArray);
-};
   function fbLogin(){
     FB.login(function(response){
-    }, {scope: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location'});
+    }, {scope: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages'});
   }
-  
-
-  
+  //https://api.facebook.com/method/fql.query?format=json&query=SELECT+username%2C+name%2C+current_location.latitude%2C+current_location.longitude+from+user+where+uid+IN+(SELECT+uid+FROM+page_fan+WHERE+page_id+IN+(SELECT+page_id+FROM+page+WHERE+name%3D%22burn+notice%22)+AND+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1%3Dme()))&access_token=CAACEdEose0cBAE518wNMMSAhLEZCXOPvfhi8uDkZAZBNGZCZAiWJZCZA2019uPZCzLAzy91ZBqcEyZB0nl87dMd6wdwPbBfvfRcqAePQZBGMtKWBeqmF1KWZAjYQZBl0Ah0KWIaFtpVwnBzxRWQZCnD3ZApZBGJrF2prmrCkLjJ9Ii9riVeWlQZDZD
   
