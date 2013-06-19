@@ -1,10 +1,7 @@
 // Where UI-related JS and other general JS goes
 var Move = function() {
   $("#step-one").hide();
-	$("#allcontent").animate({
-		"margin-top": "1%"
-	});
-	$("#step-two").show();
+  $("#step-two").fadeIn();
 };
 var Show3 = function() {
 	$("#step-two").hide();
