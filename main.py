@@ -21,13 +21,13 @@ from google.appengine.ext.webapp import template
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
-		loginButtonFile = open('loginButtons.html', 'w')
 		user = users.get_current_user()
-		buttonStr = "<fb:login-button show-faces=\"true\" width=\"200\" max-rows=\"1\"></fb:login-button>"
+		showGmail = False
+		loginLink = ""
 		if user is None:
-			buttonStr += ("<a href=\"%s\">Sign into Google</a>" % users.create_login_url('/') )
-		loginButtonFile.write(buttonStr)	
-		template_values = {}
+			loginLink = users.create_login_url('/')
+			showGmail = True
+		template_values = {'showGmail': showGmail, 'loginLink': loginLink}
 		path = os.path.join(os.path.dirname(__file__), 'index.html')
 		self.response.out.write(template.render(path, template_values))
 

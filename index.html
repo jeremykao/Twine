@@ -115,7 +115,13 @@
 
 
 		<div id="fb-root"></div>
-    
+    <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+    {% if showGmail %}
+      <a href="{{ loginLink }}">Sign into Google</a>
+    {% else %}
+  
+    {% endif %}
+
     <script type="text/javascript" src="/js/fb.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
