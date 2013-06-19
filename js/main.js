@@ -4,11 +4,11 @@ var Move = function() {
 	$("#allcontent").animate({
 		"margin-top": "1%"
 	});
-	$("#results").show();
+	$("#step-two").show();
 };
 var Show3 = function() {
-	$("#results").hide();
-	$("#email").show();
+	$("#step-two").hide();
+	$("#step-three").show();
 }
 
 var Main = function() {
