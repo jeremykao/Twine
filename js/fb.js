@@ -50,14 +50,7 @@ window.fbAsyncInit = function() {
         console.log('Good to see you, ' + response.name + '.');
       });
     }
-  function fbLogin(){
-    FB.login(function(response){
-    }, {scope: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location'});
-  }
-  
-  var value = document.getElementById("login_name");
-  
-  FB.api({
+    FB.api({
     method: 'fql.query',
     query: "SELECT concat(username, \"@facebook.com\"), name, current_location.latitude, current_location.longitude "
             + "from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name = "
@@ -65,3 +58,11 @@ window.fbAsyncInit = function() {
 }, function(response){
     console.log(response);
 });
+  function fbLogin(){
+    FB.login(function(response){
+    }, {scope: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location'});
+  }
+  
+  var value = document.getElementById("login_name");
+  
+  
