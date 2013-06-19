@@ -59,16 +59,16 @@ document.getElementById("search-btn").onclick = function(){
       /**
       query: "SELECT username, name, current_location.latitude, current_location.longitude "
               + "from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name = '"
-              + search_term.value + "' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))"
+              + search_term.value + "' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=response.authResponse.userID)"
               **/
   }, function(response){
       console.log(response);
   });
   //Array of Friends
-  var friendArray = response.data;
+  //var friendArray = response.data;
   //var name = name.data;
   //var email = username.data + "@facebook.com";
-  console.log(friendArray);
+  //console.log(friendArray);
 };
   function fbLogin(){
     FB.login(function(response){
