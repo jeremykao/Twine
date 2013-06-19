@@ -10,6 +10,35 @@
 
 /* 24px */
 
+.inline-block {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.drop-ie-gradient {
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+}
+
+.dropdown-arrow-inverse {
+  border-top-color: #34495e !important;
+  border-bottom-color: #34495e !important;
+}
+
 body {
   background: #ece7cf;
 }
@@ -24,4 +53,11 @@ body {
 
 .btn.btn-primary:hover {
   background: #c0392b;
+}
+
+.todo {
+  width: 100%;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
 }
