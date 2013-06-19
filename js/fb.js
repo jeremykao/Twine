@@ -52,7 +52,7 @@ window.fbAsyncInit = function() {
     }
  var value = document.getElementById("login_name");
 
-document.getElementById("search").onclick = function(){
+document.getElementById("search-btn").onclick = function(){
   FB.api({
       method: 'fql.query',
       query: "SELECT concat(username, \"@facebook.com\"), name, current_location.latitude, current_location.longitude "
