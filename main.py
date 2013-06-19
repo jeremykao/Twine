@@ -24,7 +24,7 @@ class MainHandler(webapp2.RequestHandler):
 		loginButtonFile = open('loginButtons.html', 'w')
 		user = users.get_current_user()
 		buttonStr = "<fb:login-button show-faces=\"true\" width=\"200\" max-rows=\"1\"></fb:login-button>"
-		if !user:
+		if user is None:
 			buttonStr += ("<a href=\"%s\">Sign into Google</a>" % users.create_login_url('/') )
 		loginButtonFile.write(buttonStr)	
 		template_values = {}
