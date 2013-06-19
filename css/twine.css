@@ -58,6 +58,7 @@ body {
 }
 
 #step-three {
+  display: none;
   padding-top: 2em;
 }
 
@@ -80,6 +81,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  display: none;
   width: 100%;
   height: 100%;
 }
@@ -105,6 +107,7 @@ body {
 
 #logo {
   padding-left: .1em;
+  font-family: 'Lato', arial;
   font-weight: bold;
 }
 

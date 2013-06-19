@@ -6,8 +6,6 @@ $(document).ready(function(){
   var stepTwoScreen = $('#step-two');
   var stepThreeScreen = $('#step-three');
 
-  stepTwoScreen.hide();
-  stepThreeScreen.hide();
   $("#search-btn").click(function(){slideScreen(stepOneScreen, stepTwoScreen);});
   $("#continue-btn").click(function(){slideScreen(stepTwoScreen, stepThreeScreen);});
 }); 
