@@ -206,6 +206,7 @@ function handleLocationError(error) {
 
 var filterByDistance = function(d,self_lat,self_long,friends){
 	var closeFriends = new Array();
+	
 	if ((self_lat != null) && (self_long != null)){
 		for (var i = 0; i < friends.length; i++){
 			if (friends[i].current_location != null) {
@@ -240,6 +241,7 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 			}
 		}
 	}
+	friends.distGroup.sort();
 	console.log(friends);
 	return friends;
 }
