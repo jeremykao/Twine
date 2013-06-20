@@ -97,13 +97,13 @@ document.getElementById("search-btn").onclick = function(){
           }
           getCoords(temp);
           console.log("RESPONSE " + response[0]);
-          
-          for (var i = 0; i < response.length; i++){
-            var user = response[i];
+          var result = filterByDistance(10000,selfLat,selfLong,response);
+          for (var i = 0; i < result.length; i++){
+            var user = result[i];
             var newLI = '';
             if (i !== 0) {
               userList += ', ' + user.name;
-            } else if (i === response.length - 1) {
+            } else if (i === result.length - 1) {
               userList += ', and ' + user.name + '.';
             } else {
               userList += user.name;
