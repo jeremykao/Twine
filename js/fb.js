@@ -1,4 +1,4 @@
-accessToken = '';
+accessToken = "";
 
 window.fbAsyncInit = function() {
     // init the FB JS SDK
