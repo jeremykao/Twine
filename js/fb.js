@@ -220,14 +220,14 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 				if (0 < dist < 5){
 					friends[i].distGroup = 0;
 				}
-				if (5 < dist < 10){
+				else if (5 < dist < 10){
 					friends[i].distGroup = 1;
 				}
-				if (10 < dist < 25){
+				else if (10 < dist < 25){
 					friends[i].distGroup = 2;
 				}
 				
-				if (25 < dist < 50){
+				else if (25 < dist < 50){
 					friends[i].distGroup = 3;
 				}
 				
