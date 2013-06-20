@@ -94,9 +94,17 @@ document.getElementById("search-btn").onclick = function(){
 
         }).done(function(response){
           console.log(response);
+          $('#results-list').innerHTML('');
+          var userList = '';
           for (var i = 0; i < response.length; i++){
             var user = response[i];
             var newLI = '';
+            if (i !== 0)
+              userList += ', ' + user.name;
+            else if (i === response.length - 1)
+              userList += ', and ' + user.name + '.';
+            else
+              userList += user.name;
             newLI += '<li><div class="todo-icon fui-user"></div>';
             newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
             newLI += user.name;
@@ -105,6 +113,7 @@ document.getElementById("search-btn").onclick = function(){
             newLI += '@facebook.com</div></li>';
             $('#results-list').append(newLI);
           }
+          $('#success-msg').innerHTML('Your message has been sent to ' + userList);
   });
   //Array of Friends
   //var friendArray = response.data;
