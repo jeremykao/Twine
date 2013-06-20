@@ -96,7 +96,7 @@ document.getElementById("search-btn").onclick = function(){
 	          filterByDistance(10000,selfLat,selfLong,response);
           }
           getCoords(temp);
-          
+          console.log("RESPONSE " + response);
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
