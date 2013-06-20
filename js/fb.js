@@ -159,9 +159,7 @@ var getCoords = function(temp){
 }
 var returnCoords = function(position){
 	selfLat = position.coords.latitude;
-	selfLong = position.coords.longitude;
-	console.log("latitude " + selfLat);
-	
+	selfLong = position.coords.longitude;	
 
 }
 // convert to radians
@@ -242,5 +240,6 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 			}
 		}
 	}
+	console.log(friends);
 	return friends;
 }
