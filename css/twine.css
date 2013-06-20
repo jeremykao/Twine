@@ -126,6 +126,14 @@ body {
   width: 100px;
 }
 
+#step-three #send-btn {
+  background: #1abc9c;
+}
+
+#step-three #send-btn:hover {
+  background: #16a085;
+}
+
 #logo {
   padding-left: .1em;
   font-family: 'Lato', arial;

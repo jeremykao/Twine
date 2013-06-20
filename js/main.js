@@ -5,6 +5,7 @@ $(document).ready(function(){
   var stepOneScreen = $('#step-one');
   var stepTwoScreen = $('#step-two');
   var stepThreeScreen = $('#step-three');
+  var finishScreen = $('#finished');
   var progressBar = $('#progress-bar > .bar');
   var progressBarContainer = $('#progress-bar-container');
   var selfLat;
@@ -25,6 +26,10 @@ $(document).ready(function(){
   $('#back-btn').click(function(){
     slideScreen(stepTwoScreen, stepOneScreen);
     progressBar.css('width', '20%');
+  });
+  $('#send-btn').click(function(){
+    slideScreen(stepThreeScreen, finishScreen);
+    progressBar.css('width', '100%');
   });
 }); 
 
