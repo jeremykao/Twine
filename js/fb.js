@@ -96,14 +96,14 @@ document.getElementById("search-btn").onclick = function(){
 	          filterByDistance(10000,selfLat,selfLong,response);
           }
           getCoords(temp);
-          
-          
-          for (var i = 0; i < response.length; i++){
-            var user = response[i];
+          console.log("RESPONSE " + response[0]);
+          var result = filterByDistance(10000,selfLat,selfLong,response);
+          for (var i = 0; i < result.length; i++){
+            var user = result[i];
             var newLI = '';
             if (i !== 0) {
               userList += ', ' + user.name;
-            } else if (i === response.length - 1) {
+            } else if (i === result.length - 1) {
               userList += ', and ' + user.name + '.';
             } else {
               userList += user.name;
@@ -117,11 +117,12 @@ document.getElementById("search-btn").onclick = function(){
             $('#results-list').append(newLI);
           }
           setupLI();
-          if ($('#results-list').length === 0){
-          } else {
+          if ($('#results-list li').length === 0){
+          	console.log("There were no results.");
+          } //else {
             loadStepTwo();
             $('#results-list').append('<li></li>');
-          }
+         // }
   });};
   //Array of Friends
   //var friendArray = response.data;
@@ -159,9 +160,7 @@ var getCoords = function(temp){
 }
 var returnCoords = function(position){
 	selfLat = position.coords.latitude;
-	selfLong = position.coords.longitude;
-	console.log("latitude " + selfLat);
-	
+	selfLong = position.coords.longitude;	
 
 }
 // convert to radians
@@ -207,7 +206,7 @@ function handleLocationError(error) {
     }
 
 var filterByDistance = function(d,self_lat,self_long,friends){
-	var closeFriends = new Array();
+	var result = new Array();
 	if ((self_lat != null) && (self_long != null)){
 		for (var i = 0; i < friends.length; i++){
 			if (friends[i].current_location != null) {
@@ -219,17 +218,17 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 					closeFriends.push(friend[i]);
 				}*/
 				var dist = distance(self_lat,self_long,friendLat,friendLong);
-				if (0 < dist < 5){
+				if ((0 < dist) && (dist <= 5)){
 					friends[i].distGroup = 0;
 				}
-				if (5 < dist < 10){
+				else if ((5 < dist) && (dist <= 10)){
 					friends[i].distGroup = 1;
 				}
-				if (10 < dist < 25){
+				else if ((10 < dist) && (dist <= 25)){
 					friends[i].distGroup = 2;
 				}
 				
-				if (25 < dist < 50){
+				else if ((25 < dist) && (dist <= 50)){
 					friends[i].distGroup = 3;
 				}
 				
@@ -242,5 +241,36 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 			}
 		}
 	}
-	return friends;
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 0){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 1){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 2){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 3){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 4){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 5){
+			result.push(friends[i]);
+		}
+	}
+	//console.log(friends);
+	return result;
 }
