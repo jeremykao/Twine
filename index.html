@@ -10,7 +10,7 @@
     <link href="css/flat-ui.css" rel="stylesheet" type='text/css'>
     <link href="css/twine.css" rel="stylesheet" type='text/css'>
     <link href="css/mod.css" rel="stylesheet" type='text/css'>
-    <link href="css/ladda-themeless.min.css" rel="stylesheet" type='text/css'>
+    <link href="css/ladda.min.css" rel="stylesheet" type='text/css'>
     <link rel="shortcut icon" href="images/redfavicon.png">
 	</head>
 	<body>
@@ -56,7 +56,7 @@
             <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
             <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
           </div>
-          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-color="purple" data-style="contract" >Search Friends</button>
+          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-style="zoom-in">Search Friends</button>
         </div>
       </div>
 
@@ -64,11 +64,10 @@
       <div class="row">
         <div id="step-two" class="step todo mrm">
           <ul id="results-list">
-            <li>
-            </li>
+            <li> </li>
           </ul>
-          <a href="#" id="back-btn" class="btn btn-danger"><</a>
-          <button id="continue-btn" class="btn btn-danger">Continue</button>
+          <a href="#" id="back-btn" class="btn btn-danger">&lt;</a>
+          <button id="continue-btn" class="ladda-button btn btn-danger" data-style="zoom-in"><span class="ladda-label">Continue</span></button>
         </div>
       </div> <!-- list wrapper -->
 
@@ -127,9 +126,8 @@
     <script src="js/jquery.stacktable.js"></script>
     <script src="http://vjs.zencdn.net/c/video.js"></script>
     <script src="js/application.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/ladda.min.js"></script>
-    <script src="js/spin.min.js"></script>
+    <script src="js/spin.js"></script>
+    <script src="js/ladda.js"></script>
     <script src="js/main.js"></script>
 	</body>
 </html>
