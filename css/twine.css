@@ -82,6 +82,15 @@ body {
   margin-bottom: 1em;
 }
 
+#step-zero #logo-img-container {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+#step-zero #logo-image {
+  height: 100px;
+}
+
 #step-one {
   display: none;
 }
