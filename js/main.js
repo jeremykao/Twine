@@ -36,12 +36,12 @@ $(document).ready(function(){
     var message = $("#message").attr("value");
     $.ajax({
       type: 'POST',
-      url: '/send',
       data: {
         sendees: sendees,
         subject: subject,
         message: message
-      }
+      },
+      url: '/send'
     });
 
     e.preventDefault();
