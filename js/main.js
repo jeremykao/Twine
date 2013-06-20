@@ -26,6 +26,7 @@ $(document).ready(function(){
       $('#search-btn').click(); // Click handler for this button is in fb.js
   });
   $("#continue-btn").click(function(e){
+    Ladda.bind( 'input[type=submit]' );
     var emailList = '';
              $('li.todo-done').each(function(){emailList += ($(this).children('.todo-content').children('span').text() +',');});
                   $('#input-to').val(emailList); 
