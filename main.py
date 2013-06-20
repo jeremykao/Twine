@@ -24,7 +24,7 @@ user = None;
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
-		global user;
+		global user
 		user = users.get_current_user()
 		showGmail = False
 		loginLink = ""
@@ -43,12 +43,18 @@ class TestEmailHandler(webapp2.RequestHandler):
 
 class SendHandler(webapp2.RequestHandler):
 	def post(self):
-		global user;
+		global user
+		user = users.get_current_user()
 		sendees = self.request.get("sendees")
 		sender = user.nickname() + "<" + user.email() + ">"
 		subject = self.request.get("subject")
 		message = self.request.get("message")
 		activityStr = ""
+		if ( sendees.find(",") != -1 ):
+			sendees = sendees.split(",")
+		else:
+			sendees = [sendees]
+
 		for sendee in sendees:
 			activityStr += "\nSent to " + sendee
 			email = mail.EmailMessage(sender=sender, subject=subject, to=sendee, body=message)
