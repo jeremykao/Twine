@@ -11,9 +11,7 @@ window.fbAsyncInit = function() {
 
     FB.getLoginStatus(function(response){
       if ( response.status === 'connected'){
-        $("#fb-login").text("Logged into FB");
-        $("#fb-login").addClass("btn-success");
-        $("#fb-login").attr("disabled","true");
+        changeFBButton();
       }
       else {
         $("#fb-login").click(function(){
@@ -79,23 +77,6 @@ window.fbAsyncInit = function() {
 
   $(window).bind("load", function(){
 document.getElementById("search-btn").onclick = function(){
-  /*FB.api({
-      method: 'fql.multiquery',
-      //query: "SELECT username from user where uid = " + search_term.value 
-      queries: {
-        query1: 'SELECT uid2 FROM friend WHERE uid1= me() LIMIT 10',
-        query2: 'SELECT uid FROM page_fan WHERE uid IN (#query1)',
-      }
-      //access_token: 'CAACEdEose0cBAKXIvjd6T1BmAPoQ8M6JbSP4p0IHYZBgTZC1xyrG9i1cNmXj3G3ZCogDeNGXKxURW9MlIKk5GHMubBzLvniGYpI0theJ6q65ASmCRJxrpWYACa3BeT8SoZBR1ToZAF5rXcjlg8RYQA4ZAwMGI28lXhxCsjhAzH9QZDZD'
-      
-  }, function(response){
-      console.log(query2);
-      //console.log(accessToken);
-      if (response == null)
-        console.log("Response is null.");
-      else
-        console.log(response);
-  }*/
      $.ajax({
         data: {
           format: 'json',
@@ -146,11 +127,24 @@ document.getElementById("search-btn").onclick = function(){
   function fbLogin(){
     FB.login(function(response){
       if ( response.status == "connected" )
-        console.log("Logged into Facebook!");
+        changeFBButton();
     }, {perms: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages'});
   }
   //https://api.facebook.com/method/fql.query?format=json&query=SELECT+username%2C+name%2C+current_location.latitude%2C+current_location.longitude+from+user+where+uid+IN+(SELECT+uid+FROM+page_fan+WHERE+page_id+IN+(SELECT+page_id+FROM+page+WHERE+name%3D%22burn+notice%22)+AND+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1%3Dme()))&access_token=CAACEdEose0cBAE518wNMMSAhLEZCXOPvfhi8uDkZAZBNGZCZAiWJZCZA2019uPZCzLAzy91ZBqcEyZB0nl87dMd6wdwPbBfvfRcqAePQZBGMtKWBeqmF1KWZAjYQZBl0Ah0KWIaFtpVwnBzxRWQZCnD3ZApZBGJrF2prmrCkLjJ9Ii9riVeWlQZDZD
   
+  function gmailLogin(){
+    var login = $("#gmail-login").attr("login");
+    if ( login != null ){
+      window.open(login, "Login to Gmail", "resizable=yes,width=440,height=280");
+    }
+  }
+  $("#gmail-login").click(gmailLogin);
+  function changeFBButton(){
+    $("#fb-login").text("Logged into FB");
+    $("#fb-login").addClass("btn-success");
+    $("#fb-login").attr("disabled","true");
+  }
+
   // Find geolocation
 var getLat = function() {
   if(navigator.geolocation){

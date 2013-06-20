@@ -20,11 +20,8 @@ from google.appengine.api import users
 from google.appengine.api import mail
 from google.appengine.ext.webapp import template
 
-user = None;
-
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
-		global user
 		user = users.get_current_user()
 		showGmail = False
 		loginLink = ""
@@ -43,7 +40,6 @@ class TestEmailHandler(webapp2.RequestHandler):
 
 class SendHandler(webapp2.RequestHandler):
 	def post(self):
-		global user
 		user = users.get_current_user()
 		sendees = self.request.get("sendees")
 		sender = user.nickname() + "<" + user.email() + ">"
