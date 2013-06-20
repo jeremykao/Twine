@@ -111,6 +111,7 @@ document.getElementById("search-btn").onclick = function(){
             newLI += '@facebook.com</span></div></li>';
             $('#results-list').append(newLI);
           }
+          $('#search-value').html('Your friends who like <em>' + searchBar.val() + '</em>.');
           setupLI();
           $('#results-list').append('<li></li>');
           loadStepTwo();

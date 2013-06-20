@@ -11,8 +11,6 @@
     <link href="css/twine.css" rel="stylesheet" type='text/css'>
     <link href="css/mod.css" rel="stylesheet" type='text/css'>
     <link href="css/ladda.min.css" rel="stylesheet" type='text/css'>
-    <!--<link href="/loginButtons.html" rel="import">-->
-
     <link rel="shortcut icon" href="images/redfavicon.png">
 	</head>
 	<body>
@@ -23,20 +21,21 @@
               <div class="bar" style="width: 0%;"></div>
           </div>
         </div>
+        <h4 class="span6 offset3" id="search-value"></h4>
       </div>
 
       <!-- 0:auth screen -->
       <div class="row">
         <div id="step-zero" class="step span6 offset3">
           <div id="fb-root"></div>
-          <div id="logo-img-container" class="span6"><img id="logo-image" class="row" src="images/icons/Mail@2x.png"/></div>
+          <div id="logo-img-container" class="span6"><img alt="Twine logo" id="logo-image" class="row" src="images/icons/Mail@2x.png"/></div>
           <h4>Welcome to <span id="logo" style="font-size: 23px">twine</span></h4>
           <p>Twine is an easy way to send targeted emails to friends based on interests. This is very useful for organizing events and reaching out to friends.</p>
           <p>Please login with Facebook so we can search your friends based on their interests, and Gmail so you can send emails through Twine.</p>
           <div class="row">
           <button class="btn btn-info span3" id="fb-login">Login to Facebook</button>
           {% if showGmail %}
-          <btn login="{{ loginLink }}" class="btn btn-info span3" id="gmail-login">Login to Gmail</btn>
+          <button login="{{ loginLink }}" class="btn btn-info span3" id="gmail-login">Login to Gmail</button>
           {% else %}
           <button class="btn span3" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
           {% endif %}
@@ -63,7 +62,6 @@
 
       <!-- 2:list screen --> 
       <div class="row">
-      	<h4 id="search-value">Friends interested in: </h4>
         <div id="step-two" class="step todo mrm">
           <ul id="results-list">
             <li>
