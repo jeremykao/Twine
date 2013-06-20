@@ -111,6 +111,9 @@ document.getElementById("search-btn").onclick = function(){
   //var name = name.data;
   //var email = username.data + "@facebook.com";
   //console.log(friendArray);
+  $("#fb-login").click(function(){
+    fbLogin();
+  });
   function fbLogin(){
     FB.login(function(response){
       if ( response.status == "connected" )
