@@ -92,6 +92,15 @@ document.getElementById("search-btn").onclick = function(){
 
         }).done(function(response){
           for (var i = 0; i < response.length; i++){
+            var newListItem = createElement("li");
+            var newTextNode = createTextNote();
+            document.getElementById("resultlist").innerHTML(<li class="todo-done"><div class="todo-icon fui-user"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                <strong>response[i].name</strong> 
+              </h4>
+              </div>
+            </li>)
             console.log(response[i].username + "@facebook.com")
           }
           console.log(response[0].username);
