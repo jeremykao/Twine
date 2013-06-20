@@ -91,6 +91,8 @@ document.getElementById("search-btn").onclick = function(){
           $('#results-list').html('');
           var userList = '', emailList = '';
           
+          // HERE
+          getCoords();
           filterByDistance(10,selfLat,selfLong,response);
           
           for (var i = 0; i < response.length; i++){
