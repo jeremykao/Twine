@@ -117,7 +117,7 @@ document.getElementById("search-btn").onclick = function(){
           }
           //$('#search-value').html('Your friends who like <em>' + searchBar.val() + '</em>.');
           setupLI();
-          if ($('#results-list').length == 1){
+          if ($('#results-list').length == 0){
             alert('Sorry! Looks like none of your friends share that interest. Please try searching something else.');
           }
           else {
