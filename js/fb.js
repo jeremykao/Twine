@@ -186,13 +186,12 @@ var distance = function(lat1, long1, lat2, long2){
 
 var filterByDistance = function(dist,selfLat,selfLong,friends){
 	for (var i = 0; i < friends.length; i++){
-		var friendLat = friends[i].current_location.latitude;
-		var friendLong = friends[i].current_location.longitude;
-		if (friendLat != null){
+		if (friends[i].current_location != null) {
+			var friendLat = friends[i].current_location.latitude;
+			var friendLong = friends[i].current_location.longitude;
 			if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
 				console.log(friends[i].username);
 				return friends[i];
-			}
 		}
 	}
 }
