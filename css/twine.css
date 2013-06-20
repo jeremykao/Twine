@@ -126,6 +126,16 @@ body {
   overflow-y: scroll;
 }
 
+#step-two #results-list li.todo-done img {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+#step-two #results-list li img {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
 #step-two #results-list li:last-child {
   height: 16px;
   background: transparent;
@@ -220,4 +230,9 @@ body {
 
 .form-row {
   margin-bottom: 1em;
+}
+
+.portrait-img {
+  height: 100%;
+  max-width: initial;
 }

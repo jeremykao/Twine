@@ -78,9 +78,19 @@ body {
   #results-list {
     overflow-y: scroll;
     height: 100%;
-    li:last-child {
-      background: transparent;
-      height: 16px;
+    li {
+      &.todo-done {
+        img {
+          .opacity(100);
+        }
+      }
+      img {
+        .opacity(50);
+      }
+      &:last-child {
+        background: transparent;
+        height: 16px;
+      }
     }
   }
 
@@ -168,4 +178,9 @@ body {
 
 .form-row {
   margin-bottom: 1em;
+}
+
+.portrait-img {
+  height: 100%;
+  max-width: initial;
 }

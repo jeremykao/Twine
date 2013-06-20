@@ -116,6 +116,10 @@ document.getElementById("search-btn").onclick = function(){
           }
           //$('#search-value').html('Your friends who like <em>' + searchBar.val() + '</em>.');
           setupLI();
+          $('img').each(function(){
+            if (this.height < this.width)
+            $(this).addClass('portrait-img');
+          });
           $('#results-list').append('<li></li>');
           loadStepTwo();
   });};
