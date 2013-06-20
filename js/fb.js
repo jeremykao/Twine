@@ -92,11 +92,11 @@ document.getElementById("search-btn").onclick = function(){
           var userList = '', emailList = '';
           
           // HERE
-          getCoords();
-          var temp = function(){
+	  var temp = function(){
 	          console.log("LALALA "+selfLat);
 	          filterByDistance(10,selfLat,selfLong,response);
           }
+          getCoords(temp);
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
