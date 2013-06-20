@@ -138,8 +138,8 @@ document.getElementById("search-btn").onclick = function(){
   }
 
   // Find geolocation
-selfLat;
-selfLong;
+var selfLat;
+var selfLong;
 
   // Find geolocation
 var getCoords = function(){
