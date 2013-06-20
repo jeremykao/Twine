@@ -94,7 +94,7 @@ document.getElementById("search-btn").onclick = function(){
 
         }).done(function(response){
           console.log(response);
-          $('#results-list').innerHTML('');
+          $('#results-list').html('');
           var userList = '';
           for (var i = 0; i < response.length; i++){
             var user = response[i];
@@ -113,8 +113,8 @@ document.getElementById("search-btn").onclick = function(){
             newLI += '@facebook.com</div></li>';
             $('#results-list').append(newLI);
           }
-          $('#success-msg').innerHTML('Your message has been sent to ' + userList);
-  });
+          $('#success-msg').html('Your message has been sent to ' + userList);
+  });};
   //Array of Friends
   //var friendArray = response.data;
   //var name = name.data;
