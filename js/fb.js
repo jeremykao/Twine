@@ -8,7 +8,7 @@ window.fbAsyncInit = function() {
       oauth      : true,
       xfbml      : true                                  // Look for social plugins on the page
     });
-
+    
     FB.Event.subscribe('auth.authResponseChange', function(response) {
     // Here we specify what we do with the response anytime this event occurs. 
     if (response.status === 'connected') {

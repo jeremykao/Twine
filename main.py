@@ -58,7 +58,7 @@ class SendHandler(webapp2.RequestHandler):
 			sendees = [sendees]
 
 		for sendee in sendees:
-			activityStr += sendee
+			activityStr += sendee + ", "
 			email = mail.EmailMessage(sender=sender, subject=subject, to=sendee, body=message)
 			email.send()
 		self.response.out.write(activityStr)
