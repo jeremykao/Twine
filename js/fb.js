@@ -117,7 +117,7 @@ document.getElementById("search-btn").onclick = function(){
             $('#results-list').append(newLI);
           }
           setupLI();
-          if ($('#response li').length === 0){
+          if ($('#results-list li').length === 0){
           	console.log("There were no results.");
           } //else {
             loadStepTwo();
