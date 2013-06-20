@@ -11,7 +11,7 @@ window.fbAsyncInit = function() {
 
     FB.getLoginStatus(function(response){
       if ( response.status === 'connected'){
-        $("#fb-login").text("Logged into Facebook");
+        $("#fb-login").text("Logged into FB");
         $("#fb-login").addClass("btn-success");
         $("#fb-login").attr("disabled","true");
       }
