@@ -217,17 +217,17 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 					closeFriends.push(friend[i]);
 				}*/
 				var dist = distance(self_lat,self_long,friendLat,friendLong);
-				if ((0 < dist) && (dist < 5)){
+				if ((0 < dist) && (dist <= 5)){
 					friends[i].distGroup = 0;
 				}
-				else if ((5 < dist) && (dist < 10)){
+				else if ((5 < dist) && (dist <= 10)){
 					friends[i].distGroup = 1;
 				}
-				else if ((10 < dist) && (dist < 25)){
+				else if ((10 < dist) && (dist <= 25)){
 					friends[i].distGroup = 2;
 				}
 				
-				else if ((25 < dist) && (dist < 50)){
+				else if ((25 < dist) && (dist <= 50)){
 					friends[i].distGroup = 3;
 				}
 				
