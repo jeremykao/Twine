@@ -200,7 +200,6 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 var filterByDistance = function(dist,selfLat,selfLong,friends){
-    console.log("here "+friendLats);
 	for (var key in friends){
 		console.log("friend "+friends[key]);
 		console.log("latitude "+friends[key].current_location.latitude);
