@@ -151,6 +151,7 @@ var getCoords = function(){
     }
 }
 var returnCoords = function(position){
+	console.log("latitude " + position.coords.latitude);
 	selfLat = position.coords.latitude;
 	selfLong = position.coords.longitude;
 }
