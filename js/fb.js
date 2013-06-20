@@ -66,11 +66,6 @@ window.fbAsyncInit = function() {
 
 
   $(window).bind("load", function(){
-    $('#search-bar').keyup(function(event){
-             if (event.keyCode == 13){
-                 $('#search-btn').click();
-             }
-             });
 document.getElementById("search-btn").onclick = function(){
   /*FB.api({
       method: 'fql.multiquery',
@@ -121,8 +116,8 @@ document.getElementById("search-btn").onclick = function(){
             $('#results-list').append(newLI);
           }
           setupLI();
+          $('#results-list').append('<li></li>');
           loadStepTwo();
-          $('#success-msg').html('Your message has been sent to ' + userList);
   });};
   //Array of Friends
   //var friendArray = response.data;

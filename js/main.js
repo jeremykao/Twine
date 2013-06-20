@@ -1,4 +1,5 @@
 // Where UI-related JS and other general JS goes
+var ENTER_KEYCODE = 13;
 
 // Document Hooks
 $(document).ready(function(){
@@ -18,7 +19,9 @@ $(document).ready(function(){
     slideScreen(stepZeroScreen, stepOneScreen);
     progressBar.css('width', '20%');
   });
-  $("#search-btn").click(function(e){
+  $('#search-bar').keyup(function(event){
+    if (event.keyCode == ENTER_KEYCODE)
+      $('#search-btn').click(); // Click handler for this button is in fb.js
   });
   $("#continue-btn").click(function(e){
     var emailList = '';
