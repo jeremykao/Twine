@@ -35,7 +35,7 @@
           <div class="row">
           <button class="btn btn-info span3" id="fb-login">Login to Facebook</button>
           {% if showGmail %}
-          <button login="{{ loginLink }}" class="btn btn-info span3" id="gmail-login">Login to Gmail</button>
+          <a href="{{ loginLink }}"><button class="btn btn-info span3" id="gmail-login">Login to Gmail</button></a>
           {% else %}
           <button class="btn span3" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
           {% endif %}
@@ -56,7 +56,7 @@
             <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
             <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
           </div>
-          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" class="ladda-button" data-color="purple" data-style="contract" >Search Friends</button>
+          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-color="purple" data-style="contract" >Search Friends</button>
         </div>
       </div>
 
@@ -68,7 +68,7 @@
             </li>
           </ul>
           <a href="#" id="back-btn" class="btn btn-danger"><</a>
-          <a href="#" id="continue-btn" class="btn btn-danger">Continue</a>
+          <button id="continue-btn" class="btn btn-danger">Continue</button>
         </div>
       </div> <!-- list wrapper -->
 

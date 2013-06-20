@@ -91,7 +91,10 @@ document.getElementById("search-btn").onclick = function(){
           $('#results-list').html('');
           var userList = '', emailList = '';
           
-          filterByDistance(10,getLat,getLong,response);
+          // HERE
+          getCoords();
+          console.log("LALALA "+selfLat);
+          filterByDistance(10,selfLat,selfLong,response);
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
@@ -138,29 +141,24 @@ document.getElementById("search-btn").onclick = function(){
   }
 
   // Find geolocation
-var getLat = function() {
-  if(navigator.geolocation){
-    return navigator.geolocation.getCurrentPosition(returnLat);
-  }
-  else {
-    alert("Geolocation is not supported by this browser.");
-  }
-}
-var returnLat = function(position) {
-  return position.coords.latitude;
-}
-var getLong = function() {
-  if(navigator.geolocation){
-    return navigator.geolocation.getCurrentPosition(returnLong);
-  }
-  else {
-    alert("Geolocation is not supported by this browser.");
-  }
-}
-var returnLong = function(position) {
-  return position.coords.longitude;
-}
+var selfLat;
+var selfLong;
 
+  // Find geolocation
+var getCoords = function(){
+	if (navigator.geolocation){
+		return navigator.geolocation.getCurrentPosition(returnCoords, handleLocationError);
+	}
+	else {
+      alert("Geolocation is not supported by this browser.");
+    }
+}
+var returnCoords = function(position){
+	selfLat = position.coords.latitude;
+	selfLong = position.coords.longitude;
+	console.log("latitude " + selfLat);
+
+}
 // convert to radians
 var toRad = function(degrees){
   return degrees * Math.PI / 180;
@@ -185,18 +183,38 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
-var filterByDistance = function(dist,selfLat,selfLong,friends){
-	console.log(selfLat + " " + selfLong);
-	console.log(distance(10,30,203,409));
-	for (var i = 0; i < friends.length; i++){
-		 console.log("first");
-		if (friends[i].current_location != null) {
-			var friendLat = friends[i].current_location.latitude;
-			var friendLong = friends[i].current_location.longitude;
-			console.log(distance(selfLat,selfLong,friendLat,friendLong));
-			if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
-				console.log(friends[i].username);
-				return friends[i];
+function handleLocationError(error) {
+        switch(error.code)
+        {
+        case 0:
+          updateStatus("There was an error while retrieving your location: " + error.message);
+          break;
+        case 1:
+          updateStatus("The user prevented this page from retrieving a location.");
+          break;
+        case 2:
+          updateStatus("The browser was unable to determine your location: " + error.message);
+          break;
+        case 3:
+          updateStatus("The browser timed out before retrieving the location.");
+          break;
+        }
+    }
+
+var filterByDistance = function(dist,self_lat,self_long,friends){
+	if (self_lat != null) && (self_long != null){
+		console.log(self_lat + " " + self_long);
+		//console.log(distance(10,30,203,409));
+		for (var i = 0; i < friends.length; i++){
+			 console.log("first");
+			if (friends[i].current_location != null) {
+				var friendLat = friends[i].current_location.latitude;
+				var friendLong = friends[i].current_location.longitude;
+				console.log(distance(self_lat,self_long,friendLat,friendLong));
+				if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
+					console.log(friends[i].username);
+					return friends[i];
+				}
 			}
 		}
 	}
