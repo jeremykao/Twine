@@ -115,19 +115,11 @@ document.getElementById("search-btn").onclick = function(){
             newLI += '@facebook.com</span></div></li>';
             $('#results-list').append(newLI);
           }
-          //$('#search-value').html('Your friends who like <em>' + searchBar.val() + '</em>.');
           setupLI();
-          $('img').each(function(){
-            if (this.height < this.width)
-            $(this).addClass('portrait-img');
-          });
-          $('#results-list').append('<li></li>');
-          if ($('#results-list').length == 0){
-            alert('Sorry! Looks like none of your friends share that interest. Please try searching something else.');
-          }
-          else {
-            $('#results-list').append('<li></li>');
+          if ($('#results-list').length === 0){
+          } else {
             loadStepTwo();
+            $('#results-list').append('<li></li>');
           }
   });};
   //Array of Friends

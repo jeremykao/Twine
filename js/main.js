@@ -79,18 +79,17 @@ var slideScreen = function(curr, next) {
 };
 
 function loadStepTwo(){
-  var stepOneScreen = $('#step-one');
-  var stepTwoScreen = $('#step-two');
-  var progressBar = $('#progress-bar > .bar');
-    slideScreen(stepOneScreen, stepTwoScreen);
-    progressBar.css('width', '40%');
-  if ($("#results-list").length == 1){
-    //$("#results-list").append("<li>There were no results from your search</li><li></li>");
-    //$("#continue-btn").attr("disabled", true);
-  }
+  slideScreen(stepOneScreen, stepTwoScreen);
+  progressBar.css('width', '40%');
 }
 // Setup LI as check boxes
 function setupLI(){
+  $('img').each(function(){
+    $(this).load(function(){
+      if (this.height < this.width)
+      $(this).addClass('portrait-img');
+    });
+  });
   $('li').click(function(e){
     if ($(this).hasClass('todo-done'))
       $(this).removeClass('todo-done');
