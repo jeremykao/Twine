@@ -94,28 +94,31 @@ document.getElementById("search-btn").onclick = function(){
           // GEOLOCATION STUFF
 	  var temp = function(){
 	          result = filterByDistance(10000,selfLat,selfLong,response);
-          }
+	          populate();
+	  }
           getCoords(temp);
           
           //console.log("RESPONSE " + response[0]);
+          var populate = function() { 
           console.log(result);
-          for (var i = 0; i < result.length; i++){
-            var user = result[i];
-            var newLI = '';
-            if (i !== 0) {
-              userList += ', ' + user.name;
-            } else if (i === result.length - 1) {
-              userList += ', and ' + user.name + '.';
-            } else {
-              userList += user.name;
-            }
-            newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
-            newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
-            newLI += user.name;
-            newLI += '</strong></h4><span>';
-            newLI += user.username;
-            newLI += '@facebook.com</span></div></li>';
-            $('#results-list').append(newLI);
+	          for (var i = 0; i < result.length; i++){
+	            var user = result[i];
+	            var newLI = '';
+	            if (i !== 0) {
+	              userList += ', ' + user.name;
+	            } else if (i === result.length - 1) {
+	              userList += ', and ' + user.name + '.';
+	            } else {
+	              userList += user.name;
+	            }
+	            newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+	            newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+	            newLI += user.name;
+	            newLI += '</strong></h4><span>';
+	            newLI += user.username;
+	            newLI += '@facebook.com</span></div></li>';
+	            $('#results-list').append(newLI);
+	          }
           }
           setupLI();
           if ($('#results-list li').length === 1){
@@ -123,6 +126,7 @@ document.getElementById("search-btn").onclick = function(){
           } //else {
             loadStepTwo();
             $('#results-list').append('<li></li>');
+   
          // }
   });};
   //Array of Friends
