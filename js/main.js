@@ -59,14 +59,16 @@ var toDeg = function(radians){
   return radians * 180 / Math.PI;
 }
 
-//Distance between coords
 var distance = function(lat1, long1, lat2, long2){
-  theta = toRad(long1-long2);
-  lat1 = toRad(lat1);
-  long1 = toRad(long1);
-  lat2 = toRad(lat1);
-  long2 = toRad(long2);
-  dist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(theta);
-  dist = toDeg(Math.acos(dist)) * 60 * 1.1515 * 1.609344 * 1000;
-  return dist;
+  var R = 3959; // miles
+    var dLat = toRad(lat2-lat1);
+    var dLong = toRad(long2-long1);
+    var lat1 = toRad(lat1);
+    var lat2 = toRad(lat2);
+
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLong/2) * Math.sin(dLong/2) * Math.cos(lat1) * Math.cos(lat2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c;
+    return d;
 }
