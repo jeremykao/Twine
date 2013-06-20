@@ -45,11 +45,8 @@ $(document).ready(function(){
         message: message
       },
       url: '/send',
-      beforeSend: function(){
-        console.log(sendees);
-      },
       success: function(response){
-         console.log(response);
+         $("#success-msg").html("Your message has been sent to " + response );
       }
     });
 

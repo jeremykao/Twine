@@ -50,13 +50,15 @@ class SendHandler(webapp2.RequestHandler):
 		subject = self.request.get("subject")
 		message = self.request.get("message")
 		activityStr = ""
+		if (sendees[-1] == ','):
+			sendees = sendees[0:-1]
 		if ( sendees.find(",") != -1 ):
 			sendees = sendees.split(",")
 		else:
 			sendees = [sendees]
 
 		for sendee in sendees:
-			activityStr += "\nSent to " + sendee
+			activityStr += sendee
 			email = mail.EmailMessage(sender=sender, subject=subject, to=sendee, body=message)
 			email.send()
 		self.response.out.write(activityStr)
