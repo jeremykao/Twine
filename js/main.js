@@ -82,6 +82,9 @@ function loadStepTwo(){
   var progressBar = $('#progress-bar > .bar');
     slideScreen(stepOneScreen, stepTwoScreen);
     progressBar.css('width', '40%');
+  if ($("#results-list").length == 1){
+    $("#results-list").append("<li id='no-results'>There were no results from your search</li");
+  }
 }
 // Setup LI as check boxes
 function setupLI(){
