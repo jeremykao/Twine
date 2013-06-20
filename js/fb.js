@@ -110,14 +110,13 @@ document.getElementById("search-btn").onclick = function(){
             newLI += '<li class="todo-done"><div class="todo-icon fui-user"></div>';
             newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
             newLI += user.name;
-            newLI += '</strong></h4>';
+            newLI += '</strong></h4><span>';
             newLI += user.username;
-            newLI += '@facebook.com</div></li>';
+            newLI += '@facebook.com</span></div></li>';
             $('#results-list').append(newLI);
           }
           setupLI();
           loadStepTwo();
-          $('#input-to').val(emailList);
           $('#success-msg').html('Your message has been sent to ' + userList);
   });};
   //Array of Friends

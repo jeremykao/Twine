@@ -21,6 +21,9 @@ $(document).ready(function(){
   $("#search-btn").click(function(e){
   });
   $("#continue-btn").click(function(e){
+    var emailList = '';
+             $('li.todo-done').each(function(){emailList += ($(this).children('.todo-content').children('span').text() +',');});
+                  $('#input-to').val(emailList); 
     slideScreen(stepTwoScreen, stepThreeScreen);
     progressBarContainer.removeClass('span6 offset3');
     progressBarContainer.addClass('span12');
