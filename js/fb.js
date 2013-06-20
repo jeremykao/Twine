@@ -93,9 +93,10 @@ document.getElementById("search-btn").onclick = function(){
           
           // GEOLOCATION STUFF
 	  var temp = function(){
-	          filterByDistance(10,selfLat,selfLong,response);
+	          filterByDistance(10000,selfLat,selfLong,response);
           }
           getCoords(temp);
+          
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
@@ -205,7 +206,7 @@ function handleLocationError(error) {
         }
     }
 
-var filterByDistance = function(dist,self_lat,self_long,friends){
+var filterByDistance = function(d,self_lat,self_long,friends){
 	var closeFriends = new Array();
 	if ((self_lat != null) && (self_long != null)){
 		for (var i = 0; i < friends.length; i++){
@@ -213,14 +214,33 @@ var filterByDistance = function(dist,self_lat,self_long,friends){
 				var friendLat = friends[i].current_location.latitude;
 				var friendLong = friends[i].current_location.longitude;
 				//console.log(distance(self_lat,self_long,friendLat,friendLong));
-				if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
+				/*if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
 					//console.log(friends[i].username);
 					closeFriends.push(friend[i]);
+				}*/
+				var dist = distance(self_lat,self_long,friendLat,friendLong);
+				if (0 < dist < 5){
+					friends[i].distGroup = 0;
 				}
+				if (5 < dist < 10){
+					friends[i].distGroup = 1;
+				}
+				if (10 < dist < 25){
+					friends[i].distGroup = 2;
+				}
+				
+				if (25 < dist < 50){
+					friends[i].distGroup = 3;
+				}
+				
+				else{
+					friends[i].distGroup = 4;
+				}
+			}
+			else {
+				friends[i].distGroup = 5;
 			}
 		}
 	}
-	if (closeFriends.length != 0){
-		return closeFriends;
-	}
+	return friends;
 }
