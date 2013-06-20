@@ -86,7 +86,8 @@ document.getElementById("search-btn").onclick = function(){
         url: 'https://api.facebook.com/method/fql.query'
         
 
-        }).done(function(response){
+     }).done(function(response){
+            if(response != null){
           console.log(response);
           $('#results-list').html('');
           var userList = '', emailList = '';
@@ -127,6 +128,10 @@ document.getElementById("search-btn").onclick = function(){
 	            loadStepTwo();
 	            $('#results-list').append('<li></li>');
 	   
+          }
+          }
+          else{
+              console.log("error");
           }
          // }
   });};
