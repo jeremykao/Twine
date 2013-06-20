@@ -119,10 +119,10 @@ document.getElementById("search-btn").onclick = function(){
           setupLI();
           if ($('#response li').length === 0){
           	console.log("There were no results.");
-          } else {
+          } //else {
             loadStepTwo();
             $('#results-list').append('<li></li>');
-          }
+         // }
   });};
   //Array of Friends
   //var friendArray = response.data;
