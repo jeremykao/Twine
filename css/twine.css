@@ -132,6 +132,7 @@ body {
   display: none;
 }
 
+#step-three #input-to,
 #step-three #input-subject,
 #step-three #input-msg {
   width: 100%;
@@ -161,7 +162,7 @@ body {
 
 #logo {
   padding-left: .1em;
-  font-family: 'Rochester', arial;
+  font-family: 'Lato', arial;
   font-weight: bold;
 }
 
