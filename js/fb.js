@@ -8,7 +8,19 @@ window.fbAsyncInit = function() {
       oauth      : true,
       xfbml      : true                                  // Look for social plugins on the page
     });
-    
+
+    FB.getLoginStatus(function(response){
+      if ( response.status === 'connected'){
+        $("#fb-login").text("Logged into Facebook");
+        $("#fb-login").addClass("btn-success");
+        $("#fb-login").attr("disabled","true");
+      }
+      else {
+        $("#fb-login").click(function(){
+          fbLogin();
+        });
+      }
+    });
     FB.Event.subscribe('auth.authResponseChange', function(response) {
     // Here we specify what we do with the response anytime this event occurs. 
     if (response.status === 'connected') {
@@ -129,9 +141,7 @@ document.getElementById("search-btn").onclick = function(){
   //var name = name.data;
   //var email = username.data + "@facebook.com";
   //console.log(friendArray);
-  $("#fb-login").click(function(){
-    fbLogin();
-  });
+  
 });
   function fbLogin(){
     FB.login(function(response){
