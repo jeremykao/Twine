@@ -92,7 +92,7 @@ document.getElementById("search-btn").onclick = function(){
           var userList = '', emailList = '';
           
           // HERE
-          getCoords();
+          returnCoords();
           filterByDistance(10,selfLat,selfLong,response);
           
           for (var i = 0; i < response.length; i++){
@@ -201,7 +201,6 @@ function handleLocationError(error) {
     }
 
 var filterByDistance = function(dist,self_lat,self_long,friends){
-	getCoords();
 	console.log(self_lat + " " + self_long);
 	//console.log(distance(10,30,203,409));
 	for (var i = 0; i < friends.length; i++){
