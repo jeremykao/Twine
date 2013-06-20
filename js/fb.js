@@ -92,7 +92,8 @@ document.getElementById("search-btn").onclick = function(){
           var userList = '', emailList = '';
           
           // HERE
-          returnCoords();
+          getCoords();
+          console.log("LALALA "+selfLat);
           filterByDistance(10,selfLat,selfLong,response);
           
           for (var i = 0; i < response.length; i++){
