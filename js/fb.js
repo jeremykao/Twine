@@ -93,8 +93,10 @@ document.getElementById("search-btn").onclick = function(){
           
           // HERE
           getCoords();
-          console.log("LALALA "+selfLat);
-          filterByDistance(10,selfLat,selfLong,response);
+          var temp = function(){
+	          console.log("LALALA "+selfLat);
+	          filterByDistance(10,selfLat,selfLong,response);
+          }
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
@@ -145,9 +147,9 @@ var selfLat;
 var selfLong;
 
   // Find geolocation
-var getCoords = function(){
+var getCoords = function(temp){
 	if (navigator.geolocation){
-		return navigator.geolocation.getCurrentPosition(returnCoords, handleLocationError);
+		return navigator.geolocation.getCurrentPosition(function(){returnCoords(); temp()}, handleLocationError, );
 	}
 	else {
       alert("Geolocation is not supported by this browser.");
@@ -157,6 +159,7 @@ var returnCoords = function(position){
 	selfLat = position.coords.latitude;
 	selfLong = position.coords.longitude;
 	console.log("latitude " + selfLat);
+	
 
 }
 // convert to radians
