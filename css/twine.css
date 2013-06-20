@@ -78,6 +78,10 @@ body {
   margin-top: 1em;
 }
 
+#step-zero #fb-login {
+  margin-bottom: 1em;
+}
+
 #step-one {
   display: none;
 }
