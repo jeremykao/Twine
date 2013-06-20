@@ -91,7 +91,7 @@ document.getElementById("search-btn").onclick = function(){
           $('#results-list').html('');
           var userList = '', emailList = '';
           
-          console.log(filterByDistance(10,getLat,getLong,response));
+          filterByDistance(10,getLat,getLong,response);
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
@@ -187,9 +187,11 @@ var distance = function(lat1, long1, lat2, long2){
 
 var filterByDistance = function(dist,selfLat,selfLong,friends){
 	for (var i = 0; i < friends.length; i++){
+		 console.log("first");
 		if (friends[i].current_location != null) {
 			var friendLat = friends[i].current_location.latitude;
 			var friendLong = friends[i].current_location.longitude;
+			console.log(distance(selfLat,selfLong,friendLat,friendLong));
 			if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
 				console.log(friends[i].username);
 				return friends[i];
