@@ -91,7 +91,7 @@ document.getElementById("search-btn").onclick = function(){
           $('#results-list').html('');
           var userList = '', emailList = '';
           
-          filterByDistance(1000,getLat,getLong,response);
+          filterByDistance(10,getLat,getLong,response);
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
