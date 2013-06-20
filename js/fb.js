@@ -192,6 +192,7 @@ var filterByDistance = function(dist,selfLat,selfLong,friends){
 			if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
 				console.log(friends[i].username);
 				return friends[i];
+			}
 		}
 	}
 }
