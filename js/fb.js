@@ -93,21 +93,19 @@ document.getElementById("search-btn").onclick = function(){
         
 
         }).done(function(response){
+          console.log(response);
           for (var i = 0; i < response.length; i++){
-            var newListItem = createElement("li");
-            var newTextNode = createTextNote();
-            document.getElementById("resultlist").innerHTML(<li class="todo-done"><div class="todo-icon fui-user"></div>
-            <div class="todo-content">
-              <h4 class="todo-name">
-                <strong>response[i].name</strong> 
-              </h4>
-              </div>
-            </li>)
-            console.log(response[i].username + "@facebook.com")
+            var user = response[i];
+            var newLI = '';
+            newLI += '<li><div class="todo-icon fui-user"></div>';
+            newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+            newLI += user.name;
+            newLI += '</strong></h4>';
+            newLI += user.username;
+            newLI += '@facebook.com</div></li>';
+            $('#results-list').append(newLI);
           }
-          console.log(response[0].username);
-          console.log(response);} );
-  };
+  });
   //Array of Friends
   //var friendArray = response.data;
   //var name = name.data;
