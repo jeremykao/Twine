@@ -91,9 +91,7 @@ document.getElementById("search-btn").onclick = function(){
           $('#results-list').html('');
           var userList = '', emailList = '';
           
-          for (var i = 0; i < response.length; i++){
-          	console.log(filterByDistance(10,getLat,getLong,response[i]));
-          }
+          console.log(filterByDistance(10,getLat,getLong,response));
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
@@ -132,13 +130,6 @@ document.getElementById("search-btn").onclick = function(){
   }
   //https://api.facebook.com/method/fql.query?format=json&query=SELECT+username%2C+name%2C+current_location.latitude%2C+current_location.longitude+from+user+where+uid+IN+(SELECT+uid+FROM+page_fan+WHERE+page_id+IN+(SELECT+page_id+FROM+page+WHERE+name%3D%22burn+notice%22)+AND+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1%3Dme()))&access_token=CAACEdEose0cBAE518wNMMSAhLEZCXOPvfhi8uDkZAZBNGZCZAiWJZCZA2019uPZCzLAzy91ZBqcEyZB0nl87dMd6wdwPbBfvfRcqAePQZBGMtKWBeqmF1KWZAjYQZBl0Ah0KWIaFtpVwnBzxRWQZCnD3ZApZBGJrF2prmrCkLjJ9Ii9riVeWlQZDZD
   
-  function gmailLogin(){
-    var login = $("#gmail-login").attr("login");
-    if ( login != null ){
-      window.open(login, "Login to Gmail", "resizable=yes,width=440,height=280");
-    }
-  }
-  $("#gmail-login").click(gmailLogin);
   function changeFBButton(){
     $("#fb-login").text("Logged into FB");
     $("#fb-login").addClass("btn-success");
@@ -194,12 +185,14 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 var filterByDistance = function(dist,selfLat,selfLong,friends){
-	for (var key in friends){
-		console.log("friend "+friends[key]);
-		console.log("latitude "+friends[key].current_location.latitude);
-		console.log("longitude "+friends[key].current_location.longitude);
-		if (distance(selfLat,selfLong,friends[key])<=dist){
-			return friends[key];
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].current_location != null) {
+			var friendLat = friends[i].current_location.latitude;
+			var friendLong = friends[i].current_location.longitude;
+			if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
+				console.log(friends[i].username);
+				return friends[i];
+			}
 		}
 	}
 }

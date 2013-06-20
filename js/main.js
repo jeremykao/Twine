@@ -14,6 +14,8 @@ $(document).ready(function(){
   var selfLat;
   var selfLong;
 
+  $("#search-value").hide();
+
   $('#start-btn').click(function(e){
     e.preventDefault();
     slideScreen(stepZeroScreen, stepOneScreen);
@@ -31,6 +33,7 @@ $(document).ready(function(){
     progressBarContainer.removeClass('span6 offset3');
     progressBarContainer.addClass('span12');
     progressBar.css('width', '70%');
+    $("#search-value").hide();
   });
   $('#back-btn').click(function(e){
     slideScreen(stepTwoScreen, stepOneScreen);
@@ -87,4 +90,11 @@ function setupLI(){
     else
       $(this).addClass('todo-done');
   });
+}
+
+// Showing search results on second screen
+function search2() {
+  var searchValue = $("#search-bar").val();
+  $("#search-value").append("<em>"+searchValue+"</em>");
+  $("#search-value").show();
 }
