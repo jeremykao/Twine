@@ -136,3 +136,52 @@ document.getElementById("search-btn").onclick = function(){
   }
   //https://api.facebook.com/method/fql.query?format=json&query=SELECT+username%2C+name%2C+current_location.latitude%2C+current_location.longitude+from+user+where+uid+IN+(SELECT+uid+FROM+page_fan+WHERE+page_id+IN+(SELECT+page_id+FROM+page+WHERE+name%3D%22burn+notice%22)+AND+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1%3Dme()))&access_token=CAACEdEose0cBAE518wNMMSAhLEZCXOPvfhi8uDkZAZBNGZCZAiWJZCZA2019uPZCzLAzy91ZBqcEyZB0nl87dMd6wdwPbBfvfRcqAePQZBGMtKWBeqmF1KWZAjYQZBl0Ah0KWIaFtpVwnBzxRWQZCnD3ZApZBGJrF2prmrCkLjJ9Ii9riVeWlQZDZD
   
+  // Find geolocation
+var getCoords = function() {
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(returnCoords);
+  }
+  else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+var returnCoords = function(position) {
+  selfLat = position.coords.latitude;
+  selfLong = position.coords.longitude;
+}
+
+// convert to radians
+var toRad = function(degrees){
+  return degrees * Math.PI / 180;
+}
+
+// convert to degrees
+var toDeg = function(radians){
+  return radians * 180 / Math.PI;
+}
+
+var distance = function(lat1, long1, lat2, long2){
+  var R = 3959; // miles
+    var dLat = toRad(lat2-lat1);
+    var dLong = toRad(long2-long1);
+    var lat1 = toRad(lat1);
+    var lat2 = toRad(lat2);
+
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLong/2) * Math.sin(dLong/2) * Math.cos(lat1) * Math.cos(lat2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c;
+    return d;
+}
+
+var filterByDistance = function(dist,selfLat,selfLong,friends){
+    console.log("here "+friendLats);
+	for (var key in friends){
+		console.log("friend "+friends[key]);
+		console.log("latitude "+friends[key].current_location.latitude);
+		console.log("longitude "+friends[key].current_location.longitude);
+		if (distance(selfLat,selfLong,friends[key])<=dist){
+			return friends[key];
+		}
+	}
+}
