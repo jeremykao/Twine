@@ -84,10 +84,22 @@ body {
   height: 16px;
 }
 
-#step-two #continue-btn {
+#step-two #back-btn {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 10%;
+  height: 52px;
+  padding-top: 1em;
+  border-right: #c0392b solid 1px;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+#step-two #continue-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 90%;
   height: 52px;
   padding-top: 1em;
   border-radius: 0;

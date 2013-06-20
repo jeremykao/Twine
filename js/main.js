@@ -18,9 +18,13 @@ $(document).ready(function(){
   });
   $("#continue-btn").click(function(){
     slideScreen(stepTwoScreen, stepThreeScreen);
-    progressBarContainer.removeClass('span6');
-    progressBar.addClass('span12');
+    progressBarContainer.removeClass('span6 offset3');
+    progressBarContainer.addClass('span12');
     progressBar.css('width', '70%');
+  });
+  $('#back-btn').click(function(){
+    slideScreen(stepTwoScreen, stepOneScreen);
+    progressBar.css('width', '20%');
   });
 }); 
 
