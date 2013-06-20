@@ -188,10 +188,11 @@ var filterByDistance = function(dist,selfLat,selfLong,friends){
 	for (var i = 0; i < friends.length; i++){
 		 console.log("first");
 		if (friends[i].current_location != null) {
-		    console.log("okay");
 			var friendLat = friends[i].current_location.latitude;
 			var friendLong = friends[i].current_location.longitude;
 			if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
+				console.log("okay");
+
 				console.log(friends[i].username);
 				return friends[i];
 			}
