@@ -9,6 +9,7 @@ $(document).ready(function(){
   var finishScreen = $('#finished');
   var progressBar = $('#progress-bar > .bar');
   var progressBarContainer = $('#progress-bar-container');
+  var toInput = $('#input-to');
   var selfLat;
   var selfLong;
 
@@ -18,8 +19,6 @@ $(document).ready(function(){
     progressBar.css('width', '20%');
   });
   $("#search-btn").click(function(e){
-    slideScreen(stepOneScreen, stepTwoScreen);
-    progressBar.css('width', '40%');
   });
   $("#continue-btn").click(function(e){
     slideScreen(stepTwoScreen, stepThreeScreen);
@@ -63,6 +62,22 @@ var slideScreen = function(curr, next) {
   next.fadeIn();
 };
 
+function loadStepTwo(){
+  var stepOneScreen = $('#step-one');
+  var stepTwoScreen = $('#step-two');
+  var progressBar = $('#progress-bar > .bar');
+    slideScreen(stepOneScreen, stepTwoScreen);
+    progressBar.css('width', '40%');
+}
+// Setup LI as check boxes
+function setupLI(){
+  $('li').click(function(e){
+    if ($(this).hasClass('todo-done'))
+      $(this).removeClass('todo-done');
+    else
+      $(this).addClass('todo-done');
+  });
+}
 // Find geolocation
 var getCoords = function() {
   if(navigator.geolocation){

@@ -65,6 +65,7 @@ window.fbAsyncInit = function() {
 
 
 
+  $(window).bind("load", function(){
 document.getElementById("search-btn").onclick = function(){
   /*FB.api({
       method: 'fql.multiquery',
@@ -95,17 +96,18 @@ document.getElementById("search-btn").onclick = function(){
         }).done(function(response){
           console.log(response);
           $('#results-list').html('');
-          var userList = '';
+          var userList = '', emailList = '';
           for (var i = 0; i < response.length; i++){
             var user = response[i];
             var newLI = '';
-            if (i !== 0)
+            if (i !== 0) {
               userList += ', ' + user.name;
-            else if (i === response.length - 1)
+            } else if (i === response.length - 1) {
               userList += ', and ' + user.name + '.';
-            else
+            } else {
               userList += user.name;
-            newLI += '<li><div class="todo-icon fui-user"></div>';
+            }
+            newLI += '<li class="todo-done"><div class="todo-icon fui-user"></div>';
             newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
             newLI += user.name;
             newLI += '</strong></h4>';
@@ -113,6 +115,9 @@ document.getElementById("search-btn").onclick = function(){
             newLI += '@facebook.com</div></li>';
             $('#results-list').append(newLI);
           }
+          setupLI();
+          loadStepTwo();
+          $('#input-to').val(emailList);
           $('#success-msg').html('Your message has been sent to ' + userList);
   });};
   //Array of Friends
@@ -123,6 +128,7 @@ document.getElementById("search-btn").onclick = function(){
   $("#fb-login").click(function(){
     fbLogin();
   });
+});
   function fbLogin(){
     FB.login(function(response){
       if ( response.status == "connected" )
