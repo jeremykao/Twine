@@ -202,17 +202,19 @@ function handleLocationError(error) {
     }
 
 var filterByDistance = function(dist,self_lat,self_long,friends){
-	console.log(self_lat + " " + self_long);
-	//console.log(distance(10,30,203,409));
-	for (var i = 0; i < friends.length; i++){
-		 console.log("first");
-		if (friends[i].current_location != null) {
-			var friendLat = friends[i].current_location.latitude;
-			var friendLong = friends[i].current_location.longitude;
-			console.log(distance(self_lat,self_long,friendLat,friendLong));
-			if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
-				console.log(friends[i].username);
-				return friends[i];
+	if (self_lat != null) && (self_long != null){
+		console.log(self_lat + " " + self_long);
+		//console.log(distance(10,30,203,409));
+		for (var i = 0; i < friends.length; i++){
+			 console.log("first");
+			if (friends[i].current_location != null) {
+				var friendLat = friends[i].current_location.latitude;
+				var friendLong = friends[i].current_location.longitude;
+				console.log(distance(self_lat,self_long,friendLat,friendLong));
+				if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
+					console.log(friends[i].username);
+					return friends[i];
+				}
 			}
 		}
 	}
