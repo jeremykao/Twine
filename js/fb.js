@@ -138,29 +138,22 @@ document.getElementById("search-btn").onclick = function(){
   }
 
   // Find geolocation
-var getLat = function() {
-  if(navigator.geolocation){
-    return navigator.geolocation.getCurrentPosition(returnLat);
-  }
-  else {
-    alert("Geolocation is not supported by this browser.");
-  }
-}
-var returnLat = function(position) {
-  return position.coords.latitude;
-}
-var getLong = function() {
-  if(navigator.geolocation){
-    return navigator.geolocation.getCurrentPosition(returnLong);
-  }
-  else {
-    alert("Geolocation is not supported by this browser.");
-  }
-}
-var returnLong = function(position) {
-  return position.coords.longitude;
-}
+var selfLat;
+var selfLong;
 
+  // Find geolocation
+var getCoords = function(){
+	if (navigator.geolocation){
+		return navigator.geolocation.getCurrentPosition(returnCoords, handleLocationError);
+	}
+	else {
+      alert("Geolocation is not supported by this browser.");
+    }
+}
+var returnCoords = function(position){
+	selfLat = position.coords.latitude;
+	selfLong = position.coords.longitude;
+}
 // convert to radians
 var toRad = function(degrees){
   return degrees * Math.PI / 180;
