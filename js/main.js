@@ -1,16 +1,18 @@
 // Where UI-related JS and other general JS goes
 var ENTER_KEYCODE = 13;
+var searchBar = $('#search-bar');
+var stepZeroScreen = $('#step-zero');
+var stepOneScreen = $('#step-one');
+var stepTwoScreen = $('#step-two');
+var stepThreeScreen = $('#step-three');
+var finishScreen = $('#finished');
+var progressBar = $('#progress-bar > .bar');
+var progressBarContainer = $('#progress-bar-container');
+var searchBar = $('#search-bar');
+var toInput = $('#input-to');
 
 // Document Hooks
 $(document).ready(function(){
-  var stepZeroScreen = $('#step-zero');
-  var stepOneScreen = $('#step-one');
-  var stepTwoScreen = $('#step-two');
-  var stepThreeScreen = $('#step-three');
-  var finishScreen = $('#finished');
-  var progressBar = $('#progress-bar > .bar');
-  var progressBarContainer = $('#progress-bar-container');
-  var toInput = $('#input-to');
   var selfLat;
   var selfLong;
 
@@ -27,10 +29,12 @@ $(document).ready(function(){
     var emailList = '';
              $('li.todo-done').each(function(){emailList += ($(this).children('.todo-content').children('span').text() +',');});
                   $('#input-to').val(emailList); 
+    $('#search-value').text('');
     slideScreen(stepTwoScreen, stepThreeScreen);
     progressBarContainer.removeClass('span6 offset3');
     progressBarContainer.addClass('span12');
     progressBar.css('width', '70%');
+    $("#search-value").hide();
   });
   $('#back-btn').click(function(e){
     slideScreen(stepTwoScreen, stepOneScreen);
@@ -87,4 +91,11 @@ function setupLI(){
     else
       $(this).addClass('todo-done');
   });
+}
+
+// Showing search results on second screen
+function search() {
+  var searchValue = $("#search-bar").val();
+  $("#search-value").append("<em>"+searchValue+"</em>");
+  $("#search-value").show();
 }

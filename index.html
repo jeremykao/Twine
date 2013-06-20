@@ -10,9 +10,7 @@
     <link href="css/flat-ui.css" rel="stylesheet" type='text/css'>
     <link href="css/twine.css" rel="stylesheet" type='text/css'>
     <link href="css/mod.css" rel="stylesheet" type='text/css'>
-    <link href="css/ladda.min.css" rel="stylesheet" type='text/css'>
-    <!--<link href="/loginButtons.html" rel="import">-->
-
+    <link href="css/ladda-themeless.min.css" rel="stylesheet" type='text/css'>
     <link rel="shortcut icon" href="images/redfavicon.png">
 	</head>
 	<body>
@@ -23,21 +21,23 @@
               <div class="bar" style="width: 0%;"></div>
           </div>
         </div>
+        <h4 class="span6 offset3" id="search-value"></h4>
       </div>
 
       <!-- 0:auth screen -->
       <div class="row">
         <div id="step-zero" class="step span6 offset3">
           <div id="fb-root"></div>
+          <div id="logo-img-container" class="span6"><img alt="Twine logo" id="logo-image" class="row" src="images/icons/Mail@2x.png"/></div>
           <h4>Welcome to <span id="logo" style="font-size: 23px">twine</span></h4>
           <p>Twine is an easy way to send targeted emails to friends based on interests. This is very useful for organizing events and reaching out to friends.</p>
           <p>Please login with Facebook so we can search your friends based on their interests, and Gmail so you can send emails through Twine.</p>
           <div class="row">
-          <button class="btn span3" id="fb-login">Login to Facebook</button>
+          <button class="btn btn-info span3" id="fb-login">Login to Facebook</button>
           {% if showGmail %}
-          <btn login="{{ loginLink }}" class="btn span3" id="gmail-login" target="_blank">Login to Gmail</btn>
+          <button login="{{ loginLink }}" class="btn btn-info span3" id="gmail-login">Login to Gmail</button>
           {% else %}
-          <button class="btn span3 btn-success" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
+          <button class="btn span3" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
           {% endif %}
           </div>
           <div class="row">
@@ -56,7 +56,7 @@
             <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
             <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
           </div>
-          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-color="purple" data-style="contract" >Search Friends</button>
+          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" class="ladda-button" data-color="purple" data-style="contract" >Search Friends</button>
         </div>
       </div>
 
