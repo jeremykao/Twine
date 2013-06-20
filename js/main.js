@@ -84,6 +84,7 @@ function loadStepTwo(){
     progressBar.css('width', '40%');
   if ($("#results-list").length == 1){
     $("#results-list").append("<li id='no-results'>There were no results from your search</li");
+    $("#continue-btn").attr("disabled", true);
   }
 }
 // Setup LI as check boxes
