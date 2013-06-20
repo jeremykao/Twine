@@ -51,6 +51,20 @@ body {
   margin-bottom: 0;
 }
 
+.todo-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.todo-content {
+  padding-left: 80px;
+}
+
 .step {
   margin-bottom: 2em;
 }
@@ -74,7 +88,8 @@ body {
   padding-top: 1em;
 }
 
-#step-zero #fb-login {
+#step-zero #fb-login,
+#step-zero #gmail-login {
   margin-bottom: 1em;
 }
 

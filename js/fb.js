@@ -103,7 +103,7 @@ document.getElementById("search-btn").onclick = function(){
             } else {
               userList += user.name;
             }
-            newLI += '<li class="todo-done"><div class="todo-icon"><img src="' + user.pic + '"/></div>';
+            newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
             newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
             newLI += user.name;
             newLI += '</strong></h4><span>';
