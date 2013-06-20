@@ -180,6 +180,7 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 var filterByDistance = function(dist,self_lat,self_long,friends){
+	getCoords();
 	console.log(self_lat + " " + self_long);
 	//console.log(distance(10,30,203,409));
 	for (var i = 0; i < friends.length; i++){
