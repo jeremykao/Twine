@@ -132,13 +132,6 @@ document.getElementById("search-btn").onclick = function(){
   }
   //https://api.facebook.com/method/fql.query?format=json&query=SELECT+username%2C+name%2C+current_location.latitude%2C+current_location.longitude+from+user+where+uid+IN+(SELECT+uid+FROM+page_fan+WHERE+page_id+IN+(SELECT+page_id+FROM+page+WHERE+name%3D%22burn+notice%22)+AND+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1%3Dme()))&access_token=CAACEdEose0cBAE518wNMMSAhLEZCXOPvfhi8uDkZAZBNGZCZAiWJZCZA2019uPZCzLAzy91ZBqcEyZB0nl87dMd6wdwPbBfvfRcqAePQZBGMtKWBeqmF1KWZAjYQZBl0Ah0KWIaFtpVwnBzxRWQZCnD3ZApZBGJrF2prmrCkLjJ9Ii9riVeWlQZDZD
   
-  function gmailLogin(){
-    var login = $("#gmail-login").attr("login");
-    if ( login != null ){
-      window.open(login, "Login to Gmail", "resizable=yes,width=440,height=280");
-    }
-  }
-  $("#gmail-login").click(gmailLogin);
   function changeFBButton(){
     $("#fb-login").text("Logged into FB");
     $("#fb-login").addClass("btn-success");
