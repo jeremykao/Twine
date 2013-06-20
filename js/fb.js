@@ -91,10 +91,11 @@ document.getElementById("search-btn").onclick = function(){
           $('#results-list').html('');
           var userList = '', emailList = '';
           
-          // HERE
-          getCoords();
-          console.log("LALALA "+selfLat);
-          filterByDistance(10,selfLat,selfLong,response);
+          // GEOLOCATION STUFF
+	  var temp = function(){
+	          filterByDistance(10,selfLat,selfLong,response);
+          }
+          getCoords(temp);
           
           for (var i = 0; i < response.length; i++){
             var user = response[i];
@@ -121,7 +122,13 @@ document.getElementById("search-btn").onclick = function(){
             $(this).addClass('portrait-img');
           });
           $('#results-list').append('<li></li>');
-          loadStepTwo();
+          if ($('#results-list').length == 0){
+            alert('Sorry! Looks like none of your friends share that interest. Please try searching something else.');
+          }
+          else {
+            $('#results-list').append('<li></li>');
+            loadStepTwo();
+          }
   });};
   //Array of Friends
   //var friendArray = response.data;
@@ -149,9 +156,9 @@ var selfLat;
 var selfLong;
 
   // Find geolocation
-var getCoords = function(){
+var getCoords = function(temp){
 	if (navigator.geolocation){
-		return navigator.geolocation.getCurrentPosition(returnCoords, handleLocationError);
+		return navigator.geolocation.getCurrentPosition(function(position){returnCoords(position); temp()}, handleLocationError);
 	}
 	else {
       alert("Geolocation is not supported by this browser.");
@@ -161,6 +168,7 @@ var returnCoords = function(position){
 	selfLat = position.coords.latitude;
 	selfLong = position.coords.longitude;
 	console.log("latitude " + selfLat);
+	
 
 }
 // convert to radians
@@ -206,20 +214,21 @@ function handleLocationError(error) {
     }
 
 var filterByDistance = function(dist,self_lat,self_long,friends){
+	var closeFriends = new Array();
 	if ((self_lat != null) && (self_long != null)){
-		console.log(self_lat + " " + self_long);
-		//console.log(distance(10,30,203,409));
 		for (var i = 0; i < friends.length; i++){
-			 console.log("first");
 			if (friends[i].current_location != null) {
 				var friendLat = friends[i].current_location.latitude;
 				var friendLong = friends[i].current_location.longitude;
-				console.log(distance(self_lat,self_long,friendLat,friendLong));
+				//console.log(distance(self_lat,self_long,friendLat,friendLong));
 				if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
-					console.log(friends[i].username);
-					return friends[i];
+					//console.log(friends[i].username);
+					closeFriends.push(friend[i]);
 				}
 			}
 		}
+	}
+	if (closeFriends.length != 0){
+		return closeFriends;
 	}
 }
