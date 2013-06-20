@@ -179,6 +179,24 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
+function handleLocationError(error) {
+        switch(error.code)
+        {
+        case 0:
+          updateStatus("There was an error while retrieving your location: " + error.message);
+          break;
+        case 1:
+          updateStatus("The user prevented this page from retrieving a location.");
+          break;
+        case 2:
+          updateStatus("The browser was unable to determine your location: " + error.message);
+          break;
+        case 3:
+          updateStatus("The browser timed out before retrieving the location.");
+          break;
+        }
+    }
+
 var filterByDistance = function(dist,self_lat,self_long,friends){
 	getCoords();
 	console.log(self_lat + " " + self_long);
