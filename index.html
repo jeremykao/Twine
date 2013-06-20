@@ -35,7 +35,7 @@
           <div class="row">
           <button class="btn btn-info span3" id="fb-login">Login to Facebook</button>
           {% if showGmail %}
-          <button login="{{ loginLink }}" class="btn btn-info span3" id="gmail-login">Login to Gmail</button>
+          <a href="{{ loginLink }}"><button class="btn btn-info span3" id="gmail-login">Login to Gmail</button></a>
           {% else %}
           <button class="btn span3" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
           {% endif %}
