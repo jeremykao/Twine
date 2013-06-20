@@ -57,12 +57,12 @@ var toDeg = function(radians){
 
 //Distance between coords
 var distance = function(lat1, long1, lat2, long2){
-  theta = toRad(lon1-lon2);
+  theta = toRad(long1-long2);
   lat1 = toRad(lat1);
-  lon1 = toRad(lon1);
+  lon1 = toRad(long1);
   lat2 = toRad(lat1);
-  lon2 = toRad(lon2);
-  dist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cost(lat2) * Math.cost(theta);
+  lon2 = toRad(long2);
+  dist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cost(theta);
   dist = toDeg(Math.acos(dist)) * 60 * 1.1515 * 1.609344 * 1000;
   return dist;
 }
