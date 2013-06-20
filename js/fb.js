@@ -121,7 +121,7 @@ document.getElementById("search-btn").onclick = function(){
 	          }
           
 	          setupLI();
-	          if ($('#results-list li').length == 1){
+	          if (($('#results-list li').length) == 1){
 	          	console.log("There were no results.");
 	          } //else {
 	            loadStepTwo();
