@@ -187,12 +187,14 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 var filterByDistance = function(dist,selfLat,selfLong,friends){
-	for (var key in friends){
-		console.log("friend "+friends[key]);
-		console.log("latitude "+friends[key].current_location.latitude);
-		console.log("longitude "+friends[key].current_location.longitude);
-		if (distance(selfLat,selfLong,friends[key])<=dist){
-			return friends[key];
+	for (var i = 0; i < friends.length; i++){
+		console.log("friend "+friends[i]);
+		console.log("latitude "+friends[i].current_location.latitude);
+		console.log("longitude "+friends[i].current_location.longitude);
+		var friendLat = friends[i].current_location.latitude;
+		var friendLong = friends[i].current_location.longitude;
+		if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
+			return friends[i];
 		}
 	}
 }
