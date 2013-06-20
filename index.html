@@ -24,17 +24,28 @@
         </div>
       </div>
 
-      <!-- 1:login screen -->
+      <!-- 0:auth screen -->
       <div class="row">
-        <div id="step-one" class="step span6 offset3">
+        <div id="step-zero" class="step span6 offset3">
           <div id="fb-root"></div>
+          <h4>Welcome to <span id="logo">twine</span></h4>
+          <p>Twine is an easy way to send targeted emails to friends based on interests. This is very useful for organizing events and reaching out to friends.</p>
+          <p>Please login first with Facebook, so we can search your friends based on their interests and Gmail so you can send emails through Twine.</p>
           <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
           {% if showGmail %}
           <a href="{{ loginLink }}">Sign into Google</a>
           {% else %}
           {% endif %}
+        <div class="row">
+          <a href="#" id="start-btn" class="btn btn-primary span2 offset2">Begin</a>
+        </div>
+        </div>
+      </div>
 
-          <h4>Welcome to <span id="logo">twine</span></h4>
+
+      <!-- 1:login screen -->
+      <div class="row">
+        <div id="step-one" class="step span6 offset3">
           <div class="control-group">
             <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
             <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
@@ -182,7 +193,10 @@
 
       <!-- finished -->
       <div id="finished" class="step">
-
+        <p>Your message about {term} has been sent to {friend in list}.</p>
+        <div class="row">
+          <a href="#" id="reset-btn" class="btn btn-danger span6 offset3">Start Over</a>
+        </div>
       </div>
     </div>
 

@@ -2,6 +2,7 @@
 
 // Document Hooks
 $(document).ready(function(){
+  var stepZeroScreen = $('#step-zero');
   var stepOneScreen = $('#step-one');
   var stepTwoScreen = $('#step-two');
   var stepThreeScreen = $('#step-three');
@@ -11,25 +12,34 @@ $(document).ready(function(){
   var selfLat;
   var selfLong;
 
-  stepTwoScreen.hide();
-  stepThreeScreen.hide();
-  $("#search-btn").click(function(){
-    slideScreen(stepOneScreen, stepTwoScreen);
+  $('#start-btn').click(function(e){
+    slideScreen(stepZeroScreen, stepOneScreen);
     progressBar.css('width', '20%');
   });
-  $("#continue-btn").click(function(){
+  $("#search-btn").click(function(e){
+    slideScreen(stepOneScreen, stepTwoScreen);
+    progressBar.css('width', '40%');
+  });
+  $("#continue-btn").click(function(e){
     slideScreen(stepTwoScreen, stepThreeScreen);
     progressBarContainer.removeClass('span6 offset3');
     progressBarContainer.addClass('span12');
     progressBar.css('width', '70%');
   });
-  $('#back-btn').click(function(){
+  $('#back-btn').click(function(e){
     slideScreen(stepTwoScreen, stepOneScreen);
     progressBar.css('width', '20%');
   });
-  $('#send-btn').click(function(){
+  $('#send-btn').click(function(e){
+    e.preventDefault();
     slideScreen(stepThreeScreen, finishScreen);
     progressBar.css('width', '100%');
+  });
+  $('#reset-btn').click(function(e){
+    slideScreen(finishScreen, stepOneScreen);
+    progressBarContainer.addClass('span6 offset3');
+    progressBarContainer.removeClass('span12');
+    progressBar.css('width', '20%');
   });
 }); 
 

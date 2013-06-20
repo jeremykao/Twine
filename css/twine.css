@@ -43,6 +43,10 @@ body {
   background: #ece7cf;
 }
 
+.progress {
+  margin-bottom: 0;
+}
+
 .step {
   margin-bottom: 2em;
 }
@@ -56,8 +60,22 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
+#step-one,
+#step-three,
+#finished {
+  padding-top: 0.5em;
+}
+
+#step-zero {
+  padding-top: 1em;
+}
+
+#step-zero #start-btn {
+  margin-top: 2em;
+}
+
 #step-one {
-  padding-top: 2em;
+  display: none;
 }
 
 #step-one #search-bar {
@@ -108,7 +126,6 @@ body {
 
 #step-three {
   display: none;
-  padding-top: 2em;
 }
 
 #step-three #input-subject,
@@ -132,6 +149,10 @@ body {
 
 #step-three #send-btn:hover {
   background: #16a085;
+}
+
+#finished {
+  display: none;
 }
 
 #logo {

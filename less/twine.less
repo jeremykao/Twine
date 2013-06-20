@@ -5,6 +5,10 @@ body {
   background: @light-yellow;
 }
 
+.progress {
+  margin-bottom: 0px;
+}
+
 .step {
   margin-bottom: 2em;
 }
@@ -14,8 +18,20 @@ body {
   .transition(all ease 0.5s linear);
 }
 
+#step-one, #step-three, #finished {
+  padding-top: 0.5em;
+}
+
+#step-zero {
+  padding-top: 1em;
+
+  #start-btn {
+    margin-top: 2em;
+  }
+}
+
 #step-one {
-  padding-top: 2em;
+  display: none;
 
   #search-bar {
     width: 100%;
@@ -64,7 +80,6 @@ body {
 }
 
 #step-three {
-  padding-top: 2em;
   display: none;
 
   #input-subject, #input-msg {
@@ -88,6 +103,10 @@ body {
       background: @green-sea;
     }
   }
+}
+
+#finished {
+  display: none;
 }
 
 #logo {
