@@ -138,8 +138,8 @@ document.getElementById("search-btn").onclick = function(){
   }
 
   // Find geolocation
-var selfLat;
-var selfLong;
+selfLat;
+selfLong;
 
   // Find geolocation
 var getCoords = function(){
@@ -151,9 +151,10 @@ var getCoords = function(){
     }
 }
 var returnCoords = function(position){
-	console.log("latitude " + position.coords.latitude);
 	selfLat = position.coords.latitude;
 	selfLong = position.coords.longitude;
+	console.log("latitude " + selfLat);
+
 }
 // convert to radians
 var toRad = function(degrees){
