@@ -93,12 +93,11 @@ document.getElementById("search-btn").onclick = function(){
           
           // GEOLOCATION STUFF
 	  var temp = function(){
-	          filterByDistance(10000,selfLat,selfLong,response);
+	          result = filterByDistance(10000,selfLat,selfLong,response);
           }
           getCoords(temp);
           
           //console.log("RESPONSE " + response[0]);
-          var result = filterByDistance(10000,selfLat,selfLong,response);
           console.log(result);
           for (var i = 0; i < result.length; i++){
             var user = result[i];
@@ -150,6 +149,7 @@ document.getElementById("search-btn").onclick = function(){
   // Find geolocation
 var selfLat;
 var selfLong;
+var result;
 
   // Find geolocation
 var getCoords = function(temp){
