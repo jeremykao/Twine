@@ -109,6 +109,11 @@ document.getElementById("search-btn").onclick = function(){
           console.log(response);
           $('#results-list').html('');
           var userList = '', emailList = '';
+          
+          for (var i = 0; i < response.length; i++){
+          	filterByDistance(10,getLat,getLong,response[i]);
+          }
+          
           for (var i = 0; i < response.length; i++){
             var user = response[i];
             var newLI = '';
@@ -147,17 +152,27 @@ document.getElementById("search-btn").onclick = function(){
   //https://api.facebook.com/method/fql.query?format=json&query=SELECT+username%2C+name%2C+current_location.latitude%2C+current_location.longitude+from+user+where+uid+IN+(SELECT+uid+FROM+page_fan+WHERE+page_id+IN+(SELECT+page_id+FROM+page+WHERE+name%3D%22burn+notice%22)+AND+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1%3Dme()))&access_token=CAACEdEose0cBAE518wNMMSAhLEZCXOPvfhi8uDkZAZBNGZCZAiWJZCZA2019uPZCzLAzy91ZBqcEyZB0nl87dMd6wdwPbBfvfRcqAePQZBGMtKWBeqmF1KWZAjYQZBl0Ah0KWIaFtpVwnBzxRWQZCnD3ZApZBGJrF2prmrCkLjJ9Ii9riVeWlQZDZD
   
   // Find geolocation
-var getCoords = function() {
+var getLat = function() {
   if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(returnCoords);
+    return navigator.geolocation.getCurrentPosition(returnLat);
   }
   else {
     alert("Geolocation is not supported by this browser.");
   }
 }
-var returnCoords = function(position) {
-  selfLat = position.coords.latitude;
-  selfLong = position.coords.longitude;
+var returnLat = function(position) {
+  return position.coords.latitude;
+}
+var getLong = function() {
+  if(navigator.geolocation){
+    return navigator.geolocation.getCurrentPosition(returnLong);
+  }
+  else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+var returnLong = function(position) {
+  return position.coords.longitude;
 }
 
 // convert to radians
