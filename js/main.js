@@ -44,6 +44,7 @@ $(document).ready(function(){
     var sendees = $("#input-to").attr("value");
     var subject = $("#input-subject").attr("value");
     var message = $("#input-msg").attr("value");
+    emailFormValidate(sendees);
     $.ajax({
       type: 'POST',
       data: {
@@ -61,6 +62,7 @@ $(document).ready(function(){
     slideScreen(stepThreeScreen, finishScreen);
     progressBar.css('width', '100%');
   });
+
   $('#reset-btn').click(function(e){
     slideScreen(finishScreen, stepOneScreen);
     progressBarContainer.addClass('span6 offset3');
