@@ -117,8 +117,13 @@ document.getElementById("search-btn").onclick = function(){
           }
           //$('#search-value').html('Your friends who like <em>' + searchBar.val() + '</em>.');
           setupLI();
-          $('#results-list').append('<li></li>');
-          loadStepTwo();
+          if ($('#results-list').length == 1){
+            alert('Sorry! Looks like none of your friends share that interest. Please try searching something else.');
+          }
+          else {
+            $('#results-list').append('<li></li>');
+            loadStepTwo();
+          }
   });};
   //Array of Friends
   //var friendArray = response.data;
