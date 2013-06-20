@@ -20,6 +20,7 @@ $(document).ready(function(){
     e.preventDefault();
     slideScreen(stepZeroScreen, stepOneScreen);
     progressBar.css('width', '20%');
+    $("#search-bar").focus();
   });
   $('#search-bar').keyup(function(event){
     if (event.keyCode == ENTER_KEYCODE)
