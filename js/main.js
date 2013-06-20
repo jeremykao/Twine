@@ -32,6 +32,18 @@ $(document).ready(function(){
     progressBar.css('width', '20%');
   });
   $('#send-btn').click(function(e){
+    var sendees = $("#sendees").attr("value");
+    var subject = $("#subject").attr("value");
+    var message = $("#message").attr("value");
+    $.ajax({
+      url: '/send',
+      data: {
+        sendees: sendees,
+        subject: subject,
+        message: message
+      }
+    });
+
     e.preventDefault();
     slideScreen(stepThreeScreen, finishScreen);
     progressBar.css('width', '100%');
