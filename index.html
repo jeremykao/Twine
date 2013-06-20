@@ -10,7 +10,7 @@
     <link href="css/flat-ui.css" rel="stylesheet" type='text/css'>
     <link href="css/twine.css" rel="stylesheet" type='text/css'>
     <link href="css/mod.css" rel="stylesheet" type='text/css'>
-    <link href="css/ladda-themeless.min.css" rel="stylesheet" type='text/css'>
+    <link href="css/ladda.min.css" rel="stylesheet" type='text/css'>
     <!--<link href="/loginButtons.html" rel="import">-->
 
     <link rel="shortcut icon" href="images/redfavicon.png">
@@ -33,11 +33,11 @@
           <p>Twine is an easy way to send targeted emails to friends based on interests. This is very useful for organizing events and reaching out to friends.</p>
           <p>Please login with Facebook so we can search your friends based on their interests, and Gmail so you can send emails through Twine.</p>
           <div class="row">
-          <btn class="btn span3" id="fb-login">Login to Facebook</btn>
+          <button class="btn span3" id="fb-login">Login to Facebook</button>
           {% if showGmail %}
           <a href="{{ loginLink }}" class="btn span3" id="gmail-login" target="_blank">Login to Gmail</a>
           {% else %}
-          <btn class="btn span3 btn-success" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</btn>
+          <button class="btn span3 btn-success" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
           {% endif %}
           </div>
           <div class="row">
@@ -56,7 +56,7 @@
             <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
             <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
           </div>
-          <btn id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-style="contract" >Search Friends</btn>
+          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-color="purple" data-style="contract" >Search Friends</button>
         </div>
       </div>
 
