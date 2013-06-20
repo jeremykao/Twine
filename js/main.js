@@ -13,6 +13,7 @@ $(document).ready(function(){
   var selfLong;
 
   $('#start-btn').click(function(e){
+    e.preventDefault();
     slideScreen(stepZeroScreen, stepOneScreen);
     progressBar.css('width', '20%');
   });

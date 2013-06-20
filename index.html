@@ -31,15 +31,17 @@
           <h4>Welcome to <span id="logo">twine</span></h4>
           <p>Twine is an easy way to send targeted emails to friends based on interests. This is very useful for organizing events and reaching out to friends.</p>
           <p>Please login first with Facebook, so we can search your friends based on their interests and Gmail so you can send emails through Twine.</p>
-          <!--<fb:login-button scope="email,user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages" width="200" max-rows="1"></fb:login-button>-->
-          <a href="#" target="blank" id="fb-login">Log into Facebook</a>
+          <div class="row">
+          <a href="#" target="blank" class="btn span3" id="fb-login">Login to Facebook</a>
           {% if showGmail %}
-          <a href="{{ loginLink }}">Sign into Google</a>
+          <a href="{{ loginLink }}" class="btn span3" id="gmail-login">Login to Gmail</a>
           {% else %}
+          <a href="#" class="btn btn-primary span3" id="gmail-login">Logged into Gmail</a>
           {% endif %}
-        <div class="row">
-          <a href="#" id="start-btn" class="btn btn-primary span2 offset2">Begin</a>
-        </div>
+          </div>
+          <div class="row">
+            <button id="start-btn" type="submit" class="offset2 span2 btn btn-primary">Begin</button>
+          </div>
         </div>
       </div>
 

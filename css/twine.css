@@ -43,6 +43,10 @@ body {
   background: #ece7cf;
 }
 
+.btn {
+  box-sizing: border-box;
+}
+
 .progress {
   margin-bottom: 0;
 }
@@ -71,7 +75,7 @@ body {
 }
 
 #step-zero #start-btn {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 #step-one {
