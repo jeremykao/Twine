@@ -66,6 +66,11 @@ window.fbAsyncInit = function() {
 
 
   $(window).bind("load", function(){
+    $('#search-bar').keyup(function(event){
+             if (event.keyCode == 13){
+                 $('#search-btn').click();
+             }
+             });
 document.getElementById("search-btn").onclick = function(){
   /*FB.api({
       method: 'fql.multiquery',
