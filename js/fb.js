@@ -132,7 +132,7 @@ document.getElementById("search-btn").onclick = function(){
   
   function changeFBButton(){
     $("#fb-login").text("Logged into FB");
-    $("#fb-login").addClass("btn-success");
+    $("#fb-login").removeClass("btn-info");
     $("#fb-login").attr("disabled","true");
   }
 
