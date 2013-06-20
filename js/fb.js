@@ -111,7 +111,7 @@ document.getElementById("search-btn").onclick = function(){
           var userList = '', emailList = '';
           
           for (var i = 0; i < response.length; i++){
-          	filterByDistance(10,getLat,getLong,response[i]);
+          	console.log(filterByDistance(10,getLat,getLong,response[i]));
           }
           
           for (var i = 0; i < response.length; i++){
