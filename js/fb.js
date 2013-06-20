@@ -58,7 +58,7 @@ window.fbAsyncInit = function() {
   var queryStr = "";
  $("#search-bar").bind("change", function(){
     search_term = $(this).attr("value");
-    queryStr = "SELECT username, name, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name='"+ search_term+"') AND uid IN (SELECT uid2 FROM friend WHERE uid1=me()))";
+    queryStr = "SELECT username, name, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name='"+ search_term+"' LIMIT 5000) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() LIMIT 5000))";
   });
 
 
