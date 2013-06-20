@@ -214,7 +214,7 @@ function handleLocationError(error) {
         }
     }
 
-var filterByDistance = function(dist,self_lat,self_long,friends){
+var filterByDistance = function(d,self_lat,self_long,friends){
 	var closeFriends = new Array();
 	if ((self_lat != null) && (self_long != null)){
 		for (var i = 0; i < friends.length; i++){
@@ -226,18 +226,18 @@ var filterByDistance = function(dist,self_lat,self_long,friends){
 					//console.log(friends[i].username);
 					closeFriends.push(friend[i]);
 				}*/
-				var distance = distance(self_lat,self_long,friendLat,friendLong);
-				if (0 < distance < 5){
+				var dist = distance(self_lat,self_long,friendLat,friendLong);
+				if (0 < dist < 5){
 					friends[i].distGroup = 0;
 				}
-				if (5 < distance < 10){
+				if (5 < dist < 10){
 					friends[i].distGroup = 1;
 				}
-				if (10 < distance < 25){
+				if (10 < dist < 25){
 					friends[i].distGroup = 2;
 				}
 				
-				if (25 < distance < 50){
+				if (25 < dist < 50){
 					friends[i].distGroup = 3;
 				}
 				
