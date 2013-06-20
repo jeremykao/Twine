@@ -34,9 +34,9 @@ $(document).ready(function(){
     progressBar.css('width', '20%');
   });
   $('#send-btn').click(function(e){
-    var sendees = $("#sendees").attr("value");
-    var subject = $("#subject").attr("value");
-    var message = $("#message").attr("value");
+    var sendees = $("#input-to").attr("value");
+    var subject = $("#input-subject").attr("value");
+    var message = $("#input-msg").attr("value");
     $.ajax({
       type: 'POST',
       data: {
@@ -44,7 +44,13 @@ $(document).ready(function(){
         subject: subject,
         message: message
       },
-      url: '/send'
+      url: '/send',
+      beforeSend: function(){
+        console.log(sendees);
+      },
+      success: function(response){
+         console.log(response);
+      }
     });
 
     e.preventDefault();
