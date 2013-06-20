@@ -62,7 +62,7 @@ var distance = function(lat1, long1, lat2, long2){
   long1 = toRad(long1);
   lat2 = toRad(lat1);
   long2 = toRad(long2);
-  dist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cost(theta);
+  dist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(theta);
   dist = toDeg(Math.acos(dist)) * 60 * 1.1515 * 1.609344 * 1000;
   return dist;
 }
