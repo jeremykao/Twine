@@ -20,10 +20,11 @@ from google.appengine.api import users
 from google.appengine.api import mail
 from google.appengine.ext.webapp import template
 
-user;
+user = None;
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
+		global user;
 		user = users.get_current_user()
 		showGmail = False
 		loginLink = ""
@@ -37,11 +38,12 @@ class MainHandler(webapp2.RequestHandler):
 class TestEmailHandler(webapp2.RequestHandler):
 	def get(self):
 		template_values = {}
-    path = os.path.join(os.path.dirname(__file__), 'testEmail.html')
-    self.response.out.write(template.render(path, template_values))
+		path = os.path.join(os.path.dirname(__file__), 'testEmail.html')
+		self.response.out.write(template.render(path, template_values))
 
 class SendHandler(webapp2.RequestHandler):
 	def post(self):
+		global user;
 		sendees = self.request.get("sendees")
 		sender = user.nickname() + "<" + user.email() + ">"
 		subject = self.request.get("subject")
@@ -52,9 +54,6 @@ class SendHandler(webapp2.RequestHandler):
 			email = mail.EmailMessage(sender=sender, subject=subject, to=sendee, body=message)
 			email.send()
 		self.response.out.write(activityStr)
-    #template_values = {}
-    #path = os.path.join(os.path.dirname(__file__), 'send.html')
-    #self.response.out.write(template.render(path, template_values))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
