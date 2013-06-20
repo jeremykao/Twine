@@ -202,7 +202,7 @@ function handleLocationError(error) {
     }
 
 var filterByDistance = function(dist,self_lat,self_long,friends){
-	if (self_lat != null) && (self_long != null){
+	if ((self_lat != null) && (self_long != null)){
 		console.log(self_lat + " " + self_long);
 		//console.log(distance(10,30,203,409));
 		for (var i = 0; i < friends.length; i++){
