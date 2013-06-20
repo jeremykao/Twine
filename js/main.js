@@ -45,7 +45,24 @@ var returnCoords = function(position) {
   selfLong = position.coords.longitude;
 }
 
+// convert to radians
+var toRad = function(degrees){
+  return degrees * Math.PI / 180;
+}
+
+// convert to degrees
+var toDeg = function(radians){
+  return radians * 180 / Math.PI;
+}
+
 //Distance between coords
 var distance = function(lat1, long1, lat2, long2){
-  
+  theta = toRad(lon1-lon2);
+  lat1 = toRad(lat1);
+  lon1 = toRad(lon1);
+  lat2 = toRad(lat1);
+  lon2 = toRad(lon2);
+  dist = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cost(lat2) * Math.cost(theta);
+  dist = toDeg(Math.acos(dist)) * 60 * 1.1515 * 1.609344 * 1000;
+  return dist;
 }
