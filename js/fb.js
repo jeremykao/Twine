@@ -186,6 +186,8 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 var filterByDistance = function(dist,selfLat,selfLong,friends){
+	console.log(selfLat + " " + selfLong);
+	console.log(distance(10,30,203,409));
 	for (var i = 0; i < friends.length; i++){
 		 console.log("first");
 		if (friends[i].current_location != null) {
