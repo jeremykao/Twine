@@ -274,5 +274,6 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 		}
 	}
 	//console.log(friends);
+	console.log(result);
 	return result;
 }
