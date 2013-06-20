@@ -87,7 +87,6 @@ document.getElementById("search-btn").onclick = function(){
         
 
      }).done(function(response){
-            if(response != null){
           console.log(response);
           $('#results-list').html('');
           var userList = '', emailList = '';
@@ -129,10 +128,7 @@ document.getElementById("search-btn").onclick = function(){
 	            $('#results-list').append('<li></li>');
 	   
           }
-          }
-          else{
-              console.log("error");
-          }
+          
          // }
   });};
   //Array of Friends
