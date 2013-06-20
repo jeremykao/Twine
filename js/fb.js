@@ -178,16 +178,16 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
-var filterByDistance = function(dist,selfLat,selfLong,friends){
-	console.log(selfLat + " " + selfLong);
-	console.log(distance(10,30,203,409));
+var filterByDistance = function(dist,self_lat,self_long,friends){
+	console.log(self_lat + " " + self_long);
+	//console.log(distance(10,30,203,409));
 	for (var i = 0; i < friends.length; i++){
 		 console.log("first");
 		if (friends[i].current_location != null) {
 			var friendLat = friends[i].current_location.latitude;
 			var friendLong = friends[i].current_location.longitude;
-			console.log(distance(selfLat,selfLong,friendLat,friendLong));
-			if (distance(selfLat,selfLong,friendLat,friendLong) <= dist){
+			console.log(distance(self_lat,self_long,friendLat,friendLong));
+			if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
 				console.log(friends[i].username);
 				return friends[i];
 			}
