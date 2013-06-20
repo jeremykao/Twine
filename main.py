@@ -24,7 +24,7 @@ user = None;
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
-		global user;
+		global user
 		user = users.get_current_user()
 		showGmail = False
 		loginLink = ""
@@ -43,7 +43,8 @@ class TestEmailHandler(webapp2.RequestHandler):
 
 class SendHandler(webapp2.RequestHandler):
 	def post(self):
-		global user;
+		global user
+		user = users.get_current_user()
 		sendees = self.request.get("sendees")
 		sender = user.nickname() + "<" + user.email() + ">"
 		subject = self.request.get("subject")
