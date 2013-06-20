@@ -36,6 +36,7 @@ $(document).ready(function(){
     var subject = $("#subject").attr("value");
     var message = $("#message").attr("value");
     $.ajax({
+      type: 'POST',
       url: '/send',
       data: {
         sendees: sendees,
