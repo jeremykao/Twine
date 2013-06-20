@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <title>Twine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/flat-ui.css" rel="stylesheet">
-    <link href="css/twine.css" rel="stylesheet">
-    <link href="css/mod.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" type='text/css'>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+    <link href="css/flat-ui.css" rel="stylesheet" type='text/css'>
+    <link href="css/twine.css" rel="stylesheet" type='text/css'>
+    <link href="css/mod.css" rel="stylesheet" type='text/css'>
+    <link href="css/ladda-themeless.min.css" rel="stylesheet" type='text/css'>
     <!--<link href="/loginButtons.html" rel="import">-->
 
     <link rel="shortcut icon" href="images/redfavicon.png">
@@ -55,7 +56,7 @@
             <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
             <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
           </div>
-          <a id="search-btn" class="btn btn-primary btn-large btn-block" href="#">Search Friends</a>
+          <btn id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-style="contract" >Search Friends</btn>
         </div>
       </div>
 
@@ -126,6 +127,9 @@
     <script src="js/jquery.stacktable.js"></script>
     <script src="http://vjs.zencdn.net/c/video.js"></script>
     <script src="js/application.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ladda.min.js"></script>
+    <script src="js/spin.min.js"></script>
     <script src="js/main.js"></script>
 	</body>
 </html>
