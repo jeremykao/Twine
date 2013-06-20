@@ -149,7 +149,7 @@ var selfLong;
   // Find geolocation
 var getCoords = function(temp){
 	if (navigator.geolocation){
-		return navigator.geolocation.getCurrentPosition(function(){returnCoords(); temp()}, handleLocationError);
+		return navigator.geolocation.getCurrentPosition(function(position){returnCoords(position); temp()}, handleLocationError);
 	}
 	else {
       alert("Geolocation is not supported by this browser.");
