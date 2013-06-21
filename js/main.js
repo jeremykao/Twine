@@ -38,6 +38,11 @@ $(document).ready(function(){
     progressBarContainer.addClass('span12');
     progressBar.css('width', '70%');
   });
+  $('#back-event-btn').click(function(e){
+    e.preventDefault();
+    slideScreen(stepFourScreen, stepTwoScreen);
+    progressBar.css('width', '40%');
+  });
   $('#event-btn').click(function(e){
     slideScreen(stepTwoScreen, stepFourScreen);
     progressBarContainer.removeClass('span6 offset3');
@@ -51,7 +56,7 @@ $(document).ready(function(){
   $('#back-send-btn').click(function(e){
     e.preventDefault();
     slideScreen(stepThreeScreen, stepTwoScreen);
-    progressBar.css('width', '70%');
+    progressBar.css('width', '40%');
   });
   $('#send-btn').click(function(e){
     var sendees = $("#input-to").attr("value");

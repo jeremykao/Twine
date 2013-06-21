@@ -44,6 +44,7 @@ body {
 }
 
 .btn {
+  margin-bottom: 1em;
   box-sizing: border-box;
 }
 
