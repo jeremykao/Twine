@@ -412,7 +412,7 @@ var eventId = '';
     var location = $("#input-event-loc").attr("value");
     var privacy = $("#input-event-privacy").attr("value");
     var description = $("#input-event-desc").attr("value");
-    if ( name != null && startTime != null ){
+    if(( name != "") && (startTime != "")){
       var userIdStr = "/" + userId; 
       FB.api("/"+ userId + "/events", 'POST', 
         {
