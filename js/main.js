@@ -9,6 +9,7 @@ var finishScreen = $('#finished');
 var progressBar = $('#progress-bar > .bar');
 var progressBarContainer = $('#progress-bar-container');
 var searchBar = $('#search-bar');
+var searchBtn = $('#search-btn');
 var toInput = $('#input-to');
 
 // Document Hooks
@@ -40,6 +41,11 @@ $(document).ready(function(){
   $('#back-btn').click(function(e){
     slideScreen(stepTwoScreen, stepOneScreen);
     progressBar.css('width', '20%');
+  });
+  $('#back-send-btn').click(function(e){
+    e.preventDefault();
+    slideScreen(stepThreeScreen, stepTwoScreen);
+    progressBar.css('width', '70%');
   });
   $('#send-btn').click(function(e){
     var sendees = $("#input-to").attr("value");
@@ -101,8 +107,3 @@ function setupLI(){
 }
 
 // Showing search results on second screen
-function search() {
-  var searchValue = $("#search-bar").val();
-  $("#search-value").append("<em>"+searchValue+"</em>");
-  $("#search-value").show();
-}

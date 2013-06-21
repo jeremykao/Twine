@@ -183,6 +183,10 @@ body {
   width: 100px;
 }
 
+#step-three #back-send-btn {
+  margin-bottom: 1em;
+}
+
 #step-three #send-btn {
   background: #1abc9c;
 }
