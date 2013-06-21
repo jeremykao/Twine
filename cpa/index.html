@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <title>Twine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet" type='text/css'>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+    <link href="css/flat-ui.css" rel="stylesheet" type='text/css'>
+    <link href="css/twine.css" rel="stylesheet" type='text/css'>
+    <link href="css/mod.css" rel="stylesheet" type='text/css'>
+    <link href="css/ladda.min.css" rel="stylesheet" type='text/css'>
+    <link rel="shortcut icon" href="images/redfavicon.png">
+	</head>
+	<body>
+    <div class="container">
+      <div class="row">
+        <div id="progress-bar-container" class="span6 offset3">
+          <div id="progress-bar" class="progress progress-striped active">
+              <div class="bar" style="width: 0%;"></div>
+          </div>
+        </div>
+        <h4 class="span6 offset3" id="search-value"></h4>
+      </div>
+
+      <!-- 0:auth screen -->
+      <div class="row">
+        <div id="step-zero" class="step span6 offset3">
+          <div id="fb-root"></div>
+          <div id="logo-img-container" class="span6"><img alt="Twine logo" id="logo-image" class="row" src="images/logo-512.gif"/></div>
+          <h4>Welcome to <span id="logo" style="font-size: 23px">twine</span></h4>
+          <p>Twine is an easy way to send targeted emails to friends based on interests. This is very useful for organizing events and reaching out to friends.</p>
+          <p>Like the string in a tin can telephone, twine connects you and relays a message to the friends you are looking for.</p>
+          <p>Please login with Facebook so we can search your friends based on their interests, and Gmail so you can send emails through Twine.</p>
+          <div class="row">
+          <button class="btn btn-info span3" id="fb-login">Login to Facebook</button>
+          {% if showGmail %}
+          <a href="{{ loginLink }}"><button class="btn btn-info span3" id="gmail-login">Login to Gmail</button></a>
+          {% else %}
+          <button class="btn span3" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
+          {% endif %}
+          </div>
+          <div class="row">
+            <button id="start-btn" type="submit" class="offset2 span2 btn">Begin</button>
+          </div>
+        <br>
+        <p style="text-align: center">Created by Team Baguette for Chrome Academy 2013</p>
+        </div>
+      </div>
+
+
+      <!-- 1:login screen -->
+      <div class="row">
+        <div id="step-one" class="step span6 offset3">
+          <div class="control-group">
+            <input id="search-bar" type="text" class="span6 login-field" value="" placeholder="Find friends who like..."/>
+            <label id="search-icon" class="login-field-icon fui-user" for="login-name"></label>
+          </div>
+          <button id="search-btn" class="btn btn-primary btn-large btn-block ladda-button" data-style="zoom-in">Search Friends</button>
+        </div>
+      </div>
+
+      <!-- 2:list screen --> 
+      <div class="row">
+        <div id="step-two" class="step todo mrm">
+          <ul id="results-list">
+            <li> </li>
+          </ul>
+          <a href="#" id="back-btn" class="btn btn-danger">&lt;</a>
+          <button id="continue-btn" class="btn btn-danger">Email</button>
+          <button id="event-btn" class="btn btn-danger">Create Event</button>
+        </div>
+      </div> <!-- list wrapper -->
+
+      <!-- 3:form screen -->
+      <div id="step-three" class="step">
+        <form method="post">
+          <div class="form-row control-group">
+            <label class="control-label" for="inputTo">To:</label>
+            <div class="controls">
+              <input type="text" id="input-to" placeholder="" name="sendees">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputSubject">Subject:</label>
+            <div class="controls">
+              <input type="text" id="input-subject" placeholder="Subject" name="subject">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputMessage">Message:</label>
+            <div class="controls">
+              <textarea rows="3" id="input-msg" placeholder="Custom message to friends" name="message"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <div class="controls row">
+              <button id="back-send-btn" class="btn btn-success offset2 span2">Back</button>
+              <button id="send-btn" type="submit" class="span6 btn">Send</button>
+            </div>
+          </div>
+        </form>
+      </div><!-- form screen wrapper -->
+
+      <!-- 4:fb event screen -->
+      <div id="step-four" class="step">
+          <div class="form-row control-group">
+            <label class="control-label" for="inputEventName">Event Name:</label>
+            <div class="controls">
+              <input type="text" id="input-event-name" placeholder="" name="eventName">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputStartTime">Start Time:</label>
+            <div class="controls">
+              <input type="date" id="input-start-time" name="eventStartTime">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputEndTime">End Time:</label>
+            <div class="controls">
+              <input type="date" id="input-end-time" name="eventEndTime">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputEventLoc">Location:</label>
+            <div class="controls">
+              <input type="text" id="input-event-loc" name="eventLoc">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputEventPrivacy">Event Privacy:</label>
+            <div class="controls">
+              <input type="text" id="input-event-privacy" name="eventPrivacy">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <label class="control-label" for="inputEventDesc">Description:</label>
+            <div class="controls">
+              <input type="text" id="input-event-desc" name="eventDesc">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
+            <div class="controls row">
+              <button id="back-event-btn" class="btn btn-success offset2 span2">Back</button>
+              <button id="event-btn" class="span6 btn btn-primary">Create Event & Send Invites</button>
+            </div>
+          </div>
+      </div><!-- fb screen wrapper -->
+
+      <!-- finished -->
+      <div id="finished" class="step">
+        <p id="success-msg">Your message about {term} has been sent to {friend in list}.</p>
+        <div class="row">
+          <a href="#" id="reset-btn" class="btn btn-danger span6 offset3">Start Over</a>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/js/fb.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="js/jquery.stacktable.js"></script>
+    <script src="http://vjs.zencdn.net/c/video.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/spin.js"></script>
+    <script src="js/ladda.js"></script>
+    <script src="js/main.js"></script>
+	</body>
+</html>

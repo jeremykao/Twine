@@ -78,14 +78,9 @@ window.fbAsyncInit = function() {
 var selfLat;
 var selfLong;
 var result;
-var pages = {};
-var userLOL = []; //Questionable
-var LIMIT = 100;
 
   $(window).bind("load", function(){
     document.getElementById("search-btn").onclick = function(){
-      userLOL = [];
-      result = [];
       var l = Ladda.create(document.querySelector('#search-btn'));
       if ($('#search-bar').val() === ""){
         alert("It appears that you did not enter an interest. Please enter a query.");
@@ -93,72 +88,34 @@ var LIMIT = 100;
       }
       else {
         l.start();
-        var similarPages = "https://graph.facebook.com/search";
-        var similarPagesObj = {};
         $.ajax({
           data: {
-          q: search_term,
-          type: 'page',
-          limit: LIMIT
-        },
-        async: 'false',
-        url: 'https://graph.facebook.com/search',
-        success: function(response){
-         similarPagesObj = response['data'];
-         //console.log(response);
-         for ( var i = 0; i < similarPagesObj.length; ++i ){
-          q = "SELECT uid, username, name, pic_big, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id="+ similarPagesObj[i]['id'] +"AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
-          pages['query' + i] = q;
-         }
-         var ajaxCount = 0;
-         $.each(pages, function(key){
-          $.ajax({
-            data:{
-              format: 'json',
-              query: pages[key],
-              access_token: accessToken
-            },
-            url: 'https://api.facebook.com/method/fql.query',
-          }).done(function(response){ //closes ajax
-             if (response.length > 0){
-              for ( var i = 0; i < response.length; ++i ){
-                var seen = false;
-                for( var z = 0; z < userLOL.length; ++z){
-                  if (userLOL[z].uid == response[i].uid){
-                    seen = true;
-                    break;
-                  }
-                }
-                if (!seen)
-                  userLOL.push(response[i]);
-              }
-             }
-             ajaxCount++;
-             if (ajaxCount == LIMIT){
-               console.log("UserLOL:")
-               console.log(userLOL);
-             }
-            }); //closes done
-          }); //closes each
+            format: 'json',
+            query: queryStr,
+            access_token: accessToken
+          },
+          url: 'https://api.facebook.com/method/fql.query'
 
-          result = userLOL;
-          $('#results-list').html('');
-          var userList = '', emailList = '';
 
-          // GEOLOCATION STUFF
+          }).done(function(response){
+          result = response;
+            console.log(response);
+            $('#results-list').html('');
+            var userList = '', emailList = '';
 
-          var async = function(){
-            result = filterByDistance(10000,selfLat,selfLong,userLOL);
-            populate();
-          };
+            // GEOLOCATION STUFF
 
-          getCoords(async);
+            var async = function(){
+              result = filterByDistance(10000,selfLat,selfLong,response);
+              populate();
+            };
+            getCoords(async);
             
                 
-          //console.log("RESPONSE " + response[0]);
-            var populate = function() { 
+            //console.log("RESPONSE " + response[0]);
+             var populate = function() { 
               var distGroups = [0, 0, 0, 0, 0];
-              //console.log(result);
+              console.log(result);
               for (var i = 0; i < result.length; i++){
                 var user = result[i];
                 var newLI = '';
@@ -212,14 +169,13 @@ var LIMIT = 100;
                 loadStepTwo();
               }
               l.stop();
-            }; //closes populate
-          } //closes success
-        }); //closes ajax
-      } //closes else
 
-    }; //closes click
+              };
+            });
+          }
+        };
 
-  }); //closes bind
+      });
       function fbLogin(){
         FB.login(function(response){
           if ( response.status == "connected" )
@@ -237,7 +193,6 @@ var LIMIT = 100;
 
   // Find geolocation
 var getCoords = function(async){
-  console.log("LOLOOL");
   if (navigator.geolocation){
     return navigator.geolocation.getCurrentPosition(function(position){returnCoords(position); async()}, handleLocationError);
   }
@@ -275,11 +230,11 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 function updateStatus() {
-  console.log("BLOOP");
   var l = Ladda.create(document.querySelector('#search-btn'));
   l.start();
   $('#results-list').html('');
             var userList = '', emailList = '';
+console.log(result);
               for (var i = 0; i < result.length; i++){
                 var user = result[i];
                 var newLI = '';
@@ -328,9 +283,8 @@ function handleLocationError(error) {
         }
     }
 
-function filterByDistance(d,self_lat,self_long,friends){
-  result = new Array();
-  console.log(self_lat + ", " + self_long);
+var filterByDistance = function(d,self_lat,self_long,friends){
+  var result = new Array();
   if ((self_lat != null) && (self_long != null)){
     for (var i = 0; i < friends.length; i++){
       if (friends[i].current_location != null) {
@@ -396,7 +350,6 @@ function filterByDistance(d,self_lat,self_long,friends){
     }
   }
   //console.log(friends);
-  console.log("Result: ")
   console.log(result);
   return result;
 
