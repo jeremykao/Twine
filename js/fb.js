@@ -104,7 +104,7 @@ var result;
              similarPagesObj = response['data'];
              //console.log(response);
              for ( var i = 0; i < similarPagesObj.length; ++i ){
-              q = "SELECT username, name, pic_small, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id="+ similarPagesObj[i]['id'] +"AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
+              q = "SELECT username, name, pic_big, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id="+ similarPagesObj[i]['id'] +"AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
               pages['query' + i] = q;
              }
              var ajaxCount = 0;
@@ -122,10 +122,11 @@ var result;
                     usersArr.push(response[i]);
                   }
                  }
+
                  ajaxCount++;
                  if (ajaxCount == LIMIT)
                    console.log(usersArr);
-
+                 result = usersArr;
               $('#results-list').html('');
               var userList = '', emailList = '';
               
@@ -262,7 +263,7 @@ function updateStatus() {
   l.start();
   $('#results-list').html('');
             var userList = '', emailList = '';
-console.log(result);
+//console.log(result);
               for (var i = 0; i < result.length; i++){
                 var user = result[i];
                 var newLI = '';
