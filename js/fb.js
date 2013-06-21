@@ -187,7 +187,7 @@ var result;
         $("#fb-login").text("Logged into FB");
         $("#fb-login").removeClass("btn-info");
         $("#fb-login").attr("disabled","true");
-        checkBegin();
+        checkBeginBtn();
       }
 
 
@@ -353,10 +353,4 @@ var filterByDistance = function(d,self_lat,self_long,friends){
   console.log(result);
   return result;
 
-}
-checkBegin = function() {
-  if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled')))
-    $('#start-btn').attr('disabled', true);
-  else
-    $('#start-btn').attr('disabled', false);
 }

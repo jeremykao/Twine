@@ -19,10 +19,7 @@ $(document).ready(function(){
   var selfLong;
 
   // Checkig begin button
-  if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled')))
-    $('#start-btn').attr('disabled', true);
-  else
-    $('#start-btn').attr('disabled', false);
+  checkBeginBtn();
 
   $('#start-btn').click(function(e){
     e.preventDefault();
@@ -131,4 +128,12 @@ function setupLI(){
   });
 }
 
-// Showing search results on second screen
+function checkBeginBtn() {
+  if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled'))) {
+    $('#start-btn').attr('disabled', true);
+    $('#start-btn').removeClass('btn-primary');
+  } else {
+    $('#start-btn').attr('disabled', false);
+    $('#start-btn').addClass('btn-primary');
+  }
+}
