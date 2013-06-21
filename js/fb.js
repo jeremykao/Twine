@@ -105,11 +105,7 @@ window.fbAsyncInit = function() {
             };
             getCoords(async);
             
-            function updateStatus() {
-    result = response;
-    populate();
-        //document.getElementById("status").innerHTML = message;
-}
+            
     
             //console.log("RESPONSE " + response[0]);
             var populate = function() { 
@@ -229,7 +225,41 @@ var distance = function(lat1, long1, lat2, long2){
     var d = R * c;
     return d;
 }
+unction updateStatus() {
+  var l = Ladda.create(document.querySelector('#search-btn'));
+  l.start();
+  $('#results-list').html('');
+            var userList = '', emailList = '';
+console.log(result);
+              for (var i = 0; i < result.length; i++){
+                var user = result[i];
+                var newLI = '';
+                if (i !== 0) {
+                  userList += ', ' + user.name;
+                } else if (i === result.length - 1) {
+                  userList += ', and ' + user.name + '.';
+                } else {
+                  userList += user.name;
+                }
+                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+                newLI += user.name;
+                newLI += '</strong></h4><span>';
+                newLI += user.username;
+                newLI += '@facebook.com</span></div></li>';
+                $('#results-list').append(newLI);
+              }
 
+              $('#results-list').append('<li></li>');
+              setupLI();
+              if (($('#results-list li').length) == 1){
+                console.log("There were no results.");
+              } else {
+                loadStepTwo();
+              }
+              l.stop();
+        //document.getElementById("status").innerHTML = message;
+}
 
 
 function handleLocationError(error) {
