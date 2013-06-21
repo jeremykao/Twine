@@ -98,12 +98,19 @@ window.fbAsyncInit = function() {
             var userList = '', emailList = '';
 
             // GEOLOCATION STUFF
+
             var async = function(){
               result = filterByDistance(10000,selfLat,selfLong,response);
               populate();
             };
             getCoords(async);
-
+            
+            function updateStatus() {
+		result = response;
+		populate();
+        //document.getElementById("status").innerHTML = message;
+}
+		
             //console.log("RESPONSE " + response[0]);
             var populate = function() { 
               console.log(result);
@@ -197,11 +204,7 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
-function updateStatus() {
-	result = response;
-	populate();
-        //document.getElementById("status").innerHTML = message;
-}
+
 
 function handleLocationError(error) {
         switch(error.code)
