@@ -77,7 +77,7 @@ window.fbAsyncInit = function() {
 
   $(window).bind("load", function(){
 document.getElementById("search-btn").onclick = function(){
-	if ($('#search-bar').value == null){
+	if ($('#search-bar').val() == null){
 		console.log("error");
 	}
 	else {
