@@ -10,7 +10,6 @@ var progressBar = $('#progress-bar > .bar');
 var progressBarContainer = $('#progress-bar-container');
 var searchBar = $('#search-bar');
 var searchBtn = $('#search-btn');
-var searchLadda = Ladda.create(document.querySelector('#search-btn'));
 var toInput = $('#input-to');
 
 // Document Hooks

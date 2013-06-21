@@ -76,9 +76,9 @@ window.fbAsyncInit = function() {
 
 
   $(window).bind("load", function(){
+var l = Ladda.create(document.querySelector('#search-btn'));
     document.getElementById("search-btn").onclick = function(){
-      searchLadda.start();
-      searchBtn.text(' ');
+      l.start();
       if ($('#search-bar').val() === ""){
         console.log("error");
       }
@@ -130,8 +130,7 @@ window.fbAsyncInit = function() {
               if (($('#results-list li').length) == 1){
                 console.log("There were no results.");
               } //else {
-                searchBtn.text('Search Friends');
-                searchLadda.stop();
+                l.stop();
                 loadStepTwo();
                 $('#results-list').append('<li></li>');
 
