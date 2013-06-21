@@ -44,7 +44,6 @@ body {
 }
 
 .btn {
-  margin-bottom: 1em;
   box-sizing: border-box;
 }
 
@@ -210,6 +209,10 @@ body {
 
 #step-four {
   display: none;
+}
+
+#step-four #back-event-btn {
+  margin-bottom: 1em;
 }
 
 #finished {

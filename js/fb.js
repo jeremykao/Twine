@@ -106,11 +106,11 @@ window.fbAsyncInit = function() {
             getCoords(async);
             
             function updateStatus() {
-		result = response;
-		populate();
+    result = response;
+    populate();
         //document.getElementById("status").innerHTML = message;
 }
-		
+    
             //console.log("RESPONSE " + response[0]);
             var populate = function() { 
               var distGroups = [0, 0, 0, 0, 0];
@@ -251,72 +251,73 @@ function handleLocationError(error) {
     }
 
 var filterByDistance = function(d,self_lat,self_long,friends){
-	var result = new Array();
-	if ((self_lat != null) && (self_long != null)){
-		for (var i = 0; i < friends.length; i++){
-			if (friends[i].current_location != null) {
-				var friendLat = friends[i].current_location.latitude;
-				var friendLong = friends[i].current_location.longitude;
-				//console.log(distance(self_lat,self_long,friendLat,friendLong));
-				/*if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
-					//console.log(friends[i].username);
-					closeFriends.push(friend[i]);
-				}*/
-				var dist = distance(self_lat,self_long,friendLat,friendLong);
-				if ((0 < dist) && (dist <= 5)){
-					friends[i].distGroup = 0;
-				}
-				else if ((5 < dist) && (dist <= 10)){
-					friends[i].distGroup = 1;
-				}
-				else if ((10 < dist) && (dist <= 25)){
-					friends[i].distGroup = 2;
-				}
-				
-				else if ((25 < dist) && (dist <= 50)){
-					friends[i].distGroup = 3;
-				}
-				
-				else{
-					friends[i].distGroup = 4;
-				}
-			}
-			else {
-				friends[i].distGroup = 5;
-			}
-		}
-	}
-	for (var i = 0; i < friends.length; i++){
-		if (friends[i].distGroup == 0){
-			result.push(friends[i]);
-		}
-	}
-	for (var i = 0; i < friends.length; i++){
-		if (friends[i].distGroup == 1){
-			result.push(friends[i]);
-		}
-	}
-	for (var i = 0; i < friends.length; i++){
-		if (friends[i].distGroup == 2){
-			result.push(friends[i]);
-		}
-	}
-	for (var i = 0; i < friends.length; i++){
-		if (friends[i].distGroup == 3){
-			result.push(friends[i]);
-		}
-	}
-	for (var i = 0; i < friends.length; i++){
-		if (friends[i].distGroup == 4){
-			result.push(friends[i]);
-		}
-	}
-	for (var i = 0; i < friends.length; i++){
-		if (friends[i].distGroup == 5){
-			result.push(friends[i]);
-		}
-	}
-	//console.log(friends);
-	console.log(result);
-	return result;
+  var result = new Array();
+  if ((self_lat != null) && (self_long != null)){
+    for (var i = 0; i < friends.length; i++){
+      if (friends[i].current_location != null) {
+        var friendLat = friends[i].current_location.latitude;
+        var friendLong = friends[i].current_location.longitude;
+        //console.log(distance(self_lat,self_long,friendLat,friendLong));
+        /*if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
+          //console.log(friends[i].username);
+          closeFriends.push(friend[i]);
+        }*/
+        var dist = distance(self_lat,self_long,friendLat,friendLong);
+        if ((0 < dist) && (dist <= 5)){
+          friends[i].distGroup = 0;
+        }
+        else if ((5 < dist) && (dist <= 10)){
+          friends[i].distGroup = 1;
+        }
+        else if ((10 < dist) && (dist <= 25)){
+          friends[i].distGroup = 2;
+        }
+        
+        else if ((25 < dist) && (dist <= 50)){
+          friends[i].distGroup = 3;
+        }
+        
+        else{
+          friends[i].distGroup = 4;
+        }
+      }
+      else {
+        friends[i].distGroup = 5;
+      }
+    }
+  }
+  for (var i = 0; i < friends.length; i++){
+    if (friends[i].distGroup == 0){
+      result.push(friends[i]);
+    }
+  }
+  for (var i = 0; i < friends.length; i++){
+    if (friends[i].distGroup == 1){
+      result.push(friends[i]);
+    }
+  }
+  for (var i = 0; i < friends.length; i++){
+    if (friends[i].distGroup == 2){
+      result.push(friends[i]);
+    }
+  }
+  for (var i = 0; i < friends.length; i++){
+    if (friends[i].distGroup == 3){
+      result.push(friends[i]);
+    }
+  }
+  for (var i = 0; i < friends.length; i++){
+    if (friends[i].distGroup == 4){
+      result.push(friends[i]);
+    }
+  }
+  for (var i = 0; i < friends.length; i++){
+    if (friends[i].distGroup == 5){
+      result.push(friends[i]);
+    }
+  }
+  //console.log(friends);
+  console.log(result);
+  return result;
 }
+

@@ -107,7 +107,6 @@
 
       <!-- 4:fb event screen -->
       <div id="step-four" class="step">
-        <form method="post">
           <div class="form-row control-group">
             <label class="control-label" for="inputEventName">Event Name:</label>
             <div class="controls">
@@ -137,6 +136,13 @@
           </div>
 
           <div class="form-row control-group">
+            <label class="control-label" for="inputEventPrivacy">Event Privacy:</label>
+            <div class="controls">
+              <input type="text" id="input-event-privacy" name="eventPrivacy">
+            </div>
+          </div>
+
+          <div class="form-row control-group">
             <label class="control-label" for="inputEventDesc">Description:</label>
             <div class="controls">
               <input type="text" id="input-event-desc" name="eventDesc">
@@ -146,10 +152,9 @@
           <div class="form-row control-group">
             <div class="controls row">
               <button id="back-event-btn" class="btn btn-success offset2 span2">Back</button>
-              <button id="event-btn" type="submit" class="span6 btn btn-primary">Create Event & Send Invites</button>
+              <button id="event-btn" class="span6 btn btn-primary">Create Event & Send Invites</button>
             </div>
           </div>
-        </form>
       </div><!-- fb screen wrapper -->
 
       <!-- finished -->
