@@ -154,9 +154,21 @@ body {
 
 #step-two #continue-btn {
   position: absolute;
+  right: 45%;
+  bottom: 0;
+  width: 45%;
+  height: 52px;
+  padding-top: 1em;
+  border-right: #c0392b solid 1px;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+#step-two #event-btn {
+  position: absolute;
   right: 0;
   bottom: 0;
-  width: 90%;
+  width: 45%;
   height: 52px;
   padding-top: 1em;
   border-radius: 0;
@@ -193,6 +205,10 @@ body {
 
 #step-three #send-btn:hover {
   background: #16a085;
+}
+
+#step-four {
+  display: none;
 }
 
 #finished {

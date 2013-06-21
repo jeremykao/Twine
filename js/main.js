@@ -5,6 +5,7 @@ var stepZeroScreen = $('#step-zero');
 var stepOneScreen = $('#step-one');
 var stepTwoScreen = $('#step-two');
 var stepThreeScreen = $('#step-three');
+var stepFourScreen = $('#step-four');
 var finishScreen = $('#finished');
 var progressBar = $('#progress-bar > .bar');
 var progressBarContainer = $('#progress-bar-container');
@@ -36,7 +37,12 @@ $(document).ready(function(){
     progressBarContainer.removeClass('span6 offset3');
     progressBarContainer.addClass('span12');
     progressBar.css('width', '70%');
-    $("#search-value").hide();
+  });
+  $('#event-btn').click(function(e){
+    slideScreen(stepTwoScreen, stepFourScreen);
+    progressBarContainer.removeClass('span6 offset3');
+    progressBarContainer.addClass('span12');
+    progressBar.css('width', '70%');
   });
   $('#back-btn').click(function(e){
     slideScreen(stepTwoScreen, stepOneScreen);
