@@ -74,6 +74,9 @@ window.fbAsyncInit = function() {
   });
 
 
+var pages = {};
+var usersArr = [];
+var LIMIT = 100;
 
   $(window).bind("load", function(){
     document.getElementById("search-btn").onclick = function(){
@@ -82,37 +85,60 @@ window.fbAsyncInit = function() {
         console.log("error");
       }
       else {
+        var similarPages = "https://graph.facebook.com/search";
+       var similarPagesObj = {};
         l.start();
         $.ajax({
           data: {
-            format: 'json',
-            query: queryStr,
-            access_token: accessToken
+           q: search_term,
+           type: 'page',
+           limit: LIMIT
           },
-          url: 'https://api.facebook.com/method/fql.query'
+          async: 'false',
+          url: 'https://graph.facebook.com/search',
+        success: function(response){
+             similarPagesObj = response['data'];
+             //console.log(response);
+             for ( var i = 0; i < similarPagesObj.length; ++i ){
+              q = "SELECT username, name, pic_small, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id="+ similarPagesObj[i]['id'] +"AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
+              pages['query' + i] = q;
+             }
+             var ajaxCount = 0;
+             $.each(pages, function(key){
+              $.ajax({
+                data:{
+                  format: 'json',
+                  query: pages[key],
+                  access_token: accessToken
+                },
+                url: 'https://api.facebook.com/method/fql.query',
+              }).done(function(response){
+                 if (response.length > 0){
+                  for ( var i = 0; i < response.length; ++i ){
+                    usersArr.push(response[i]);
+                  }
+                 }
+                 ajaxCount++;
+                 if (ajaxCount == LIMIT)
+                   console.log(usersArr);
 
-
-          }).done(function(response){
-            console.log(response);
-            $('#results-list').html('');
-            var userList = '', emailList = '';
-
-            // GEOLOCATION STUFF
-            var temp = function(){
-              result = filterByDistance(10000,selfLat,selfLong,response);
-              populate();
-            };
-            getCoords(temp);
-
-            //console.log("RESPONSE " + response[0]);
-            var populate = function() { 
-              console.log(result);
-              for (var i = 0; i < result.length; i++){
-                var user = result[i];
+              $('#results-list').html('');
+              var userList = '', emailList = '';
+              
+              // GEOLOCATION STUFF
+                var temp = function(){
+                  result = filterByDistance(10000,selfLat,selfLong,response);
+                  populate();
+                };
+                getCoords(temp);
+              
+              var populate = function() {
+              for (var i = 0; i < usersArr.length; i++){
+                var user = usersArr[i];
                 var newLI = '';
                 if (i !== 0) {
                   userList += ', ' + user.name;
-                } else if (i === result.length - 1) {
+                } else if (i === usersArr.length - 1) {
                   userList += ', and ' + user.name + '.';
                 } else {
                   userList += user.name;
@@ -125,22 +151,23 @@ window.fbAsyncInit = function() {
                 newLI += '@facebook.com</span></div></li>';
                 $('#results-list').append(newLI);
               }
-
               $('#results-list').append('<li></li>');
               setupLI();
               if (($('#results-list li').length) == 1){
-                console.log("There were no results.");
-              } else {
-                loadStepTwo();
-              }
-              l.stop();
-
+                    console.log("There were no results.");
+                  } else {
+                    loadStepTwo();
+                  }
+                  l.stop();
               };
-            });
-          }
-        };
 
-      });
+            });
+          });
+        }
+      }); 
+    }
+  }
+});
       function fbLogin(){
         FB.login(function(response){
           if ( response.status == "connected" )
