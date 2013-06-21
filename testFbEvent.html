@@ -4,8 +4,8 @@
 	</head>
 	<body>
 			<label>Event Name: <input type="text" name="eventName" id="name"></label>
-			<label>Start Time: <input type="text" name="eventStartTime" id="startTime"></label>
-			<label>End Time: <input type="text" name="eventEndTime" id="endTime"></label>
+			<label>Start Time: <input type="date" name="eventStartTime" id="startTime"></label>
+			<label>End Time: <input type="date" name="eventEndTime" id="endTime"></label>
 			<label>Event Location: <input type="text" name="eventLoc" id="location"></label>
 			<label><select name="eventPrivacy" id="privacy">
 							  <option value="OPEN">Public</option>
@@ -19,6 +19,8 @@
 	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
   <script type="text/javascript" src="js/fb2.js"></script>
 	<script type="text/javascript">
+    var eventId = '';
+    userStr = '1044731101';
     $("#createEvent").click(function(){
       var name = $("#name").attr("value");
       var startTime = $("#startTime").attr("value");
@@ -38,14 +40,18 @@
         FB.api("/"+ userId + "/events", 'POST', 
           {
             name: name,
-            start_time: '2014-07-04',
-            end_time: '2014-07-06',
+            start_time: startTime,
+            end_time: endTime,
             description: description,
             location: location,
             privacy_type: privacy,
             access_token: accessToken,
           }, function( response ){
-            console.log(response);
+            eventId = response['id'];
+            FB.api("/" + eventId + "/invited", 'POST',
+              {
+                users: userStr,
+              });
           });
         }
       });
