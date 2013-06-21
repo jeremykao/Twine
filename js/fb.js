@@ -105,12 +105,7 @@ window.fbAsyncInit = function() {
             };
             getCoords(async);
             
-            function updateStatus() {
-		result = response;
-		populate();
-        //document.getElementById("status").innerHTML = message;
-}
-		
+            		
             //console.log("RESPONSE " + response[0]);
             var populate = function() { 
               console.log(result);
@@ -164,7 +159,7 @@ window.fbAsyncInit = function() {
   // Find geolocation
 var selfLat;
 var selfLong;
-var result;
+var result = response;
 
   // Find geolocation
 var getCoords = function(async){
@@ -204,7 +199,10 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
-
+function updateStatus() {
+	populate();
+        //document.getElementById("status").innerHTML = message;
+}
 
 function handleLocationError(error) {
         switch(error.code)
