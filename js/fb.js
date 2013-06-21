@@ -80,6 +80,10 @@ window.fbAsyncInit = function() {
 document.getElementById("search-btn").onclick = function(){
     searchBtn.text(' ');
     searchLadda.start();
+	if ($('#search-bar').val() == ""){
+		console.log("error");
+	}
+	else {
      $.ajax({
         data: {
           format: 'json',
@@ -89,45 +93,53 @@ document.getElementById("search-btn").onclick = function(){
         url: 'https://api.facebook.com/method/fql.query'
         
 
-        }).done(function(response){
+     }).done(function(response){
           console.log(response);
           $('#results-list').html('');
           var userList = '', emailList = '';
           
           // GEOLOCATION STUFF
-          var temp = function(){
-                  filterByDistance(10000,selfLat,selfLong,response);
-                };
+    var temp = function(){
+            result = filterByDistance(10000,selfLat,selfLong,response);
+            populate();
+    };
           getCoords(temp);
-          console.log("RESPONSE " + response[0]);
-          var result = filterByDistance(10000,selfLat,selfLong,response);
-          for (var i = 0; i < result.length; i++){
-            var user = result[i];
-            var newLI = '';
-            if (i !== 0) {
-              userList += ', ' + user.name;
-            } else if (i === result.length - 1) {
-              userList += ', and ' + user.name + '.';
-            } else {
-              userList += user.name;
+          
+          //console.log("RESPONSE " + response[0]);
+          var populate = function() { 
+          console.log(result);
+            for (var i = 0; i < result.length; i++){
+              var user = result[i];
+              var newLI = '';
+              if (i !== 0) {
+                userList += ', ' + user.name;
+              } else if (i === result.length - 1) {
+                userList += ', and ' + user.name + '.';
+              } else {
+                userList += user.name;
+              }
+              newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+              newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+              newLI += user.name;
+              newLI += '</strong></h4><span>';
+              newLI += user.username;
+              newLI += '@facebook.com</span></div></li>';
+              $('#results-list').append(newLI);
             }
-            newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
-            newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
-            newLI += user.name;
-            newLI += '</strong></h4><span>';
-            newLI += user.username;
-            newLI += '@facebook.com</span></div></li>';
-            $('#results-list').append(newLI);
-          }
-          setupLI();
-          if ($('#results-list li').length === 0){
-            console.log("There were no results.");
-          } 
+          
+            setupLI();
+            if (($('#results-list li').length) == 1){
+              console.log("There were no results.");
+            } //else {
           searchBtn.text('Search Friends');
           searchLadda.stop();
-          loadStepTwo();
-          $('#results-list').append('<li></li>');
-  });};
+              loadStepTwo();
+              $('#results-list').append('<li></li>');
+     
+          };
+    });
+  }
+  };
   
 });
   function fbLogin(){
@@ -146,19 +158,20 @@ document.getElementById("search-btn").onclick = function(){
   // Find geolocation
 var selfLat;
 var selfLong;
+var result;
 
   // Find geolocation
 var getCoords = function(temp){
-	if (navigator.geolocation){
-		return navigator.geolocation.getCurrentPosition(function(position){returnCoords(position); temp()}, handleLocationError);
-	}
-	else {
+  if (navigator.geolocation){
+    return navigator.geolocation.getCurrentPosition(function(position){returnCoords(position); temp()}, handleLocationError);
+  }
+  else {
       alert("Geolocation is not supported by this browser.");
     }
 }
 var returnCoords = function(position){
-	selfLat = position.coords.latitude;
-	selfLong = position.coords.longitude;	
+  selfLat = position.coords.latitude;
+  selfLong = position.coords.longitude; 
 
 }
 // convert to radians
@@ -270,5 +283,6 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 		}
 	}
 	//console.log(friends);
+	console.log(result);
 	return result;
 }
