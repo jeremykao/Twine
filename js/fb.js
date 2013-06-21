@@ -163,6 +163,7 @@ var result;
               $('#results-list').append('<li></li>');
               setupLI();
               if (($('#results-list li').length) == 1){
+                alert("Sorry! It appears none of your friends have that interest.");
                 console.log("There were no results.");
               } else {
                 loadStepTwo();
