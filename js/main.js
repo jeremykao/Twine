@@ -18,6 +18,9 @@ $(document).ready(function(){
   var selfLat;
   var selfLong;
 
+  // Checkig begin button
+  checkBeginBtn();
+
   $('#start-btn').click(function(e){
     e.preventDefault();
     slideScreen(stepZeroScreen, stepOneScreen);
@@ -38,6 +41,11 @@ $(document).ready(function(){
     progressBarContainer.addClass('span12');
     progressBar.css('width', '70%');
   });
+  $('#back-event-btn').click(function(e){
+    e.preventDefault();
+    slideScreen(stepFourScreen, stepTwoScreen);
+    progressBar.css('width', '40%');
+  });
   $('#event-btn').click(function(e){
     slideScreen(stepTwoScreen, stepFourScreen);
     progressBarContainer.removeClass('span6 offset3');
@@ -51,7 +59,7 @@ $(document).ready(function(){
   $('#back-send-btn').click(function(e){
     e.preventDefault();
     slideScreen(stepThreeScreen, stepTwoScreen);
-    progressBar.css('width', '70%');
+    progressBar.css('width', '40%');
   });
   $('#send-btn').click(function(e){
     var sendees = $("#input-to").attr("value");
@@ -104,6 +112,14 @@ function setupLI(){
       $(this).addClass('portrait-img');
     });
   });
+  $('li.dist-group-sep').on('click', function(e){
+    if ($(this).hasClass('todo-done')) {
+      $('.group' + e.target.dataset.group).removeClass('todo-done');
+      console.log(this);
+    } else {
+      $('.group' + e.target.dataset.group).addClass('todo-done');
+    }
+  });
   $('li').click(function(e){
     if ($(this).hasClass('todo-done'))
       $(this).removeClass('todo-done');
@@ -112,4 +128,12 @@ function setupLI(){
   });
 }
 
-// Showing search results on second screen
+function checkBeginBtn() {
+  if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled'))) {
+    $('#start-btn').attr('disabled', true);
+    $('#start-btn').removeClass('btn-primary');
+  } else {
+    $('#start-btn').attr('disabled', false);
+    $('#start-btn').addClass('btn-primary');
+  }
+}

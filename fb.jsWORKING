@@ -74,16 +74,11 @@ window.fbAsyncInit = function() {
   });
 
 
-  // Find geolocation
-var selfLat;
-var selfLong;
-var result;
 
   $(window).bind("load", function(){
     document.getElementById("search-btn").onclick = function(){
       var l = Ladda.create(document.querySelector('#search-btn'));
       if ($('#search-bar').val() === ""){
-        alert("It appears that you did not enter an interest. Please enter a query.");
         console.log("error");
       }
       else {
@@ -98,7 +93,6 @@ var result;
 
 
           }).done(function(response){
-          result = response;
             console.log(response);
             $('#results-list').html('');
             var userList = '', emailList = '';
@@ -111,34 +105,39 @@ var result;
             };
             getCoords(async);
             
-                
+            function updateStatus() {
+		result = response;
+		populate();
+        //document.getElementById("status").innerHTML = message;
+}
+		
             //console.log("RESPONSE " + response[0]);
-             var populate = function() { 
+            var populate = function() { 
               var distGroups = [0, 0, 0, 0, 0];
               console.log(result);
               for (var i = 0; i < result.length; i++){
                 var user = result[i];
                 var newLI = '';
                 if (distGroups[user.distGroup] === 0) {
-                  newLI += '<li class="todo-done dist-group-sep';
+                  newLI += '<li class="dist-group-sep">';
                   switch (user.distGroup) {
                     case 0:
-                      newLI += '" data-group="0">< 5 miles away';
+                      newLI += '< 5 miles away';
                       break;
                     case 1:
-                      newLI += '" data-group="1">between 5 and 10 miles away';
+                      newLI += 'between 5 and 10 miles away';
                       break;
                     case 2:
-                      newLI += '" data-group="2">between 10 and 25 miles away';
+                      newLI += 'between 10 and 25 miles away';
                       break;
                     case 3:
-                      newLI += '" data-group="3">between 25 and 50 miles away';
+                      newLI += 'between 25 and 50 miles away';
                       break;
                     case 4:
-                      newLI += '" data-group="4">> 50 miles away';
+                      newLI += '> 50 miles away';
                       break;
                     case 5:
-                      newLI += '" data-group="5">location unknown';
+                      newLI += 'location unknown';
                       break;
                   }
                   newLI += '</li>';
@@ -151,7 +150,7 @@ var result;
                 } else {
                   userList += user.name;
                 }
-                newLI += '<li class="todo-done group' + user.distGroup +'"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
                 newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
                 newLI += user.name;
                 newLI += '</strong></h4><span>';
@@ -163,7 +162,6 @@ var result;
               $('#results-list').append('<li></li>');
               setupLI();
               if (($('#results-list li').length) == 1){
-                alert("Sorry! It appears none of your friends have that interest.");
                 console.log("There were no results.");
               } else {
                 loadStepTwo();
@@ -187,9 +185,12 @@ var result;
         $("#fb-login").text("Logged into FB");
         $("#fb-login").removeClass("btn-info");
         $("#fb-login").attr("disabled","true");
-        checkBeginBtn();
       }
 
+  // Find geolocation
+var selfLat;
+var selfLong;
+var result;
 
   // Find geolocation
 var getCoords = function(async){
@@ -229,41 +230,7 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
-function updateStatus() {
-  var l = Ladda.create(document.querySelector('#search-btn'));
-  l.start();
-  $('#results-list').html('');
-            var userList = '', emailList = '';
-console.log(result);
-              for (var i = 0; i < result.length; i++){
-                var user = result[i];
-                var newLI = '';
-                if (i !== 0) {
-                  userList += ', ' + user.name;
-                } else if (i === result.length - 1) {
-                  userList += ', and ' + user.name + '.';
-                } else {
-                  userList += user.name;
-                }
-                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
-                newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
-                newLI += user.name;
-                newLI += '</strong></h4><span>';
-                newLI += user.username;
-                newLI += '@facebook.com</span></div></li>';
-                $('#results-list').append(newLI);
-              }
 
-              $('#results-list').append('<li></li>');
-              setupLI();
-              if (($('#results-list li').length) == 1){
-                console.log("There were no results.");
-              } else {
-                loadStepTwo();
-              }
-              l.stop();
-        //document.getElementById("status").innerHTML = message;
-}
 
 function handleLocationError(error) {
         switch(error.code)
@@ -284,73 +251,72 @@ function handleLocationError(error) {
     }
 
 var filterByDistance = function(d,self_lat,self_long,friends){
-  var result = new Array();
-  if ((self_lat != null) && (self_long != null)){
-    for (var i = 0; i < friends.length; i++){
-      if (friends[i].current_location != null) {
-        var friendLat = friends[i].current_location.latitude;
-        var friendLong = friends[i].current_location.longitude;
-        //console.log(distance(self_lat,self_long,friendLat,friendLong));
-        /*if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
-          //console.log(friends[i].username);
-          closeFriends.push(friend[i]);
-        }*/
-        var dist = distance(self_lat,self_long,friendLat,friendLong);
-        if ((0 < dist) && (dist <= 5)){
-          friends[i].distGroup = 0;
-        }
-        else if ((5 < dist) && (dist <= 10)){
-          friends[i].distGroup = 1;
-        }
-        else if ((10 < dist) && (dist <= 25)){
-          friends[i].distGroup = 2;
-        }
-
-        else if ((25 < dist) && (dist <= 50)){
-          friends[i].distGroup = 3;
-        }
-
-        else{
-          friends[i].distGroup = 4;
-        }
-      }
-      else {
-        friends[i].distGroup = 5;
-      }
-    }
-  }
-  for (var i = 0; i < friends.length; i++){
-    if (friends[i].distGroup == 0){
-      result.push(friends[i]);
-    }
-  }
-  for (var i = 0; i < friends.length; i++){
-    if (friends[i].distGroup == 1){
-      result.push(friends[i]);
-    }
-  }
-  for (var i = 0; i < friends.length; i++){
-    if (friends[i].distGroup == 2){
-      result.push(friends[i]);
-    }
-  }
-  for (var i = 0; i < friends.length; i++){
-    if (friends[i].distGroup == 3){
-      result.push(friends[i]);
-    }
-  }
-  for (var i = 0; i < friends.length; i++){
-    if (friends[i].distGroup == 4){
-      result.push(friends[i]);
-    }
-  }
-  for (var i = 0; i < friends.length; i++){
-    if (friends[i].distGroup == 5){
-      result.push(friends[i]);
-    }
-  }
-  //console.log(friends);
-  console.log(result);
-  return result;
-
+	var result = new Array();
+	if ((self_lat != null) && (self_long != null)){
+		for (var i = 0; i < friends.length; i++){
+			if (friends[i].current_location != null) {
+				var friendLat = friends[i].current_location.latitude;
+				var friendLong = friends[i].current_location.longitude;
+				//console.log(distance(self_lat,self_long,friendLat,friendLong));
+				/*if (distance(self_lat,self_long,friendLat,friendLong) <= dist){
+					//console.log(friends[i].username);
+					closeFriends.push(friend[i]);
+				}*/
+				var dist = distance(self_lat,self_long,friendLat,friendLong);
+				if ((0 < dist) && (dist <= 5)){
+					friends[i].distGroup = 0;
+				}
+				else if ((5 < dist) && (dist <= 10)){
+					friends[i].distGroup = 1;
+				}
+				else if ((10 < dist) && (dist <= 25)){
+					friends[i].distGroup = 2;
+				}
+				
+				else if ((25 < dist) && (dist <= 50)){
+					friends[i].distGroup = 3;
+				}
+				
+				else{
+					friends[i].distGroup = 4;
+				}
+			}
+			else {
+				friends[i].distGroup = 5;
+			}
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 0){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 1){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 2){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 3){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 4){
+			result.push(friends[i]);
+		}
+	}
+	for (var i = 0; i < friends.length; i++){
+		if (friends[i].distGroup == 5){
+			result.push(friends[i]);
+		}
+	}
+	//console.log(friends);
+	console.log(result);
+	return result;
 }

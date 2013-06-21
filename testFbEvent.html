@@ -30,13 +30,6 @@
       var description = $("#description").attr("value");
       if ( name != null && startTime != null ){
         var userIdStr = "/" + userId; 
-        console.log(name);
-        console.log(startTime);
-        console.log(endTime);
-        console.log(location);
-        console.log(privacy);
-        console.log(description);
-        console.log(userIdStr);
         FB.api("/"+ userId + "/events", 'POST', 
           {
             name: name,
