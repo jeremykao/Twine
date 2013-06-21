@@ -74,6 +74,10 @@ window.fbAsyncInit = function() {
   });
 
 
+  // Find geolocation
+var selfLat;
+var selfLong;
+var result;
 
   $(window).bind("load", function(){
     document.getElementById("search-btn").onclick = function(){
@@ -93,6 +97,7 @@ window.fbAsyncInit = function() {
 
 
           }).done(function(response){
+          result = response;
             console.log(response);
             $('#results-list').html('');
             var userList = '', emailList = '';
@@ -156,10 +161,6 @@ window.fbAsyncInit = function() {
         $("#fb-login").attr("disabled","true");
       }
 
-  // Find geolocation
-var selfLat;
-var selfLong;
-var result = response;
 
   // Find geolocation
 var getCoords = function(async){
