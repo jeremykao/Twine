@@ -18,6 +18,12 @@ $(document).ready(function(){
   var selfLat;
   var selfLong;
 
+  // Checkig begin button
+  if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled')))
+    $('#start-btn').attr('disabled', true);
+  else
+    $('#start-btn').attr('disabled', false);
+
   $('#start-btn').click(function(e){
     e.preventDefault();
     slideScreen(stepZeroScreen, stepOneScreen);
