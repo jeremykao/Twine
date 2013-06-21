@@ -77,6 +77,9 @@ window.fbAsyncInit = function() {
 
   $(window).bind("load", function(){
 document.getElementById("search-btn").onclick = function(){
+	if ($('#search-bar').value == null){
+		console.log("error");
+	}
      $.ajax({
         data: {
           format: 'json',
