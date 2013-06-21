@@ -3,20 +3,18 @@
 	<head>
 	</head>
 	<body>
-		<form method="post">
 			<label>Event Name: <input type="text" name="eventName" id="name"></label>
 			<label>Start Time: <input type="text" name="eventStartTime" id="startTime"></label>
 			<label>End Time: <input type="text" name="eventEndTime" id="endTime"></label>
 			<label>Event Location: <input type="text" name="eventLoc" id="location"></label>
 			<label><select name="eventPrivacy" id="privacy">
-							  <option value="public">Public</option>
-							  <option value="secret">Secret</option>
-							  <option value="friends" selected="selected">Friends</option>
+							  <option value="OPEN">Public</option>
+							  <option value="SECRET">Secret</option>
+							  <option value="FRIENDS" selected="selected">Friends</option>
 							</select>
 			</label>
 			<label>Description: <textarea name="eventDesc" id="description"></textarea>
 			<button id="createEvent">Create Event and Invite Selected Friends</button>
-		</form>
 	</body>
 	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
   <script type="text/javascript" src="js/fb2.js"></script>
@@ -30,6 +28,13 @@
       var description = $("#description").attr("value");
       if ( name != null && startTime != null ){
         var userIdStr = "/" + userId; 
+        console.log(name);
+        console.log(startTime);
+        console.log(endTime);
+        console.log(location);
+        console.log(privacy);
+        console.log(description);
+        console.log(userIdStr);
         FB.api("/"+ userId + "/events", 'POST', 
           {
             name: name,
