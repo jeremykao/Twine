@@ -74,6 +74,10 @@ window.fbAsyncInit = function() {
   });
 
 
+  // Find geolocation
+var selfLat;
+var selfLong;
+var result;
 
   $(window).bind("load", function(){
     document.getElementById("search-btn").onclick = function(){
@@ -93,6 +97,7 @@ window.fbAsyncInit = function() {
 
 
           }).done(function(response){
+          result = response;
             console.log(response);
             $('#results-list').html('');
             var userList = '', emailList = '';
@@ -105,14 +110,9 @@ window.fbAsyncInit = function() {
             };
             getCoords(async);
             
-            function updateStatus() {
-    result = response;
-    populate();
-        //document.getElementById("status").innerHTML = message;
-}
-    
+                
             //console.log("RESPONSE " + response[0]);
-            var populate = function() { 
+             var populate = function() { 
               var distGroups = [0, 0, 0, 0, 0];
               console.log(result);
               for (var i = 0; i < result.length; i++){
@@ -187,10 +187,6 @@ window.fbAsyncInit = function() {
         $("#fb-login").attr("disabled","true");
       }
 
-  // Find geolocation
-var selfLat;
-var selfLong;
-var result;
 
   // Find geolocation
 var getCoords = function(async){
@@ -230,7 +226,41 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
+function updateStatus() {
+  var l = Ladda.create(document.querySelector('#search-btn'));
+  l.start();
+  $('#results-list').html('');
+            var userList = '', emailList = '';
+console.log(result);
+              for (var i = 0; i < result.length; i++){
+                var user = result[i];
+                var newLI = '';
+                if (i !== 0) {
+                  userList += ', ' + user.name;
+                } else if (i === result.length - 1) {
+                  userList += ', and ' + user.name + '.';
+                } else {
+                  userList += user.name;
+                }
+                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+                newLI += user.name;
+                newLI += '</strong></h4><span>';
+                newLI += user.username;
+                newLI += '@facebook.com</span></div></li>';
+                $('#results-list').append(newLI);
+              }
 
+              $('#results-list').append('<li></li>');
+              setupLI();
+              if (($('#results-list li').length) == 1){
+                console.log("There were no results.");
+              } else {
+                loadStepTwo();
+              }
+              l.stop();
+        //document.getElementById("status").innerHTML = message;
+}
 
 function handleLocationError(error) {
         switch(error.code)
@@ -272,11 +302,11 @@ var filterByDistance = function(d,self_lat,self_long,friends){
         else if ((10 < dist) && (dist <= 25)){
           friends[i].distGroup = 2;
         }
-        
+
         else if ((25 < dist) && (dist <= 50)){
           friends[i].distGroup = 3;
         }
-        
+
         else{
           friends[i].distGroup = 4;
         }
@@ -319,5 +349,5 @@ var filterByDistance = function(d,self_lat,self_long,friends){
   //console.log(friends);
   console.log(result);
   return result;
-}
 
+}
