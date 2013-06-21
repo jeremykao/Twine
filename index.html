@@ -139,21 +139,25 @@
           <div class="form-row control-group">
             <label class="control-label" for="inputEventPrivacy">Event Privacy:</label>
             <div class="controls">
-              <input type="text" id="input-event-privacy" name="eventPrivacy">
+              <select name="eventPrivacy" id="input-event-privacy">
+                <option value="OPEN">Public</option>
+                <option value="SECRET">Secret</option>
+                <option value="FRIENDS">Friends</option>
+              </select>
             </div>
           </div>
 
           <div class="form-row control-group">
             <label class="control-label" for="inputEventDesc">Description:</label>
             <div class="controls">
-              <input type="text" id="input-event-desc" name="eventDesc">
+              <textarea id="input-event-desc" name="eventDesc"></textarea>
             </div>
           </div>
 
           <div class="form-row control-group">
             <div class="controls row">
               <button id="back-event-btn" class="btn btn-success offset2 span2">Back</button>
-              <button id="event-btn" class="span6 btn btn-primary">Create Event & Send Invites</button>
+              <button id="event-btn-invite" class="span6 btn btn-primary">Create Event & Send Invites</button>
             </div>
           </div>
       </div><!-- fb screen wrapper -->

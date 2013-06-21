@@ -197,7 +197,7 @@ var LIMIT = 100;
                 newLI += '<li class="todo-done group' + user.distGroup +'"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
                 newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
                 newLI += user.name;
-                newLI += '</strong></h4><span>';
+                newLI += '</strong></h4><span uid="'+ user.uid +'">';
                 newLI += user.username;
                 newLI += '@facebook.com</span></div></li>';
                 $('#results-list').append(newLI);
@@ -293,7 +293,7 @@ function updateStatus() {
                 newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
                 newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
                 newLI += user.name;
-                newLI += '</strong></h4><span>';
+                newLI += '</strong></h4><span uid="'+ user.uid +'">';
                 newLI += user.username;
                 newLI += '@facebook.com</span></div></li>';
                 $('#results-list').append(newLI);
@@ -401,3 +401,44 @@ function filterByDistance(d,self_lat,self_long,friends){
   return result;
 
 }
+var eventId = '';
+  $("#event-btn-invite").click(function(){
+    var userStr = '';
+    $('li.todo-done').each(function(){userStr += ($(this).children('.todo-content').children('span').attr("uid") +',');});
+
+    var name = $("#input-event-name").attr("value");
+    var startTime = $("#input-start-time").attr("value");
+    var endTime = $("#input-end-time").attr("value");
+    var location = $("#input-event-loc").attr("value");
+    var privacy = $("#input-event-privacy").attr("value");
+    var description = $("#input-event-desc").attr("value");
+    if ( name != null && startTime != null ){
+      var userIdStr = "/" + userId; 
+      FB.api("/"+ userId + "/events", 'POST', 
+        {
+          name: name,
+          start_time: startTime,
+          end_time: endTime,
+          description: description,
+          location: location,
+          privacy_type: privacy,
+          access_token: accessToken,
+        }, function( response ){
+          eventId = response['id'];
+          console.log(eventId);
+          FB.api("/" + eventId + "/invited", 'POST',
+            {
+              users: userStr,
+            }, function( response ){
+                $("#input-event-name").val("");
+                $("#input-start-time").val("");
+                $("#input-end-time").val("");
+                $("#input-event-loc").val("");
+                $("#input-event-desc").val("");
+                $("#success-msg").html("You have successfully created your event, and invitations to the selected friends have been sent. Thank you." );
+                slideScreen($('#step-four'), $('#finished'));
+                progressBar.css('width', '100%');
+            });
+        });
+      }
+    });
