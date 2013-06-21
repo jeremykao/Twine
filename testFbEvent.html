@@ -15,38 +15,34 @@
 							</select>
 			</label>
 			<label>Description: <textarea name="eventDesc" id="description"></textarea>
-			<button id="createEvent">Create Event and Invite Selected Friends"</button>
+			<button id="createEvent">Create Event and Invite Selected Friends</button>
 		</form>
 	</body>
 	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-	<script src="fb.js"></script>
-	<script>
-		$("#createEvent").click(function(){
-			var name = $("#name").attr("value");
-			var startTime = $("#startTime").attr("value");
-			var endTime = $("#endTime").attr("value");
-			var location = $("#location").attr("value");
-			var privacy = $("#privacy").attr("value");
-			var description = $("#description").attr("value");
-			if ( name != null && startTime != null ){
-				$.ajax({
-					type: 'post',
-					data: {
-						name: name,
-						start_time: startTime,
-						end_time: endTime,
-						description: description,
-						location: location,
-						privacy_type: privacy
-					}
-					url: "https://graph.facebook.com/" + userId,
-					access_token: accessToken,
-					success: function(response){
-						console.log(response);
-					}
-				});
-			}
-
-		});
-	</script>
+  <script type="text/javascript" src="js/fb.js"></script>
+	<script type="text/javascript">
+    $("#createEvent").click(function(){
+      var name = $("#name").attr("value");
+      var startTime = $("#startTime").attr("value");
+      var endTime = $("#endTime").attr("value");
+      var location = $("#location").attr("value");
+      var privacy = $("#privacy").attr("value");
+      var description = $("#description").attr("value");
+      if ( name != null && startTime != null ){
+        var userIdStr = "/" + userId; 
+        FB.api("/"+ userId + "/events", 'POST', 
+          {
+            name: name,
+            start_time: '2014-07-04',
+            end_time: '2014-07-06',
+            description: description,
+            location: location,
+            privacy_type: privacy,
+            access_token: accessToken,
+          }, function( response ){
+            console.log(response);
+          });
+        }
+      });
+  </script>
 </html>
