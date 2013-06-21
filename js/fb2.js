@@ -14,9 +14,7 @@ window.fbAsyncInit = function() {
         console.log("connected");
       }
       else {
-        $("#fb-login").click(function(){
-          fbLogin();
-        });
+        fbLogin();
       }
     });
     FB.Event.subscribe('auth.authResponseChange', function(response) {
