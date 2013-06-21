@@ -201,7 +201,34 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 function updateStatus() {
-	populate();
+console.log(result);
+              for (var i = 0; i < result.length; i++){
+                var user = result[i];
+                var newLI = '';
+                if (i !== 0) {
+                  userList += ', ' + user.name;
+                } else if (i === result.length - 1) {
+                  userList += ', and ' + user.name + '.';
+                } else {
+                  userList += user.name;
+                }
+                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+                newLI += user.name;
+                newLI += '</strong></h4><span>';
+                newLI += user.username;
+                newLI += '@facebook.com</span></div></li>';
+                $('#results-list').append(newLI);
+              }
+
+              $('#results-list').append('<li></li>');
+              setupLI();
+              if (($('#results-list li').length) == 1){
+                console.log("There were no results.");
+              } else {
+                loadStepTwo();
+              }
+              l.stop();
         //document.getElementById("status").innerHTML = message;
 }
 
