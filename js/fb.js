@@ -76,13 +76,13 @@ window.fbAsyncInit = function() {
 
 
   $(window).bind("load", function(){
-var l = Ladda.create(document.querySelector('#search-btn'));
     document.getElementById("search-btn").onclick = function(){
-      l.start();
+      var l = Ladda.create(document.querySelector('#search-btn'));
       if ($('#search-bar').val() === ""){
         console.log("error");
       }
       else {
+        l.start();
         $.ajax({
           data: {
             format: 'json',
