@@ -80,6 +80,7 @@ document.getElementById("search-btn").onclick = function(){
 	if ($('#search-bar').value == null){
 		console.log("error");
 	}
+	else {
      $.ajax({
         data: {
           format: 'json',
@@ -133,7 +134,9 @@ document.getElementById("search-btn").onclick = function(){
           }
           
          // }
-  });};
+  	});
+	}
+  };
   //Array of Friends
   //var friendArray = response.data;
   //var name = name.data;
