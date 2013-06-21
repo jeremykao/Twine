@@ -83,6 +83,7 @@ var result;
     document.getElementById("search-btn").onclick = function(){
       var l = Ladda.create(document.querySelector('#search-btn'));
       if ($('#search-bar').val() === ""){
+        alert("It appears that you did not enter an interest. Please enter a query.");
         console.log("error");
       }
       else {
@@ -162,6 +163,7 @@ var result;
               $('#results-list').append('<li></li>');
               setupLI();
               if (($('#results-list li').length) == 1){
+                alert("Sorry! It appears none of your friends have that interest.");
                 console.log("There were no results.");
               } else {
                 loadStepTwo();
@@ -185,6 +187,7 @@ var result;
         $("#fb-login").text("Logged into FB");
         $("#fb-login").removeClass("btn-info");
         $("#fb-login").attr("disabled","true");
+        checkBegin();
       }
 
 
@@ -350,4 +353,10 @@ var filterByDistance = function(d,self_lat,self_long,friends){
   console.log(result);
   return result;
 
+}
+checkBegin = function() {
+  if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled')))
+    $('#start-btn').attr('disabled', true);
+  else
+    $('#start-btn').attr('disabled', false);
 }
