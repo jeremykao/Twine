@@ -98,11 +98,11 @@ window.fbAsyncInit = function() {
             var userList = '', emailList = '';
 
             // GEOLOCATION STUFF
-            var temp = function(){
+            var async = function(){
               result = filterByDistance(10000,selfLat,selfLong,response);
               populate();
             };
-            getCoords(temp);
+            getCoords(async);
 
             //console.log("RESPONSE " + response[0]);
             var populate = function() { 
@@ -160,9 +160,9 @@ var selfLong;
 var result;
 
   // Find geolocation
-var getCoords = function(temp){
+var getCoords = function(async){
   if (navigator.geolocation){
-    return navigator.geolocation.getCurrentPosition(function(position){returnCoords(position); temp()}, handleLocationError);
+    return navigator.geolocation.getCurrentPosition(function(position){returnCoords(position); async()}, handleLocationError);
   }
   else {
       alert("Geolocation is not supported by this browser.");
@@ -197,20 +197,26 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
+function updateStatus() {
+	result = response;
+	populate();
+        //document.getElementById("status").innerHTML = message;
+}
+
 function handleLocationError(error) {
         switch(error.code)
         {
         case 0:
-          updateStatus("There was an error while retrieving your location: " + error.message);
+          updateStatus();
           break;
         case 1:
-          updateStatus("The user prevented this page from retrieving a location.");
+          updateStatus();
           break;
         case 2:
-          updateStatus("The browser was unable to determine your location: " + error.message);
+          updateStatus();
           break;
         case 3:
-          updateStatus("The browser timed out before retrieving the location.");
+          updateStatus();
           break;
         }
     }
