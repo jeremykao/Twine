@@ -68,90 +68,95 @@ window.fbAsyncInit = function() {
     }
   search_term = "";
   var queryStr = "";
- $("#search-bar").bind("change", function(){
-    search_term = $(this).attr("value");
-    queryStr = "SELECT username, name, pic, pic_big, pic_small, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name='"+ search_term+"' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
-  });
+  if ($("#search-bar") != null){
+   $("#search-bar").bind("change", function(){
+      search_term = $(this).attr("value");
+      queryStr = "SELECT username, name, pic, pic_big, pic_small, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name='"+ search_term+"' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
+    });
+  }
 
 
 
   $(window).bind("load", function(){
-    document.getElementById("search-btn").onclick = function(){
-      searchLadda.start();
-      searchBtn.text(' ');
-      if ($('#search-bar').val() === ""){
-        console.log("error");
-      }
-      else {
-        $.ajax({
-          data: {
-            format: 'json',
-            query: queryStr,
-            access_token: accessToken
-          },
-          url: 'https://api.facebook.com/method/fql.query'
+    if ($("#search-btn") != null) {
+      document.getElementById("search-btn").onclick = function(){
+        searchLadda.start();
+        searchBtn.text(' ');
+        if ($('#search-bar').val() === ""){
+          console.log("error");
+        }
+        else {
+          $.ajax({
+            data: {
+              format: 'json',
+              query: queryStr,
+              access_token: accessToken
+            },
+            url: 'https://api.facebook.com/method/fql.query'
 
 
-          }).done(function(response){
-            console.log(response);
-            $('#results-list').html('');
-            var userList = '', emailList = '';
+            }).done(function(response){
+              console.log(response);
+              $('#results-list').html('');
+              var userList = '', emailList = '';
 
-            // GEOLOCATION STUFF
-            var temp = function(){
-              result = filterByDistance(10000,selfLat,selfLong,response);
-              populate();
-            };
-            getCoords(temp);
-
-            //console.log("RESPONSE " + response[0]);
-            var populate = function() { 
-              console.log(result);
-              for (var i = 0; i < result.length; i++){
-                var user = result[i];
-                var newLI = '';
-                if (i !== 0) {
-                  userList += ', ' + user.name;
-                } else if (i === result.length - 1) {
-                  userList += ', and ' + user.name + '.';
-                } else {
-                  userList += user.name;
-                }
-                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
-                newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
-                newLI += user.name;
-                newLI += '</strong></h4><span>';
-                newLI += user.username;
-                newLI += '@facebook.com</span></div></li>';
-                $('#results-list').append(newLI);
-              }
-
-              setupLI();
-              if (($('#results-list li').length) == 1){
-                console.log("There were no results.");
-              } //else {
-                searchBtn.text('Search Friends');
-                searchLadda.stop();
-                loadStepTwo();
-                $('#results-list').append('<li></li>');
-
+              // GEOLOCATION STUFF
+              var temp = function(){
+                result = filterByDistance(10000,selfLat,selfLong,response);
+                populate();
               };
-            });
-          }
-        };
+              getCoords(temp);
 
+              //console.log("RESPONSE " + response[0]);
+              var populate = function() { 
+                console.log(result);
+                for (var i = 0; i < result.length; i++){
+                  var user = result[i];
+                  var newLI = '';
+                  if (i !== 0) {
+                    userList += ', ' + user.name;
+                  } else if (i === result.length - 1) {
+                    userList += ', and ' + user.name + '.';
+                  } else {
+                    userList += user.name;
+                  }
+                  newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                  newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+                  newLI += user.name;
+                  newLI += '</strong></h4><span>';
+                  newLI += user.username;
+                  newLI += '@facebook.com</span></div></li>';
+                  $('#results-list').append(newLI);
+                }
+
+                setupLI();
+                if (($('#results-list li').length) == 1){
+                  console.log("There were no results.");
+                } //else {
+                  searchBtn.text('Search Friends');
+                  searchLadda.stop();
+                  loadStepTwo();
+                  $('#results-list').append('<li></li>');
+
+                };
+              });
+            }
+          };
+        }
       });
       function fbLogin(){
         FB.login(function(response){
           if ( response.status == "connected" )
           changeFBButton();
-        }, {perms: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages'});
+        }, {perms: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages, create_event'});
       }
 
       function changeFBButton(){
-        $("#fb-login").text("Logged into FB");
-        $("#fb-login").removeClass("btn-info");
-        $("#fb-login").attr("disabled","true");
+        if ( $("#fb-login") != null ){
+          $("#fb-login").text("Logged into FB");
+          $("#fb-login").removeClass("btn-info");
+          $("#fb-login").attr("disabled","true");
+        }
       }
 
   // Find geolocation
