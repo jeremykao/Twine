@@ -6,6 +6,7 @@ body {
 }
 
 .btn {
+  margin-bottom: 1em;
   box-sizing: border-box;
 }
 
@@ -107,9 +108,20 @@ body {
   }
   #continue-btn {
     bottom: 0;
+    right: 45%;
+    position: absolute;
+    width: 45%;
+    border-right: @pomegranate solid 1px;
+    height: 52px;
+    padding-top: 1em;
+    border-radius: 0px;
+    box-sizing: border-box;
+  }
+  #event-btn {
+    bottom: 0;
     right: 0;
     position: absolute;
-    width: 90%;
+    width: 45%;
     height: 52px;
     padding-top: 1em;
     border-radius: 0px;
@@ -145,6 +157,10 @@ body {
       background: @green-sea;
     }
   }
+}
+
+#step-four {
+  display: none;
 }
 
 #finished {
