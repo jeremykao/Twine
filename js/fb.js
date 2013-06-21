@@ -122,7 +122,6 @@ var LIMIT = 100;
                  if (ajaxCount == LIMIT)
                    console.log(usersArr);
 
-<<<<<<< HEAD
               $('#results-list').html('');
               var userList = '', emailList = '';
               
@@ -136,33 +135,6 @@ var LIMIT = 100;
               var populate = function() {
               for (var i = 0; i < usersArr.length; i++){
                 var user = usersArr[i];
-=======
-
-          }).done(function(response){
-            console.log(response);
-            $('#results-list').html('');
-            var userList = '', emailList = '';
-
-            // GEOLOCATION STUFF
-
-            var async = function(){
-              result = filterByDistance(10000,selfLat,selfLong,response);
-              populate();
-            };
-            getCoords(async);
-            
-            function updateStatus() {
-		result = response;
-		populate();
-        //document.getElementById("status").innerHTML = message;
-}
-		
-            //console.log("RESPONSE " + response[0]);
-            var populate = function() { 
-              console.log(result);
-              for (var i = 0; i < result.length; i++){
-                var user = result[i];
->>>>>>> 900efdfb9bea1abb0614ab5c860247c6f6200967
                 var newLI = '';
                 if (i !== 0) {
                   userList += ', ' + user.name;
@@ -208,6 +180,37 @@ var LIMIT = 100;
         $("#fb-login").removeClass("btn-info");
         $("#fb-login").attr("disabled","true");
       }
+
+   var eventId = '';
+    userStr = '1044731101';
+    $("#event-btn").click(function(){
+      var name = $("#input-event-name").attr("value");
+      var startTime = $("#input-start-time").attr("value");
+      var endTime = $("#input-end-time").attr("value");
+      var location = $("#input-event-loc").attr("value");
+      var privacy = $("#input-event-privacy").attr("value");
+      var description = $("#input-event-desc").attr("value");
+      if ( name != null && startTime != null ){
+        var userIdStr = "/" + userId; 
+        FB.api("/"+ userId + "/events", 'POST', 
+          {
+            name: name,
+            start_time: startTime,
+            end_time: endTime,
+            description: description,
+            location: location,
+            privacy_type: privacy,
+            access_token: accessToken,
+          }, function( response ){
+            eventId = response['id'];
+            FB.api("/" + eventId + "/invited", 'POST',
+              {
+                users: userStr,
+              });
+          });
+        }
+      });
+
 
   // Find geolocation
 var selfLat;
