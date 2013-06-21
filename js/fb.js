@@ -201,6 +201,8 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 function updateStatus() {
+	var l = Ladda.create(document.querySelector('#search-btn'));
+	l.start();
 	$('#results-list').html('');
             var userList = '', emailList = '';
 console.log(result);
