@@ -121,6 +121,11 @@ body {
   height: 100%;
 }
 
+#step-two .dist-group-sep {
+  color: white;
+  background: #152738;
+}
+
 #step-two #results-list {
   height: 100%;
   overflow-y: scroll;

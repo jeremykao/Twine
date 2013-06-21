@@ -86,6 +86,7 @@ var LIMIT = 100;
     document.getElementById("search-btn").onclick = function(){
       var l = Ladda.create(document.querySelector('#search-btn'));
       if ($('#search-bar').val() === ""){
+        alert("It appears that you did not enter an interest. Please enter a query.");
         console.log("error");
       }
       else {
@@ -160,25 +161,25 @@ var LIMIT = 100;
                 var user = result[i];
                 var newLI = '';
                 if (distGroups[user.distGroup] === 0) {
-                  newLI += '<li class="dist-group-sep">';
+                  newLI += '<li class="todo-done dist-group-sep';
                   switch (user.distGroup) {
                     case 0:
-                      newLI += '< 5 miles away';
+                      newLI += '" data-group="0">< 5 miles away';
                       break;
                     case 1:
-                      newLI += 'between 5 and 10 miles away';
+                      newLI += '" data-group="1">between 5 and 10 miles away';
                       break;
                     case 2:
-                      newLI += 'between 10 and 25 miles away';
+                      newLI += '" data-group="2">between 10 and 25 miles away';
                       break;
                     case 3:
-                      newLI += 'between 25 and 50 miles away';
+                      newLI += '" data-group="3">between 25 and 50 miles away';
                       break;
                     case 4:
-                      newLI += '> 50 miles away';
+                      newLI += '" data-group="4">> 50 miles away';
                       break;
                     case 5:
-                      newLI += 'location unknown';
+                      newLI += '" data-group="5">location unknown';
                       break;
                   }
                   newLI += '</li>';
@@ -191,7 +192,7 @@ var LIMIT = 100;
                 } else {
                   userList += user.name;
                 }
-                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                newLI += '<li class="todo-done group' + user.distGroup +'"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
                 newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
                 newLI += user.name;
                 newLI += '</strong></h4><span>';
@@ -203,6 +204,7 @@ var LIMIT = 100;
               $('#results-list').append('<li></li>');
               setupLI();
               if (($('#results-list li').length) == 1){
+                alert("Sorry! It appears none of your friends have that interest.");
                 console.log("There were no results.");
               } else {
                 loadStepTwo();
@@ -227,6 +229,7 @@ var LIMIT = 100;
         $("#fb-login").text("Logged into FB");
         $("#fb-login").removeClass("btn-info");
         $("#fb-login").attr("disabled","true");
+        checkBeginBtn();
       }
 
 
