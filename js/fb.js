@@ -157,7 +157,7 @@ var LIMIT = 100;
                 
           //console.log("RESPONSE " + response[0]);
             var populate = function() { 
-              var distGroups = [0, 0, 0, 0, 0];
+              var distGroups = [0, 0, 0, 0, 0, 0];
               //console.log(result);
               for (var i = 0; i < result.length; i++){
                 var user = result[i];
