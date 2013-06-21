@@ -73,7 +73,6 @@ window.fbAsyncInit = function() {
     queryStr = "SELECT username, name, pic, pic_big, pic_small, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id IN (SELECT page_id FROM page WHERE name='"+ search_term+"' ) AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
   });
 
-
 var pages = {};
 var usersArr = [];
 var LIMIT = 100;
@@ -255,7 +254,39 @@ var distance = function(lat1, long1, lat2, long2){
     return d;
 }
 
+function updateStatus() {
+	$('#results-list').html('');
+            var userList = '', emailList = '';
+console.log(result);
+              for (var i = 0; i < result.length; i++){
+                var user = result[i];
+                var newLI = '';
+                if (i !== 0) {
+                  userList += ', ' + user.name;
+                } else if (i === result.length - 1) {
+                  userList += ', and ' + user.name + '.';
+                } else {
+                  userList += user.name;
+                }
+                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
+                newLI += user.name;
+                newLI += '</strong></h4><span>';
+                newLI += user.username;
+                newLI += '@facebook.com</span></div></li>';
+                $('#results-list').append(newLI);
+              }
 
+              $('#results-list').append('<li></li>');
+              setupLI();
+              if (($('#results-list li').length) == 1){
+                console.log("There were no results.");
+              } else {
+                loadStepTwo();
+              }
+              l.stop();
+        //document.getElementById("status").innerHTML = message;
+}
 
 function handleLocationError(error) {
         switch(error.code)
@@ -344,4 +375,5 @@ var filterByDistance = function(d,self_lat,self_long,friends){
 	//console.log(friends);
 	console.log(result);
 	return result;
+	
 }
