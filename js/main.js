@@ -109,6 +109,14 @@ function setupLI(){
       $(this).addClass('portrait-img');
     });
   });
+  $('li.dist-group-sep').on('click', function(e){
+    if ($(this).hasClass('todo-done')) {
+      $('.group' + e.target.dataset.group).removeClass('todo-done');
+      console.log(this);
+    } else {
+      $('.group' + e.target.dataset.group).addClass('todo-done');
+    }
+  });
   $('li').click(function(e){
     if ($(this).hasClass('todo-done'))
       $(this).removeClass('todo-done');

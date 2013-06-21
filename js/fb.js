@@ -119,25 +119,25 @@ var result;
                 var user = result[i];
                 var newLI = '';
                 if (distGroups[user.distGroup] === 0) {
-                  newLI += '<li class="dist-group-sep">';
+                  newLI += '<li class="todo-done dist-group-sep';
                   switch (user.distGroup) {
                     case 0:
-                      newLI += '< 5 miles away';
+                      newLI += '" data-group="0">< 5 miles away';
                       break;
                     case 1:
-                      newLI += 'between 5 and 10 miles away';
+                      newLI += '" data-group="1">between 5 and 10 miles away';
                       break;
                     case 2:
-                      newLI += 'between 10 and 25 miles away';
+                      newLI += '" data-group="2">between 10 and 25 miles away';
                       break;
                     case 3:
-                      newLI += 'between 25 and 50 miles away';
+                      newLI += '" data-group="3">between 25 and 50 miles away';
                       break;
                     case 4:
-                      newLI += '> 50 miles away';
+                      newLI += '" data-group="4">> 50 miles away';
                       break;
                     case 5:
-                      newLI += 'location unknown';
+                      newLI += '" data-group="5">location unknown';
                       break;
                   }
                   newLI += '</li>';
@@ -150,7 +150,7 @@ var result;
                 } else {
                   userList += user.name;
                 }
-                newLI += '<li class="todo-done"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
+                newLI += '<li class="todo-done group' + user.distGroup +'"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
                 newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
                 newLI += user.name;
                 newLI += '</strong></h4><span>';
