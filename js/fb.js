@@ -78,11 +78,11 @@ window.fbAsyncInit = function() {
   $(window).bind("load", function(){
     document.getElementById("search-btn").onclick = function(){
       var l = Ladda.create(document.querySelector('#search-btn'));
-      l.start();
       if ($('#search-bar').val() === ""){
         console.log("error");
       }
       else {
+        l.start();
         $.ajax({
           data: {
             format: 'json',
@@ -126,13 +126,14 @@ window.fbAsyncInit = function() {
                 $('#results-list').append(newLI);
               }
 
+              $('#results-list').append('<li></li>');
               setupLI();
               if (($('#results-list li').length) == 1){
                 console.log("There were no results.");
-              } //else {
-                l.stop();
+              } else {
                 loadStepTwo();
-                $('#results-list').append('<li></li>');
+              }
+              l.stop();
 
               };
             });
