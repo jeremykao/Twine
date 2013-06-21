@@ -201,6 +201,8 @@ var distance = function(lat1, long1, lat2, long2){
 }
 
 function updateStatus() {
+	$('#results-list').html('');
+            var userList = '', emailList = '';
 console.log(result);
               for (var i = 0; i < result.length; i++){
                 var user = result[i];
