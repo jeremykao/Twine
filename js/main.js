@@ -33,7 +33,10 @@ $(document).ready(function(){
   });
   $("#continue-btn").click(function(e){
     var emailList = '';
-    $('li.todo-done').each(function(){emailList += ($(this).children('.todo-content').children('span').text() +',');});
+    $('li.todo-done').each(function(){
+      emailList += ($(this).children('.todo-content').children('span').text() +',');
+      emailList = emailList.substr(0, emailList.length - 1);
+    });
     $('#input-to').val(emailList); 
     $('#search-value').text('');
     slideScreen(stepTwoScreen, stepThreeScreen);

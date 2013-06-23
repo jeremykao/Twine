@@ -69,6 +69,12 @@ body {
   margin-bottom: 2em;
 }
 
+#step-four input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
 #progress-bar {
   margin-top: 1em;
   -webkit-transition: all ease 0.5s linear;
@@ -218,6 +224,14 @@ body {
 
 #step-four #back-event-btn {
   margin-bottom: 1em;
+}
+
+#step-four input,
+#step-four textarea,
+#step-four select {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 #finished {

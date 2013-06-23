@@ -135,8 +135,8 @@ var LIMIT = 100;
              }
              ajaxCount++;
              if (ajaxCount == LIMIT){
-               console.log("UserLOL:")
-               console.log(userLOL);
+               //console.log("UserLOL:")
+               //console.log(userLOL);
              }
             }); //closes done
           }); //closes each
@@ -147,6 +147,7 @@ var LIMIT = 100;
 
           // GEOLOCATION STUFF
 
+               console.log(userLOL);
           var async = function(){
             result = filterByDistance(10000,selfLat,selfLong,userLOL);
             populate();
@@ -197,7 +198,7 @@ var LIMIT = 100;
                 newLI += '<li class="todo-done group' + user.distGroup +'"><div class="todo-icon"><img style=";" src="' + user.pic_big+ '"/></div>';
                 newLI += '<div class="todo-content"><h4 class="todo-name"><strong>';
                 newLI += user.name;
-                newLI += '</strong></h4><span uid="'+ user.uid +'">';
+                newLI += '</strong></h4><span data-uid="'+ user.uid +'">';
                 newLI += user.username;
                 newLI += '@facebook.com</span></div></li>';
                 $('#results-list').append(newLI);
@@ -330,7 +331,8 @@ function handleLocationError(error) {
 
 function filterByDistance(d,self_lat,self_long,friends){
   result = new Array();
-  console.log(self_lat + ", " + self_long);
+  console.log('friends:');
+  console.log(friends);
   if ((self_lat != null) && (self_long != null)){
     for (var i = 0; i < friends.length; i++){
       if (friends[i].current_location != null) {
@@ -404,7 +406,7 @@ function filterByDistance(d,self_lat,self_long,friends){
 var eventId = '';
   $("#event-btn-invite").click(function(){
     var userStr = '';
-    $('li.todo-done').each(function(){userStr += ($(this).children('.todo-content').children('span').attr("uid") +',');});
+    $('li.todo-done').each(function(){userStr += ($(this).children('.todo-content').children('span').attr("data-uid") +',');});
 
     var name = $("#input-event-name").attr("value");
     var startTime = $("#input-start-time").attr("value");
