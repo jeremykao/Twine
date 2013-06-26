@@ -110,7 +110,7 @@ $(window).bind("load", function(){
           console.log('similar pages:');
           console.log(similarPagesObj);
           for ( var i = 0; i < similarPagesObj.length; ++i ){
-            q = "SELECT uid, username, name, pic_big, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id="+ similarPagesObj[i]['id'] +"AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
+            q = "SELECT uid, username, name, pic_big, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id="+ similarPagesObj[i]['id'] +" AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
             pages['query' + i] = q;
           }
           var ajaxCount = 0;
