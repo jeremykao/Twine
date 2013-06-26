@@ -11,6 +11,7 @@ var progressBar = $('#progress-bar > .bar');
 var progressBarContainer = $('#progress-bar-container');
 var searchBar = $('#search-bar');
 var searchBtn = $('#search-btn');
+var searchAlert = $('#search-alert');
 var toInput = $('#input-to');
 
 // Document Hooks
@@ -18,7 +19,7 @@ $(document).ready(function(){
   var selfLat;
   var selfLong;
 
-  // Checkig begin button
+  // Checkingbegin button
   checkBeginBtn();
 
   $('#start-btn').click(function(e){
@@ -97,7 +98,7 @@ $(document).ready(function(){
 }); 
 
 // Feed in DOM elements to switch between two div screens
-var slideScreen = function(curr, next) {
+function slideScreen(curr, next) {
   curr.hide();
   next.css("visibility", "visible");
   next.fadeIn();
