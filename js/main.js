@@ -14,6 +14,10 @@ var searchBtn = $('#search-btn');
 var searchAlert = $('#search-alert');
 var toInput = $('#input-to');
 
+// Indicates whether user is searching Facebook(false) or Google+(true).
+// If null, means user hasn't logged onto either.
+var mode = null; 
+
 // Document Hooks
 $(document).ready(function(){
   var selfLat;
@@ -69,7 +73,7 @@ $(document).ready(function(){
     var sendees = $("#input-to").attr("value");
     var subject = $("#input-subject").attr("value");
     var message = $("#input-msg").attr("value");
-    if ( sendees != null ){
+    if ( sendees !== null ){
       $.ajax({
         type: 'POST',
         data: {
@@ -102,7 +106,7 @@ function slideScreen(curr, next) {
   curr.hide();
   next.css("visibility", "visible");
   next.fadeIn();
-};
+}
 
 function loadStepTwo(){
   slideScreen(stepOneScreen, stepTwoScreen);
@@ -133,11 +137,11 @@ function setupLI(){
 }
 
 function checkBeginBtn() {
-  if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled'))) {
-    $('#start-btn').attr('disabled', true);
-    $('#start-btn').removeClass('btn-primary');
-  } else {
-    $('#start-btn').attr('disabled', false);
+  //if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled'))) {
+  console.log('checking beging btn');
+  if (mode !== null && ($('#gmail-login').is(':disabled'))) {
+    $('#start-btn').attr('disabled',false);
     $('#start-btn').addClass('btn-primary');
   }
 }
+

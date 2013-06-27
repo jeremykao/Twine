@@ -11,6 +11,8 @@ window.fbAsyncInit = function() {
   FB.getLoginStatus(function(response){
     if ( response.status === 'connected'){
       changeFBButton();
+      checkBeginBtn();
+      mode = false;
     } else {
       $("#fb-login").click(function(){
         fbLogin();
@@ -24,8 +26,10 @@ window.fbAsyncInit = function() {
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
+      mode = false;
       accessToken = response['authResponse']['accessToken'];
       console.log(accessToken);
+      checkBeginBtn();
       testAPI();
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -416,9 +420,9 @@ $("#event-btn-invite").click(function(){
   var location = $("#input-event-loc").attr("value");
   var privacy = $("#input-event-privacy").attr("value");
   var description = $("#input-event-desc").attr("value");
-  if(( name != "") && (startTime != "")){
+  if(( name !== "") && (startTime !== "")){
     var userIdStr = "/" + userId; 
-    FB.api("/"+ userId + "/events", 'POST', 
+    FB.api("/"+ userId + "/events", 'POST',   // Creates event
     {
       name: name,
       start_time: startTime,
@@ -427,13 +431,15 @@ $("#event-btn-invite").click(function(){
       location: location,
       privacy_type: privacy,
       access_token: accessToken,
-    }, function( response ){
+    }, function( response ){  // Invites users
+        console.log('FB Event Response2:'); console.log(response);
       eventId = response['id'];
       console.log(eventId);
       FB.api("/" + eventId + "/invited", 'POST',
       {
         users: userStr,
       }, function( response ){
+        console.log('FB Event Response:'); console.log(response);
         $("#input-event-name").val("");
         $("#input-start-time").val("");
         $("#input-end-time").val("");

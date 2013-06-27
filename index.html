@@ -35,15 +35,26 @@
           <p>Like the string in a tin can telephone, twine connects you and relays a message to the friends you are looking for.</p>
           <p>Please login with Facebook so we can search your friends based on their interests, and Gmail so you can send emails through Twine.</p>
           <div class="row">
-          <button class="btn btn-info span3" id="fb-login">Login to Facebook</button>
-          {% if showGmail %}
-          <a href="{{ loginLink }}"><button class="btn btn-info span3" id="gmail-login">Login to Gmail</button></a>
-          {% else %}
-          <button class="btn span3" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
-          {% endif %}
+            <!--span id="signinButton">
+              <button
+                id="gp-login"
+                class="g-signin span3 btn btn-info"
+                data-callback="signinCallback"
+                data-clientid="928695212082.apps.googleusercontent.com"
+                data-cookiepolicy="single_host_origin"
+                data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                data-scope="https://www.googleapis.com/auth/plus.login">Login via Google+
+              </button>
+            </span -->
+            <button class="btn btn-info span3" id="fb-login">Login to Facebook</button>
+            {% if showGmail %}
+            <a href="{{ loginLink }}"><button class="btn btn-info span3" id="gmail-login">Login to Gmail</button></a>
+            {% else %}
+            <button class="btn span3" type="submit" id="gmail-login" disabled="disabled">Logged into Gmail</button>
+            {% endif %}
           </div>
           <div class="row">
-            <button id="start-btn" type="submit" class="offset2 span2 btn">Begin</button>
+            <button id="start-btn" type="submit" class="offset2 span2 btn" disabled="true">Begin</button>
           </div>
         <br>
         <p style="text-align: center">Created by Team Baguette for Chrome Academy 2013</p>
@@ -159,7 +170,7 @@
           <div class="form-row control-group">
             <div class="controls row">
               <button id="back-event-btn" class="btn btn-success offset2 span2">Back</button>
-              <button id="event-btn-invite" class="span6 btn btn-primary">Create Event & Send Invites</button>
+              <button id="event-btn-invite" class="span6 btn btn-primary">Create Event &amp; Send Invites</button>
             </div>
           </div>
       </div><!-- fb screen wrapper -->
@@ -175,6 +186,7 @@
 
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/js/fb.js"></script>
+    <script type="text/javascript" src="/js/gp.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -185,7 +197,7 @@
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/jquery.stacktable.js"></script>
-    <script src="http://vjs.zencdn.net/c/video.js"></script>
+    
     <script src="js/application.js"></script>
     <script src="js/spin.min.js"></script>
     <script src="js/ladda.min.js"></script>
