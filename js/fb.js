@@ -80,7 +80,7 @@ $("#search-bar").bind("change", function(){
 var selfLat;
 var selfLong;
 var result;
-var LIMIT = 25;
+var LIMIT = 100;
 
 $(window).bind("load", function(){
   document.getElementById("search-btn").onclick = function(){
@@ -100,7 +100,6 @@ $(window).bind("load", function(){
       l.start();
       var similarPages = "https://graph.facebook.com/search";
       var similarPagesObj = {};
-      console.log('1: ' + search_term);
       $.ajax({
         data: {
           q: search_term,
@@ -111,8 +110,6 @@ $(window).bind("load", function(){
         url: 'https://graph.facebook.com/search',
         success: function(response){
           similarPagesObj = response['data'];
-          console.log('similar pages:');
-          console.log(similarPagesObj);
           for ( var i = 0; i < similarPagesObj.length; ++i ){
             q = "SELECT uid, username, name, pic_big, current_location.state, current_location.latitude, current_location.longitude from user where uid IN (SELECT uid FROM page_fan WHERE page_id="+ similarPagesObj[i]['id'] +" AND uid IN (SELECT uid2 FROM friend WHERE uid1=me() ))";
             pages['query' + i] = q;
@@ -235,7 +232,7 @@ function fbLogin(){
   FB.login(function(response){
     if ( response.status == "connected" )
     changeFBButton();
-  }, {perms: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages'});
+  }, {perms: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages, create_event'});
 }
 
 function changeFBButton(){
@@ -412,7 +409,13 @@ for (var i = 0; i < friends.length; i++){
 var eventId = '';
 $("#event-btn-invite").click(function(){
   var userStr = '';
-  $('li.todo-done').each(function(){userStr += ($(this).children('.todo-content').children('span').attr("data-uid") +',');});
+  $('li.todo-done').each(function(){
+    if (!$(this).hasClass('dist-group-sep')) {
+      var uid = ($(this).children('.todo-content').children('span').attr("data-uid"));
+      userStr += uid + ',';
+    }
+  });
+  userStr = userStr.substr(0, userStr.length - 1);
 
   var name = $("#input-event-name").attr("value");
   var startTime = $("#input-start-time").attr("value");
@@ -435,9 +438,10 @@ $("#event-btn-invite").click(function(){
         console.log('FB Event Response2:'); console.log(response);
       eventId = response['id'];
       console.log(eventId);
+      console.log("/" + eventId + "/invited"); console.log(userStr);
       FB.api("/" + eventId + "/invited", 'POST',
       {
-        users: userStr,
+        users: userStr
       }, function( response ){
         console.log('FB Event Response:'); console.log(response);
         $("#input-event-name").val("");
