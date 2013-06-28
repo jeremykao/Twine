@@ -28,9 +28,8 @@ window.fbAsyncInit = function() {
       // have logged in to the app.
       mode = false;
       accessToken = response['authResponse']['accessToken'];
-      console.log(accessToken);
       checkBeginBtn();
-      testAPI();
+      // testAPI();
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
@@ -124,8 +123,8 @@ $(window).bind("load", function(){
               },
               url: 'https://api.facebook.com/method/fql.query',
             }).done(function(response){ //closes ajax
-            console.log('response:');console.log(response);
-          console.log('page:'); console.log(pages[key]);
+            //console.log('response:');console.log(response);
+          //console.log('page:'); console.log(pages[key]);
                 if (response.length > 0){
                   for ( var i = 0; i < response.length; ++i ){
                     var seen = false;
@@ -152,7 +151,7 @@ $(window).bind("load", function(){
           var userList = '', emailList = '';
 
           //  Geolocation
-          console.log(userLOL);
+          //console.log(userLOL);
           var async = function(){
             result = filterByDistance(10000,selfLat,selfLong,userLOL);
             populate();
@@ -334,8 +333,8 @@ function handleLocationError(error) {
 
 function filterByDistance(d,self_lat,self_long,friends){
   result = new Array();
-  console.log('friends:');
-  console.log(friends);
+  //console.log('friends:');
+  //console.log(friends);
   if ((self_lat != null) && (self_long != null)){
     for (var i = 0; i < friends.length; i++){
       if (friends[i].current_location != null) {
@@ -401,8 +400,8 @@ for (var i = 0; i < friends.length; i++){
 }
   }
   //console.log(friends);
-  console.log("Result: ")
-  console.log(result);
+  //console.log("Result: ")
+  //console.log(result);
   return result;
 
 }

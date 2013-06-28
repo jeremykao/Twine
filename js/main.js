@@ -39,9 +39,10 @@ $(document).ready(function(){
   $("#continue-btn").click(function(e){
     var emailList = '';
     $('li.todo-done').each(function(){
-      emailList += ($(this).children('.todo-content').children('span').text() +',');
-      emailList = emailList.substr(0, emailList.length - 1);
+      if (!$(this).hasClass('dist-group-sep'))
+        emailList += ($(this).children('.todo-content').children('span').text() +', ');
     });
+    emailList = emailList.substr(0, emailList.length - 2);
     $('#input-to').val(emailList); 
     $('#search-value').text('');
     slideScreen(stepTwoScreen, stepThreeScreen);
@@ -83,6 +84,9 @@ $(document).ready(function(){
         },
         url: '/send',
         success: function(response){
+          console.log(response);
+          response = response.substr(0, response.lastIndexOf(','));
+          response = response.substr(0, response.lastIndexOf(',') + 1) + ' and' + response.substr(response.lastIndexOf(',') + 1) + '.';
            $("#success-msg").html("Your message has been sent to " + response );
         }
       });
@@ -123,7 +127,7 @@ function setupLI(){
   $('li.dist-group-sep').on('click', function(e){
     if ($(this).hasClass('todo-done')) {
       $('.group' + e.target.dataset.group).removeClass('todo-done');
-      console.log(this);
+      //console.log(this);
     } else {
       $('.group' + e.target.dataset.group).addClass('todo-done');
     }
@@ -138,7 +142,7 @@ function setupLI(){
 
 function checkBeginBtn() {
   //if (!($('#fb-login').is(':disabled')) || !($('#gmail-login').is(':disabled'))) {
-  console.log('checking beging btn');
+  //console.log('checking beging btn');
   if (mode !== null && ($('#gmail-login').is(':disabled'))) {
     $('#start-btn').attr('disabled',false);
     $('#start-btn').addClass('btn-primary');
