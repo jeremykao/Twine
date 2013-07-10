@@ -66,9 +66,16 @@ class TestFbEventHandler(webapp2.RequestHandler):
 		path = os.path.join(os.path.dirname(__file__), 'testFbEvent.html')
 		self.response.out.write(template.render(path, template_values))
 
+class LegalHandler(webapp2.RequestHandler):
+    def get(self):
+        template_values = {}
+		path = os.path.join(os.path.dirname(__file__), 'legal.html')
+        self.response.out.write(template.render(path, template_values))
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/testEmail', TestEmailHandler),
     ('/send', SendHandler),
     ('/testFbEvent', TestFbEventHandler),
+    ('/legal', LegalHandler),
 ], debug=True)

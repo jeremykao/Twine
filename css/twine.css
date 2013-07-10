@@ -284,3 +284,9 @@ body {
   height: 100%;
   max-width: initial;
 }
+
+a.legalheadings {
+  display: block;
+  text-decoration: none;
+  color: #333333;
+}
