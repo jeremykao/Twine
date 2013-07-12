@@ -101,6 +101,7 @@ $(window).bind("load", function(){
       var similarPagesObj = {};
       $.ajax({
         data: {
+          access_token: accessToken,
           q: search_term,
           type: 'page',
           limit: LIMIT
