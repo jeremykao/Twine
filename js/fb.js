@@ -231,7 +231,7 @@ function fbLogin(){
   FB.login(function(response){
     if ( response.status == "connected" )
     changeFBButton();
-  }, {perms: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages, create_event'});
+  }, {scope: 'email, user_likes, xmpp_login, friends_activities, friends_interests, friends_likes, user_location, friends_location, manage_pages, create_event'});
 }
 
 function changeFBButton(){
